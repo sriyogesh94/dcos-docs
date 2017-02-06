@@ -19,14 +19,16 @@ for easy management of a DC/OS installation.
 
 Available DC/OS commands:
 
-   auth           	Authenticate to DC/OS cluster
-   config         	Manage the DC/OS configuration file
-   help           	Display help information about DC/OS
-   marathon       	Deploy and manage applications to DC/OS
-   node           	Administer and manage DC/OS cluster nodes
-   package        	Install and manage DC/OS software packages
-   service        	Manage DC/OS services
-   task           	Manage DC/OS tasks
+	auth           	Authenticate to DC/OS cluster
+	config         	Manage the DC/OS configuration file
+	experimental   	Experimental commands. These commands are under development and are subject to change
+	help           	Display help information about DC/OS
+	job            	Deploy and manage jobs in DC/OS
+	marathon       	Deploy and manage applications to DC/OS
+	node           	Administer and manage DC/OS cluster nodes
+	package        	Install and manage DC/OS software packages
+	service        	Manage DC/OS services
+	task           	Manage DC/OS tasks
 
 Get detailed command description with 'dcos <command> --help'.
 ```
