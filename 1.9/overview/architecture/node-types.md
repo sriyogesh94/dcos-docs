@@ -54,7 +54,7 @@ Agent nodes can be public or private, depending on agent and network configurati
 
 A public agent node is an agent node that is on a network that allows ingress from outside of the cluster via the cluster’s [infrastructure networking](/docs/1.9/overview/concepts/#infrastructure-network).
 
-The resources on private agent nodes are, by default, configured to only be allocated to tasks that specify the `slave_public` role. The Mesos agents on private agent nodes also have the `public_ip:true` agent attribute to assist in their discovery.
+The resources on public agent nodes are, by default, configured to only be allocated to tasks that specify the `slave_public` role. The Mesos agents on public agent nodes also have the `public_ip:true` agent attribute to assist in their discovery.
 
 Public agent nodes are used primarily for externally facing reverse proxy load balancers, like Marathon-LB. This provides a [DMZ](https://en.wikipedia.org/wiki/DMZ_%28computing%29) that decreases the surface area accessible by malicious attackers.
 
