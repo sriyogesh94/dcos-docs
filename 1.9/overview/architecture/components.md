@@ -472,6 +472,7 @@ In a world where machines are are given numbers instead of names, tasks are sche
 </div>
 </div>
 
+<a name="minuteman"></a>
 <div data-role="collapsible">
 <h2>Minuteman</h2>
 <div>
@@ -479,7 +480,7 @@ In a world where machines are are given numbers instead of names, tasks are sche
 <p>
   <strong>System Service(s):</strong>
   <ul>
-    <li><code class="nowrap">dcos-minuteman.service</code></li>
+    <li>N/A - Included in <a href="#navstar">Navstar</a></li>
   </ul>
 </p>
 <p>
@@ -492,6 +493,7 @@ In a world where machines are are given numbers instead of names, tasks are sche
 </div>
 </div>
 
+<a name="navstar"></a>
 <div data-role="collapsible">
 <h2>Navstar</h2>
 <div>
