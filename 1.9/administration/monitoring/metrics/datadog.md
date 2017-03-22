@@ -11,8 +11,8 @@ The Datadog metrics plugin for DC/OS supports sending metrics from the DC/OS met
 ## Build the plugin
 
 **Prerequisite:** 
-- DC/OS is installed.
-- Golang environment.
+- DC/OS is installed
+- [Go programming environment](https://golang.org/doc/install)
 - GitHub
 
 1. Clone the DC/OS metrics repository:
@@ -24,13 +24,13 @@ The Datadog metrics plugin for DC/OS supports sending metrics from the DC/OS met
 1. Navigate to the `dcos-metrics` repository and run the build command:
 
    ```bash
-   cd dcos-metrics && make
+   $ cd dcos-metrics && make
    ```
 
    The plugin is available in the build directory:
 
    ```
-    tree build
+   $ tree build
    build
    ├── collector
    │   └── dcos-metrics-collector-1.0.0-rc7
@@ -45,7 +45,9 @@ The Datadog metrics plugin for DC/OS supports sending metrics from the DC/OS met
 Install the `datadog` package in DC/OS:
 
 1.  Go to the **Universe** tab of the DC/OS GUI and find the **Datadog** package. 
+    ![datadog package](/docs/1.9/administration/monitoring/metrics/img/datadog-package.png)
 1.  Click **INSTALL PACKAGE** -> **ADVANCED INSTALLATION** and enter [your Datadog API_KEY](https://app.datadoghq.com/account/settings#api).
+    ![API key](/docs/1.9/administration/monitoring/metrics/img/datadog-api-key.png)
 1.  Click **REVIEW AND INSTALL** to complete your installation.
 
 After a minute or two a Datadog agent will be running in the cluster at `datadog-agent.marathon.mesos:8125`. This is the default location used by the Datadog plugin.
