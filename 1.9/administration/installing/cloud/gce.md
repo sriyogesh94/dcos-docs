@@ -1,5 +1,5 @@
 ---
-post_title: DC/OS on Google Compute Engine
+post_title: Running DC/OS on Google Compute Engine
 nav_title: GCE
 menu_order: 3
 ---

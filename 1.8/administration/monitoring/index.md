@@ -24,7 +24,7 @@ You can debug further by clicking the node to view the component journald (log) 
 
 ## Health States
 
-Possible health states are unhealthy and healthy. We infer this from codes 0 and 1.
+Possible health states are unhealthy and healthy. We infer this from the system health API codes `0` and `1`.
 
 - **Healthy** All cluster nodes are healthy. The units are loaded and not in the "active" or "inactive" state.
 - **Unhealthy** One or more nodes have issues. The units are not loaded or are in the "active" or "inactive" state.
@@ -75,4 +75,4 @@ If you experience this behavior it's most likely your Mesos agent service on the
 
 ## Troubleshooting
 
-If you have any problems, you can check if the diagnostics service is running by SSH’ing to the Mesos leading master and checking the systemd status of the diagnostics component (`dcos-d3t.service`).
+If you have any problems, you can check if the diagnostics service is running by SSH’ing to the Mesos leading master and checking the systemd status of the diagnostics component (`dcos-3dt.service`).

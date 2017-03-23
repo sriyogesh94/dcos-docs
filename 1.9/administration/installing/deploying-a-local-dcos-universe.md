@@ -207,7 +207,7 @@ You can install and run DC/OS services on a datacenter without internet access w
      
 30. Close the SSH session by typing `exit` or open a new terminal prompt tab. Repeat steps 28 and 29 on each agent node.
 
-31. To verify your success, log into the DC/OS web interface and open the **Packages** > **Packages** tab. You should see a list of selected packages. Go ahead and try to install one of the packages. 
+31. To verify your success, log into the DC/OS web interface and open the **Universe** > **Packages** tab. You should see a list of selected packages. Go ahead and try to install one of the packages. 
 
 
 

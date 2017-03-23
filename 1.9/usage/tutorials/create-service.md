@@ -12,7 +12,11 @@ This tutorial shows how to create and deploy a simple one-command service and a 
 ## Create and Run a Simple Service from the DC/OS Web Interface
 
 1. Click the **Services** tab of the DC/OS web interface, then click the **RUN A SERVICE**.
-1. Click **Single Container** and enter a name for your service in the **SERVICE ID** field. In the **Command** field, enter `sleep 10`.
+1. Click **Single Container**.
+    
+   1. In the **SERVICE ID** field, enter a name for your service. 
+   1. In the **Command** field, enter `sleep 10`.
+   1. In the **Container Image** field, enter a container image to use.
 1. Click **REVIEW & RUN**.
 
     ![Create a service in the DC/OS UI](/docs/1.9/usage/tutorials/img/deploy-svs-ui.png)

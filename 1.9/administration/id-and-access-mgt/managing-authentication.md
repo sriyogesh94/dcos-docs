@@ -17,11 +17,11 @@ To manage users:
 
 1.  Launch the DC/OS web interface and log in with your username (Google, GitHub, and Microsoft) and password.
 
-2.  Click on the **System** -> **Organization** tab and choose your action.
+2.  Click on the **Organization** tab and choose your action.
 
     ### Add users
 
-    From the **Users** tab, click **New User** and fill in the new user email address. New users are automatically sent an email notifying them of access to DC/OS.
+    From the **Users** tab, click the new user icon (**+**) and fill in the new user email address. New users are automatically sent an email notifying them of access to DC/OS.
 
     **Tip:** Any user with access to DC/OS can invite more users. Each DC/OS user is an administrator, there is no explicit concept of privileges with DC/OS.
 

@@ -164,10 +164,11 @@ The DC/OS installation creates these folders:
     ssh_port: 22
     ssh_user: <username>
     use_proxy: 'true'
-    http_proxy: http://<your_http_proxy>/
-    https_proxy: https://<your_https_proxy>/
+    http_proxy: http://<proxy_host>:<http_proxy_port>
+    https_proxy: https://<proxy_host>:<https_proxy_port>
     no_proxy: 
-    - '*.int.example.com' 
+    - 'foo.bar.com'
+    - '.baz.com'
     ```
 
 3.  Copy your private SSH key to `genconf/ssh_key`. For more information, see the [ssh_key_path][6] parameter.
@@ -326,7 +327,7 @@ To install DC/OS:
 
     You are done!
 
-    ![dashboard](../img/ui-dashboard.gif)
+    ![DC/OS dashboard](/docs/1.9/usage/img/dcos-gui.png)
 
 # <a name="backup"></a>(Optional) Backup your DC/OS installer files
 It is recommended that you save your DC/OS installer file immediately after installation completes and before you start using DC/OS. These installer files can be used to add more agent nodes to your cluster, including the [public agent][4] node.

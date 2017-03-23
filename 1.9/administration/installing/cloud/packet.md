@@ -1,5 +1,5 @@
 ---
-post_title: Packet DC/OS Installation Guide
+post_title: Running DC/OS on Packet
 nav_title: Packet
 menu_order: 3
 ---
@@ -92,7 +92,7 @@ Launch the DC/OS web interface by entering the Mesos master IP address:
 
 2.  Install the DC/OS Command-Line Interface (CLI). You can install the CLI to administer your DC/OS cluster. You can access the documentation at any time by clicking the cluster name in the upper-left side.
 
-    ![dcos help link](../../../img/packet_help_link.png)
+    ![install CLI](/docs/1.9/usage/cli/img/install-cli-terminal.png)
 
 ## Next steps
 

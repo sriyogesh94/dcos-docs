@@ -1,6 +1,6 @@
 ---
 post_title: Examples
-feature_maturity: experimental
+feature_maturity: preview
 menu_order: 30
 ---
 

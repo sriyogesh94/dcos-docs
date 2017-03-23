@@ -1,5 +1,5 @@
 ---
-post_title: Install DC/OS on Azure
+post_title: Running DC/OS on Azure
 nav_title: Azure
 menu_order: 1
 ---
@@ -55,7 +55,7 @@ $ ssh azureuser@dcosmaster.westus.cloudapp.azure.com -p 2200 -L 8000:localhost:8
 
 Now you can visit `http://localhost:8000` on your local machine and view the DC/OS Dashboard.
 
-![DC/OS dashboard](../img/ui-dashboard.gif)
+![DC/OS dashboard](/docs/1.9/usage/img/dcos-gui.png)
 
 ### Caveats
 

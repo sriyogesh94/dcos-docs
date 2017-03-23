@@ -49,10 +49,10 @@ To configure a proxy for the CLI:
 
 *   From the CLI terminal, define the environment variables `http_proxy` and `https_proxy`:
     
-        $ export http_proxy=’<http://your/proxy/here/>’
-        $ export https_proxy=’<http://your/proxy/here/>’
+        $ export http_proxy=’http://<user>:<pass>@<proxy_host>:<http_proxy_port>’
+        $ export https_proxy=’https://<user>:<pass>@<proxy_host>:<https_proxy_port>’
         
 
 *   Define `no_proxy` for domains that you don’t want to use the proxy for:
     
-        $ export no_proxy="127.0.0.1, localhost”
+        $ export no_proxy=".mesos,.thisdcos.directory,.dcos.directory,.zk,127.0.0.1,localhost,foo.bar.com,.baz.com”

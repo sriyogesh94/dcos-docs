@@ -4,7 +4,7 @@ nav_title: Monitoring
 menu_order: 003
 ---
 
-You can monitor DC/OS services from the Universe or your own custom services.
+You can monitor deployed DC/OS services from the CLI and web interface.
 
 # Monitoring Universe services 
 
@@ -22,7 +22,7 @@ kafka     <privatenode3>   True     0    0.0    0.0     0.0   <service-id3>
 
 ## Web interface
 
-From the DC/OS web interface, click the [**Services**](/docs/1.9/usage/webinterface/#services) tab. 
+See the monitoring [documentation](/docs/1.9/administration/monitoring/).
 
 # Monitoring user-created services
 
@@ -40,4 +40,4 @@ suzanne-simple-service  10.0.3.224  root    R    suzanne-simple-service.47359150
 
 ## Web interface
 
-From the DC/OS web interface, click the [**Services**](/docs/1.9/usage/webinterface/#services) tab. 
+See the monitoring [documentation](/docs/1.9/administration/monitoring/).

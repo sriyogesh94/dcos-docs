@@ -49,6 +49,8 @@ You can attach labels to jobs either via the **Jobs** tab of the DC/OS web inter
 
 From the DC/OS web interface, click the **Jobs** tab. You can add labels when you deploy a new job or edit an existing one from the **Labels** tab.
 
+![Job label](/docs/1.9/usage/tutorials/img/job-label.png)
+
 ## Assign a Label to a Job from the DC/OS CLI
 
 You can also specify label values in the `labels` parameter of your job definition. 

@@ -82,10 +82,11 @@ The DC/OS installation creates these folders:
     - 8.8.4.4
     - 8.8.8.8
     use_proxy: 'true'
-    http_proxy: http://<your_http_proxy>/
-    https_proxy: https://<your_https_proxy>/
+    http_proxy: http://<user>:<pass>@<proxy_host>:<http_proxy_port>
+    https_proxy: https://<user>:<pass>@<proxy_host>:<https_proxy_port>
     no_proxy: 
-    - '*.int.example.com'    
+    - 'foo.bar.com'
+    - '.baz.com'
     ```
 
 2. Create a `ip-detect` script

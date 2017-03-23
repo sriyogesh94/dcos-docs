@@ -82,10 +82,11 @@ The DC/OS installation creates these folders:
     - 8.8.4.4
     - 8.8.8.8
     use_proxy: 'true'
-    http_proxy: http://<your_http_proxy>/
-    https_proxy: https://<your_https_proxy>/
+    http_proxy: http://<proxy_host>:<http_proxy_port>
+    https_proxy: https://<proxy_host>:<https_proxy_port>
     no_proxy: 
-    - '*.int.example.com'    
+    - 'foo.bar.com'
+    - '.baz.com'
     ```
 
 2. Create a `ip-detect` script
@@ -277,6 +278,8 @@ To install DC/OS:
     When the status icons are green, you can access the DC/OS web interface.
 
 1.  Launch the DC/OS web interface at: `http://<master-node-public-ip>/`. If this doesn't work, take a look at the [troubleshooting docs][9]
+
+    ![DC/OS dashboard](/docs/1.9/usage/img/dcos-gui.png)
 
 ### Next Steps
 
