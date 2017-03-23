@@ -3,24 +3,19 @@ post_title: Removing a Node
 menu_order: 801
 ---
 
-You can remove agent nodes from an active DC/OS cluster. You can remove agent nodes by using maintenance windows or terminate signal. You need to remove an agent node if you are:
+You can remove agent nodes from an active DC/OS cluster by using maintenance windows or terminate signal. 
 
-- Downsizing a cluster
-- Draining a node before reconfiguring the Mesos agent
-- Moving a node to a new IP (remove + add)
-
-### Maintenance windows
-With maintenance windows you can drain multiple nodes at the same time from outside the cluster. SSH access is not required.
-
-### Terminate signal
-Draining nodes by using terminate signal, SIGUSR1, is easy to integrate with automation tools that can execute tasks on nodes in parallel, for example Ansible, Chef, and Puppet. 
-
-# Removing a node by using maintenance windows
+You might need to remove a node from your cluster if you are downsizing a cluster, reconfiguring agent nodes, or moving a node to a new IP. If you are reconfiguring or moving nodes, you must remove the node, make your updates, and then add it back to your cluster. 
 
 ### Prerequisites:
 
-*   DC/OS is installed.
+*   SSH installed and configured. This is required for removing nodes with a maintenance window and adding nodes back to your cluster.
 *   Access to the [Admin Router permissions](/docs/1.9/overview/architecture/components/#admin-router).
+
+# Removing a node
+
+## Removing a node by using maintenance windows
+With maintenance windows you can drain multiple nodes at the same time from outside the cluster. SSH access is not required.
 
 You can define a maintenance schedule to evacuate your tasks prior to changing agent attributes or resources. ⁠⁠⁠All tasks that are running on the agent will be killed when you change agent attributes or resources. Mesos treats re-registered agents as new agents.
 
@@ -51,13 +46,8 @@ When you change Mesos attributes (`⁠⁠⁠⁠/var/lib/dcos/mesos-slave-common`
 
     **Important:** Invoking `machine/down` sends a `⁠⁠⁠⁠TASK_LOST`⁠⁠⁠⁠ message for any tasks that were running on the agent. Some DC/OS services, for example Marathon, will relocate tasks. However some DC/OS services will not relocate tasks, for example Kafka and Cassandra.  For more information, see the DC/OS [service guides](https://docs.mesosphere.com/service-docs/) and the Mesos maintenance primitives [documentation](https://mesos.apache.org/documentation/latest/maintenance/).
 
-# Removing nodes by using signal
-
-### Prerequisites:
-
-*   DC/OS is installed.
-*   SSH installed and configured. This is required for accessing nodes in the DC/OS cluster. <!-- not required for maint window -->
-*   Access to the [Admin Router permissions](/docs/1.9/overview/architecture/components/#admin-router).
+## Removing nodes by using signal
+Draining nodes by using terminate signal, SIGUSR1, is easy to integrate with automation tools that can execute tasks on nodes in parallel, for example Ansible, Chef, and Puppet. 
 
 **Warning:** ⁠⁠⁠All tasks that are running on the agent will be killed since you are re-registering a UUID. Mesos treats a re-registered agent as a new agent.
 
@@ -75,16 +65,20 @@ When you change Mesos attributes (`⁠⁠⁠⁠/var/lib/dcos/mesos-slave-common`
        $ ⁠⁠⁠⁠sudo sh -c 'systemctl kill -s SIGUSR1 dcos-mesos-slave-public && systemctl stop dcos-mesos-slave-public
        ```
 
+# Adding removed nodes back to your cluster 
+If you are reconfiguring or moving nodes, you must remove the node, make your updates, and then add it back to your cluster. 
+
+1.  [SSH to the agent node](/docs/1.9/administration/access-node/sshcluster/).
 1.  Reload the systemd configuration.
 
     ```bash
-    $﻿⁠⁠⁠⁠sudo systemctl daemon-reload
+    $﻿⁠⁠⁠⁠ sudo systemctl daemon-reload
     ```
     
 1.  Remove the `latest` metadata pointer on the agent node:
 
     ```bash
-    ⁠⁠⁠⁠sudo rm /var/lib/mesos/slave/meta/slaves/latest
+    $ ⁠⁠⁠⁠sudo rm /var/lib/mesos/slave/meta/slaves/latest
     ```
     
 1.  Start your agents with the newly configured attributes and resource specification⁠⁠.
