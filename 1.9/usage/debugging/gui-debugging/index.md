@@ -1,5 +1,6 @@
 ---
 post_title: Debugging from the DC/OS Web Interface
+feature_maturity: preview
 menu_order: 20
 ---
 
