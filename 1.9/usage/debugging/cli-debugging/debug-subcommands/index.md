@@ -1,6 +1,6 @@
 ---
 post_title: Debug Subcommands for Stuck Deployments
-feature_maturity: stable
+feature_maturity: preview
 menu_order: 0
 ---
 
@@ -16,9 +16,9 @@ The DC/OS CLI provides a set of debugging subcommands to troubleshoot a stuck se
 ## Sample application definitions
 If you do not currently have a service or pod that is stuck in deployment, you can use the following two [Marathon application definitions](/docs/1.9/usage/marathon/application-basics/) to test the instructions in this section.
 
-The first service creates an infinite deployment by requesting more memory than is available. The second requests too many instances.
-
 - mem-app.json
+  
+  This service creates an infinite deployment by requesting more memory than is available.
 
   ```json
   {
@@ -37,6 +37,8 @@ The first service creates an infinite deployment by requesting more memory than 
   ```
 
 - stuck-sleep.json
+  
+  This service requests too many instances.
 
   ```json
   {
