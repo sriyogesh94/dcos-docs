@@ -1,5 +1,6 @@
 ---
 post_title: Debugging from the DC/OS CLI
+feature_maturity: preview
 menu_order: 10
 ---
 
