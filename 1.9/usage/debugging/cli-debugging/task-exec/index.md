@@ -29,5 +29,5 @@ You can execute this command in the following modes.
 
 For more information, see:
 
-- [Command reference](/docs/1.9/usage/cli/command-reference/)
+- [Command reference](/docs/1.9/usage/cli/command-reference/).
 - [Quick Start](/docs/1.9/administration/debugging/quickstart/).
