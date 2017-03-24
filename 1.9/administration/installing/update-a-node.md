@@ -3,13 +3,15 @@ post_title: Updating Nodes
 menu_order: 801
 ---
 
-You can update agent nodes in an active DC/OS cluster by using maintenance windows or terminate signal. Maintenance windows are the preferred method since this is generally more stable and less error prone.
+You can update agent nodes in an active DC/OS cluster by using maintenance windows or by manually killing agents. Maintenance windows are the preferred method since this is generally more stable and less error prone.
 
 These steps are useful if you are downsizing a cluster, reconfiguring agent nodes, or moving a node to a new IP. When you change Mesos attributes (`⁠⁠⁠⁠/var/lib/dcos/mesos-slave-common`⁠⁠⁠⁠) or resources (⁠⁠⁠⁠`/var/lib/dcos/mesos-resources`⁠⁠⁠⁠), you must remove the agent node and re-register it with the master node under a new UUID. The master will then recognize the new attributes and resources specification.
 
+**Warning:** ⁠⁠⁠All tasks that are running on the agent will be killed since you are re-registering a UUID. Mesos treats a re-registered agent as a new agent.
+
 ### Prerequisites:
 
-*   SSH installed and configured. This is required when using the terminate signal method.
+*   SSH installed and configured. This is required when removing nodes by manually killing agents.
 *   Access to the [Admin Router permissions](/docs/1.9/overview/architecture/components/#admin-router).
 
 # Updating nodes by using maintenance windows
@@ -17,7 +19,7 @@ With maintenance windows you can drain multiple nodes at the same time from outs
 
 You can define a maintenance schedule to evacuate your tasks prior to changing agent attributes or resources. ⁠⁠⁠All tasks that are running on the agent at that time are killed when you change agent attributes or resources. Mesos treats re-registered agents as new agents.
 
-1.  Define a maintenance schedule. For example, here is a basic maintenance schedule JSON file with the machines  (`machine_ids`) and maintenance window (`unavailability`) specified:
+1.  Define a maintenance schedule. For example, here is a basic maintenance schedule JSON file with the example machines  (`machine_ids`) and maintenance window (`unavailability`) specified:
     
     ```json
     {
@@ -52,10 +54,8 @@ You can define a maintenance schedule to evacuate your tasks prior to changing a
     ]
     ```
 
-# Updating nodes by using signal
+# Updating nodes by manually killing agents
 Draining nodes by using terminate signal, SIGUSR1, is easy to integrate with automation tools that can execute tasks on nodes in parallel, for example Ansible, Chef, and Puppet. 
-
-**Warning:** ⁠⁠⁠All tasks that are running on the agent will be killed since you are re-registering a UUID. Mesos treats a re-registered agent as a new agent.
 
 1.  [SSH to the agent nodes](/docs/1.9/administration/access-node/sshcluster/).
 1.  Stop the agents.
