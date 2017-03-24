@@ -1,5 +1,5 @@
 ---
-post_title: Troubleshooting your DC/OS installation
+post_title: Troubleshooting a Custom Installation
 nav_title: Troubleshooting
 menu_order: 400
 ---

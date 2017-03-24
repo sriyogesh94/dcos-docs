@@ -50,6 +50,8 @@ The DC/OS installation creates these folders:
 
 **Important:** Changes to `/opt/mesosphere` are unsupported. They can lead to unpredictable behavior in DC/OS and prevent upgrades.
 
+## Prerequisites
+Your cluster must meet the software and hardware [requirements](/docs/1.8/administration/installing/custom/system-requirements/).
 
 # Configure your cluster
 
@@ -169,7 +171,10 @@ The DC/OS installation creates these folders:
 
 In this step you create a custom DC/OS build file on your bootstrap node and then install DC/OS onto your cluster. With this method you package the DC/OS distribution yourself and connect to every server manually and run the commands.
 
-**Tip:** If something goes wrong and you want to rerun your setup, use these cluster [cleanup instructions][8].
+**Important:** 
+
+- Do not install DC/OS until you have these items working: ip-detect script, DNS, and NTP everywhere. For help with troubleshooting, see the [documentation](/docs/1.8/administration/installing/custom/troubleshooting/).
+- If something goes wrong and you want to rerun your setup, use these cluster [cleanup instructions][8].
 
 **Prerequisites**
 
@@ -185,6 +190,8 @@ To install DC/OS:
     ```
 
 1.  From the bootstrap node, run the DC/OS installer shell script to generate a customized DC/OS build file. The setup script extracts a Docker container that uses the generic DC/OS install files to create customized DC/OS build files for your cluster. The build files are output to `./genconf/serve/`.
+
+    **Tip:** You can view all of the automated command line installer options with the `dcos_generate_config.sh --help` flag.
 
     ```bash
     $ sudo bash dcos_generate_config.sh
