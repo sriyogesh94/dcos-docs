@@ -47,9 +47,8 @@ The DC/OS installation creates these folders:
 
 **Important:** Changes to `/opt/mesosphere` are unsupported. They can lead to unpredictable behavior in DC/OS and prevent upgrades.
 
-## Prerequisites
-
-- Your environment must have all of the [system requirements](/docs/1.9/administration/installing/custom/system-requirements/) configured before proceeding.
+## Prerequisite
+Your environment must have all of the [system requirements](/docs/1.9/administration/installing/custom/system-requirements/) configured before proceeding.
 
 # Configure your cluster
 
