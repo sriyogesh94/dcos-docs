@@ -64,7 +64,7 @@ Proceed with upgrading every master node one-at-a-time in any order using the fo
 
 1.  Download and run the node upgrade script:
 
-    ```
+    ```bash
     curl -O <Node upgrade script URL>
     sudo bash ./dcos_node_upgrade.sh
     ```
@@ -82,7 +82,7 @@ Proceed with upgrading every agent in any order. Agent upgrades can be paralleli
 ### On all DC/OS Agents:
 
 1.  Download and run the node upgrade script:
-    ```
+    ```bash
     curl -O <Node upgrade script URL>
     sudo bash dcos_node_upgrade.sh
     ```
@@ -98,7 +98,7 @@ The following commands should provide insight into upgrade issues:
 
 ### On All Cluster Nodes
 
-```
+```bash
 sudo journalctl -u dcos-download
 sudo journalctl -u dcos-spartan
 sudo systemctl | grep dcos
@@ -106,7 +106,7 @@ sudo systemctl | grep dcos
 
 ### On DC/OS Masters
 
-```
+```bash
 sudo journalctl -u dcos-exhibitor
 less /var/lib/dcos/exhibitor/zookeeper/zookeeper.out
 sudo journalctl -u dcos-mesos-dns
@@ -115,7 +115,7 @@ sudo journalctl -u dcos-mesos-master
 
 ### On DC/OS Agents
 
-```
+```bash
 sudo journalctl -u dcos-mesos-slave
 ```
 
