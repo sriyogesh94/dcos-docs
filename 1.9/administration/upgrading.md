@@ -69,6 +69,12 @@ Proceed with upgrading every master node one-at-a-time in any order using the fo
     sudo bash ./dcos_node_upgrade.sh
     ```
 
+1.  Verify that the upgrade script succeeded and exited with the status code `0`:
+    ```bash
+    echo $?
+    0
+    ```
+
 1.  Validate the upgrade:
 
     - Monitor the Exhibitor UI to confirm that the Master rejoins the ZooKeeper quorum successfully (the status indicator will turn green).  The Exhibitor UI is available at `http://<dcos_master>:8181/`.
@@ -85,6 +91,12 @@ Proceed with upgrading every agent in any order. Agent upgrades can be paralleli
     ```bash
     curl -O <Node upgrade script URL>
     sudo bash dcos_node_upgrade.sh
+    ```
+
+1.  Verify that the upgrade script succeeded and exited with the status code `0`:
+    ```bash
+    echo $?
+    0
     ```
 
 1.  Validate the upgrade:
