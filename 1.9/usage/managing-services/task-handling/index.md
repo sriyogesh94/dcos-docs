@@ -4,7 +4,7 @@ nav_title: Task Handling
 menu_order: 1.5
 ---
 
-Marathon sorts tasks into three categories of states: initial, non-terminal, and terminal. Tasks within these categories may have one of several statuses, as summarized in the diagram below.
+Marathon sorts tasks into these categories: initial, non-terminal, and terminal. Tasks within these categories may have one of several statuses, as summarized in the diagram below.
 
 To learn the state of a task, you can consult the DC/OS logs or query the [events stream](http://mesosphere.github.io/marathon/docs/event-bus.html) of the [Marathon REST API](https://mesosphere.github.io/marathon/docs/generated/api.html) (/v2/events).
 
