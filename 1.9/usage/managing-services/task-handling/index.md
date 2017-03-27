@@ -4,9 +4,11 @@ nav_title: Task Handling
 menu_order: 1.5
 ---
 
-Marathon handles tasks in the following ways. You can consult the DC/OS logs for these messages or query the status of the task via the [events stream](http://mesosphere.github.io/marathon/docs/event-bus.html) of the [Marathon REST API](https://mesosphere.github.io/marathon/docs/generated/api.html) (/v2/events).
+Marathon sorts tasks into three categories of states: initial, non-terminal, and terminal. Tasks within these categories may have one of several statuses, as summarized in the diagram below.
 
-You can [configure Marathon's behavior when a task is unreachable](/docs/1.9/usage/task-handling/configure-task-handling.md).
+To learn the state of a task, you can consult the DC/OS logs or query the [events stream](http://mesosphere.github.io/marathon/docs/event-bus.html) of the [Marathon REST API](https://mesosphere.github.io/marathon/docs/generated/api.html) (/v2/events).
+
+You can also  [configure Marathon's behavior when a task is unreachable](/docs/1.9/usage/task-handling/configure-task-handling.md).
 
 ![Task Handling Flow](/docs/1.9/usage/managing-services/img/task-handling.png)
 
@@ -46,7 +48,7 @@ The task finished successfully.
 ```
 case TASK_UNKNOWN => Unknown
 ```
-The mster has no knowledge of the task. This is typically because either (a) the master never had knowledge of the task, or (b) the master forgot about the task because it garbaged collected its metadata about the task. The task may or may not still be running. When Marathon receives the Unknown message, it expunges the task and starts a new one.
+The master has no knowledge of the task. This is typically because either (a) the master never had knowledge of the task, or (b) the master forgot about the task because it garbaged collected its metadata about the task. The task may or may not still be running. When Marathon receives the Unknown message, it expunges the task and starts a new one.
 
 ```
 case TASK_KILLED => Killed

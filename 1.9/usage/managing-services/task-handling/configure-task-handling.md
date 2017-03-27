@@ -13,7 +13,7 @@ You can configure Marathon's actions on unreachable tasks. The `unreachableStrat
 }
 ```
 
-## `unreachableStrategy` Configuration Options
+## Configuration Options
 
 - `inactiveAfterSeconds`: If a task instance is unreachable for longer than this value, it is marked inactive and a new instance will launch. At this point, the unreachable task is not yet expunged. The minimum value for this parameter is 1. The default value is 300 seconds.
 
@@ -34,4 +34,6 @@ Add the `killSelection` parameter to your app definition, or to the `PodScheduli
 
 ## Persistent Volumes
 
-The default `unreachableStrategy` for apps with persistent volumes will create new instances with new volumes and delete existing volumes (if possible) after an instance has been unreachable for longer than 7 days and has been expunged by Marathon. **Warning:** Data may be deleted when the existing volumes of an unreachable instance are deleted.
+The default `unreachableStrategy` for apps with persistent volumes will create new instances with new volumes and delete existing volumes (if possible) after an instance has been unreachable for longer than 7 days and has been expunged by Marathon.
+
+**Warning:** Data may be deleted when the existing volumes of an unreachable instance are deleted.
