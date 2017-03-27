@@ -8,7 +8,7 @@ The Metrics API exposes node, container, and application metrics.
 
 The Metrics API is backed by the [DC/OS Metrics component](/docs/1.9/overview/architecture/components/#dcos-metrics), which runs on all nodes in the cluster.
 
-For more information about using the Metrics API, see [Metrics](/docs/1.9/administration/metrics/).
+For more information about using the Metrics API, see [Metrics](/docs/1.9/administration/monitoring/metrics/).
 
 
 ## Routes
@@ -16,13 +16,13 @@ For more information about using the Metrics API, see [Metrics](/docs/1.9/admini
 Access to the Metrics API is proxied through the Admin Router on each node using the following route:
 
 ```
-/system/v1/metrics/v1/
+/system/v1/metrics/v0/
 ```
 
 Access to the Metrics API of the agent nodes is also proxied through the master nodes, so that it can be accessed from outside of the cluster:
 
 ```
-/system/v1/agent/{agent_id}/metrics/v1/
+/system/v1/agent/{agent_id}/metrics/v0/
 ```
 
 To determine the address of your cluster, see [Cluster Access](/docs/1.9/api/access/).

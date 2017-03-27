@@ -9,7 +9,7 @@ menu_order: 000
 The general syntax for installing a service with the CLI follows. 
 
 ```bash
-$ dcos package install [--options=<config-file-name>.json] <servicename>
+dcos package install [--options=<config-file-name>.json] <servicename>
 ```
 
 Use the optional `--options` flag to specify the name of the customized JSON file you created in [advanced configuration](/docs/1.9/usage/managing-services/config-universe-service/).
@@ -17,7 +17,7 @@ Use the optional `--options` flag to specify the name of the customized JSON fil
 For example, you would use the following command to install Chronos with the default parameters.
     
 ```bash
-$ dcos package install chronos
+dcos package install chronos
 ```
     
 ## Installing a service using the GUI
@@ -29,7 +29,7 @@ From the DC/OS GUI you can install services from the **Services** or **Universe*
 
 1.  Navigate to the [**Universe > Packages**](/docs/1.9/usage/webinterface/#universe) page in the DC/OS GUI.
 
-    ![universe](1.9/usage/img/ui-dashboard-universe.gif)
+    ![universe](/docs/1.9/usage/img/ui-dashboard-universe.gif)
 
 2.  Choose your package and click **INSTALL PACKAGE**. 
 
@@ -40,14 +40,14 @@ From the DC/OS GUI you can install services from the **Services** or **Universe*
 1.  Navigate to the [**Services**](/docs/1.9/usage/webinterface/#services) tab in the DC/OS GUI.
 1.  Click **RUN A SERVICE** and specify your Marathon app definition.
 
-    ![service tab](1.9/usage/managing-services/img/run-a-service.png)
+    ![service tab](/docs/1.9/usage/managing-services/img/run-a-service.png)
 
 ## Verifying your installation
 
 ### CLI
 
 ```bash
-$ dcos package list
+dcos package list
 ```
 
 ### Web GUI

@@ -472,6 +472,7 @@ In a world where machines are are given numbers instead of names, tasks are sche
 </div>
 </div>
 
+<a name="minuteman"></a>
 <div data-role="collapsible">
 <h2>Minuteman</h2>
 <div>
@@ -479,7 +480,7 @@ In a world where machines are are given numbers instead of names, tasks are sche
 <p>
   <strong>System Service(s):</strong>
   <ul>
-    <li><code class="nowrap">dcos-minuteman.service</code></li>
+    <li>N/A - Included in <a href="#navstar">Navstar</a></li>
   </ul>
 </p>
 <p>
@@ -492,6 +493,7 @@ In a world where machines are are given numbers instead of names, tasks are sche
 </div>
 </div>
 
+<a name="navstar"></a>
 <div data-role="collapsible">
 <h2>Navstar</h2>
 <div>
@@ -663,7 +665,7 @@ To see a list of the systemd components running on any particular node, list the
 ## Master Node
 
 ```
-[vagrant@m1 ~]$ ls /etc/systemd/system/dcos.target.wants/
+[vagrant@m1 ~]ls /etc/systemd/system/dcos.target.wants/
 dcos-3dt.service                 dcos-mesos-dns.service
 dcos-adminrouter-reload.service  dcos-mesos-master.service
 dcos-adminrouter-reload.timer    dcos-metrics-master.service
@@ -684,7 +686,7 @@ dcos-marathon.service
 ## Private Agent Node
 
 ```
-[vagrant@a1 ~]$ ls /etc/systemd/system/dcos.target.wants/
+[vagrant@a1 ~]ls /etc/systemd/system/dcos.target.wants/
 dcos-3dt.service                       dcos-logrotate-agent.timer
 dcos-3dt.socket                        dcos-mesos-slave.service
 dcos-adminrouter-agent-reload.service  dcos-metrics-agent.service
@@ -703,7 +705,7 @@ dcos-logrotate-agent.service
 ## Public Agent Node
 
 ```
-[vagrant@p1 ~]$ ls /etc/systemd/system/dcos.target.wants/
+[vagrant@p1 ~]ls /etc/systemd/system/dcos.target.wants/
 dcos-3dt.service                       dcos-logrotate-agent.timer
 dcos-3dt.socket                        dcos-mesos-slave-public.service
 dcos-adminrouter-agent-reload.service  dcos-metrics-agent.service
