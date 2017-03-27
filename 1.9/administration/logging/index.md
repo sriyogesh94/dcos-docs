@@ -8,6 +8,8 @@ DC/OS cluster nodes generate logs that contain diagnostic and status information
 
 ## Service, Task, and Node Logs
 
+The logging component provides an HTTP API (`/system/v1/logs/`), which exposes the system logs.
+
 You can access information about DC/OS scheduler services, like Marathon or Kafka, with the following CLI command:
 
 ```bash
