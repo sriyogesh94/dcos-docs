@@ -145,7 +145,7 @@ You must create the RSA public/private keypairs to allow passwordless logins via
     cd dcos-gce
     ```
 
-1.  Review and customize the `dcos_gce/group_vars/all`. You should review `project`, `subnet`, `login_name`, `bootstrap_public_ip`, and `zone`. To install DC/OS v1.9.0 rc2 ensure dcos_installer_download_path = "https://downloads.dcos.io/dcos/EarlyAccess/commit/7f1ce42734aa54053291f403d71e3cb378bd13f3/dcos_generate_config.sh?_ga=1.103056512.1648812748.1479632870"
+1.  Review and customize the `dcos_gce/group_vars/all`. You should review `project`, `subnet`, `login_name`, `bootstrap_public_ip`, and `zone`. To install DC/OS v1.9.0  ensure dcos_installer_download_path = "https://downloads.dcos.io/dcos/stable/commit/0ce03387884523f02624d3fb56c7fbe2e06e181b/{{ dcos_installer_filename }}"
 
 1.  Insert following into `~/.ansible.cfg` to stop host key checking.
 
