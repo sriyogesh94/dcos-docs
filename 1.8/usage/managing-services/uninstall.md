@@ -14,15 +14,15 @@ Services can be uninstalled from either the web interface or the CLI. If a Unive
 
 Uninstall a datacenter service with this command:
 
-    ```bash
-    dcos package uninstall <servicename>
-    ```
+```bash
+dcos package uninstall <servicename>
+```
 
-    For example, to uninstall Chronos:
+For example, to uninstall Chronos:
 
-    ```bash
-    dcos package uninstall chronos
-    ```
+```bash
+dcos package uninstall chronos
+```
 
 ## Web interface
 
@@ -49,18 +49,18 @@ It's possible for an uninstall to fail with the following error message:
 Incomplete uninstall of package [chronos] due to Mesos unavailability
 ```
 
-In that case the service is inactive and will not appear in the UI, but can be found with the CLI:
+The service may be inactive and will not be shown in the DC/OS UI, but you can find it by using this CLI command:
 
 ```bash
-$ dcos service --inactive
+dcos service --inactive
 NAME          HOST     ACTIVE  TASKS  CPU  MEM  DISK  ID
 chronos    10.0.6.138  False     0    0.0  0.0  0.0   7c0a7bd4-3649-4ec1-866c-5db8f2292bf2-0001
 ```
 
-Perform a service shutdown with its ID to complete the uninstall operation (the framework cleaner script may still need to be run):
+You can complete the uninstall by shutting down the service by using this CLI command with the service ID specified, and then run the [framework cleaner](#framework-cleaner):
 
 ```bash
-$ dcos service shutdown 7c0a7bd4-3649-4ec1-866c-5db8f2292bf2-0001
+dcos service shutdown 7c0a7bd4-3649-4ec1-866c-5db8f2292bf2-0001
 ```
 
 # Uninstalling user-created services
