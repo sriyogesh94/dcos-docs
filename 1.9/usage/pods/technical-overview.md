@@ -9,7 +9,7 @@ A pod is a special kind of Mesos task group, and the tasks or containers in the 
 DC/OS handles and represents pods as single services. Containers in pods share networking namespace and ephemeral volumes.
 
 You configure a pod via a pod definition, which is similar to a Marathon application definition. There are nonetheless some differences between pod and application definitions. For instance:
-                                                                                                                                                                                 
+
 - You must specify an endpoint (not a port number) in order for other applications to communicate with your pod.
 - Pods have a separate REST API.
 - Pods support only Mesos-level health checks.
@@ -30,7 +30,7 @@ Containers within a pod share ephemeral storage. Volumes are declared at the pod
 # Pod Events and State
 
  When you update a pod that has already launched, the new version of the pod will only be available when redeployment is complete. If you query the system to learn which version is deployed before redeployment is complete, you may get the previous version as a response. The same is true for the status of a pod: if you update a pod, the change in status will not be reflected in a query until redeployment is complete.
- 
+
  History is permanently tied to `pod_id`. If you delete a pod and then reuse the ID, even if the details of the pod are different, the new pod will have the previous history (such as version information).
 
 # Pod Definitions
@@ -114,3 +114,11 @@ The following JSON specifies a Docker image for a pod:
    }
 }
 ```
+
+# Limitations
+
+- Only Mesos-based health checks are currently supported.
+- Readiness checks are not supported.
+- Service ports are not supported.
+- Dependencies cannot be configured.
+- Generic environmental variables, such as $PORT0, are not passed.

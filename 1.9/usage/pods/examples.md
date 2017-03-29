@@ -4,8 +4,304 @@ feature_maturity: preview
 menu_order: 30
 ---
 
+# Annotated simple pod definition
+
+This pod, named `simple-pod` has a single container, `simpletask1`. The container pulls down an image (`python:3.5.2-alpine`) and runs a command.
+
+```
+{
+  "id": "/simple-pod",
+  "labels": {},
+  "environment": {},
+  "containers": [
+    {
+      "name": "simpletask1",
+      "exec": {
+        "command": {
+          "shell": "env && sleep 10000"
+        }
+      },
+      "resources": {
+        "cpus": 0.1,
+        "mem": 32
+      },
+      "image": {
+        "kind": "DOCKER",
+        "id": "python:3.5.2-alpine"
+      },
+      "artifacts": [],
+      "labels": {}
+    }
+  ],
+  "networks": [
+    {
+      "mode": "host"
+    }
+  ]
+}
+```
+
+## Basic pod fields
+
+| Field                 | Type    | Value                                                                                                                                                                                                             |
+|-----------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| id (required)         | string  | Unique ID for the pod.                                                                                                                                                                                            |
+| containers (required) | array   | See _Basic pod container fields_.                                                                                                                                                                                     |
+| volumes               | array   | All volumes associated with the pod.                                                                                                                                                                              |
+| - name                | string  | Name of shared volume.                                                                                                                                                                                            |
+| - host                | string  | Absolute path of the file or directory on the agent, or else the relative path of the directory in the executor's sandbox. Useful for mapping directories that exist on the agent or within the executor sandbox. |
+| networks              |         |                                                                                                                                                                                                                   |
+| - mode                | string  | Network mode: `host` or `container`. `host` uses the network namespace of the host. `container` uses virtual networking, and a virtual network name must be specified.                                            |
+| - name                | string  | Required for `container` network mode.                                                                                                                                                                            |
+| - labels              | object  | Key/value pairs (i.e., for passing metadata to Mesos modules).                                                                                                                                                    |
+| scaling               |         |                                                                                                                                                                                                                   |
+| - kind                | string  | Type of scaling. Only `fixed` is currently supported.                                                                                                                                                             |
+| - instances           | integer | Initial number of pod instances (default: 1).                                                                                                                                                                     |
+| - maxInstances        | integer | Maximum number of instances of this pod.                                                                                                                                                                          |
+
+## Basic pod container fields.
+| Field                    | Type    | Value                                                                                                      |
+|--------------------------|---------|------------------------------------------------------------------------------------------------------------|
+| containers (required)    | array   | Container definitions for all containers that belong to a pod.                                             |
+| - name                   | string  | Unique name for the container.                                                                             |
+| - exec                   | object  |                                                                                                            |
+|     - command            | object  | Command executed by Mesos.                                                                                 |
+|         - shell          | string  | Command to execute. If using container entrypoint, use an empty string.                                    |
+|     - overrideEntrypoint | boolean | If `command` is supplied, this is implicitly set to `true`. To use the default entrypoint, set to `false`. |
+| - resources (required)   | object  | Container specifications for resources.                                                                    |
+|     - cpus               | number  | CPU shares (default: 1.0).                                                                                 |
+|     - mem                | number  | Memory resources in MiB (default: 128).                                                                    |
+|     - disk               | double  | Disk resources in MiB (default: 128).                                                                      |
+|     - gpus               | integer | GPU resources (default: 0).                                                                                |
+| - image                  | object  | If `image` is omitted, the Mesos containerizer is used.                                                    |
+|     - kind               | string  | Container image format (`DOCKER` or `APPC`).                                                               |
+|     - id                 | string  | Container image tag.                                                                                       |
+|     - forcePull          | boolean | Set to true to always pull image (default: false).                                                         |
+| - volumeMounts           | array   |                                                                                                            |
+|     - name               | string  | Name of the shared volume (must be a valid volume defined at the pod layer).                               |
+|     - mountPath          | string  | Container path to mount volume.                                                                            |
+| - endpoints              | array   | Array of objects.                                                                                          |
+|     - name               | string  | Unique name of port.                                                                                       |
+|     - containerPort      | number  | The container point the container task is listening on. Required if network mode is `container`.           |
+|     - hostPort           | number  | Mapped port on host. If set to 0, Marathon dynamically allocates the port.                                 |
+|     - protocol           | array   | Protocol of port (`tcp` or `http`).                                                                        |
+|     - labels						 | object  | Metadata as key/value pairs.																																								|
+
+# Multi-pod with all parameters
+The example below shows a pod, `test-pod`, with three containers, `healthtask1`, `healthtask2`, and `clienttask`. The pod makes uses shared volumes and the native DC/OS virtual networking solution.
+
+```
+{
+    "id": "/test-pod",
+    "labels": {
+      "pod_label": "pod"
+    },
+    "environment": {
+      "POD_ENV": "pod"
+    },
+    "containers": [
+      {
+        "name": "healthtask1",
+        "exec": {
+          "command": {
+            "shell": "./read-write-server.py 8080 mount1/test-file.txt"
+          }
+        },
+        "resources": {
+          "cpus": 0.1,
+          "mem": 32,
+          "disk": 32,
+          "gpus": 0
+        },
+        "endpoints": [
+          {
+            "name": "httpendpoint",
+            "containerPort": 8080,
+            "hostPort": 0,
+            "protocol": [
+              "tcp"
+            ],
+            "labels": {
+              "ep1_label": "ep1"          
+            }
+          }
+        ],
+        "image": {
+          "kind": "DOCKER",
+          "id": "python:3.5.2-alpine"
+        },
+        "environment": {
+          "C1_ENV": "c1"       
+        },
+        "healthCheck": {
+          "http": {
+            "endpoint": "httpendpoint",
+            "path": "/ping",
+            "scheme": "HTTP"
+          },
+          "gracePeriodSeconds": 30,
+          "intervalSeconds": 5,
+          "maxConsecutiveFailures": 3,
+          "timeoutSeconds": 3,
+          "delaySeconds": 2
+        },
+        "volumeMounts": [
+          {
+            "name": "sharedvolume",
+            "mountPath": "mount1"
+          }
+        ],
+        "artifacts": [
+          {
+            "uri": "https://s3-us-west-2.amazonaws.com/mesos-soak-cluster/read-write-server.py",
+            "extract": false,
+            "executable": true,
+            "cache": true,
+            "destPath": "read-write-server.py"
+          }
+        ],
+        "labels": {
+          "c1_label": "c1"
+        }
+      },
+      {
+        "name": "healthtask2",
+        "exec": {
+          "command": {
+            "shell": "./read-write-server.py 8081 mount2/test-file.txt"
+          }
+        },
+        "resources": {
+          "cpus": 0.1,
+          "mem": 32,
+          "disk": 32,
+          "gpus": 0
+        },
+        "endpoints": [
+          {
+            "name": "httpendpoint2",
+            "containerPort": 8081,
+            "hostPort": 0,
+            "protocol": [
+              "tcp"
+            ],
+            "labels": {
+              "ep2_label": "ep2"
+            }
+          }
+        ],
+        "image": {
+          "kind": "DOCKER",
+          "id": "python:3.5.2-alpine"
+        },
+        "environment": {
+          "C2_ENV": "c2"
+        },
+        "healthCheck": {
+          "http": {
+            "endpoint": "httpendpoint2",
+            "path": "/ping",
+            "scheme": "HTTP"
+          },
+          "gracePeriodSeconds": 30,
+          "intervalSeconds": 5,
+          "maxConsecutiveFailures": 3,
+          "timeoutSeconds": 3,
+          "delaySeconds": 2
+        },
+        "volumeMounts": [
+          {
+            "name": "sharedvolume",
+            "mountPath": "mount2"
+          }
+        ],
+        "artifacts": [
+          {
+            "uri": "https://s3-us-west-2.amazonaws.com/mesos-soak-cluster/read-write-server.py",
+            "extract": false,
+            "executable": true,
+            "cache": true,
+            "destPath": "read-write-server.py"
+          }
+        ],
+        "labels": {
+          "c2_label": "c2"
+        }
+      },
+      {
+        "name": "clienttask",
+        "exec": {
+          "command": {
+            "shell": "while true; do sleep 5 && curl -X GET localhost:8080/write && curl -X GET localhost:8081/read; done"
+          }
+        },
+        "resources": {
+          "cpus": 0.1,
+          "mem": 32,
+          "disk": 32,
+          "gpus": 0
+        },
+        "endpoints": [],
+        "environment": {
+          "C3_ENV": "c3"
+        },
+        "volumeMounts": [],
+        "artifacts": [],
+        "labels": {
+          "c3_label": "c3"
+        }
+      }
+    ],
+    "secrets": {},
+    "volumes": [
+      {
+        "name": "sharedvolume"
+      }
+    ],
+    "networks": [
+      {
+        "name": "dcos",
+        "mode": "container",
+        "labels": {
+          "net_label": "net"
+        }
+      }
+    ],
+    "scaling": {
+      "kind": "fixed",
+      "instances": 1,
+      "maxInstances": null
+    },
+    "scheduling": {
+      "backoff": {
+        "backoff": 1,
+        "backoffFactor": 1.15,
+        "maxLaunchDelay": 3600
+      },
+      "upgrade": {
+        "minimumHealthCapacity": 1,
+        "maximumOverCapacity": 1
+      },
+      "placement": {
+        "constraints": [],
+        "acceptedResourceRoles": []
+      },
+      "killSelection": "YOUNGEST_FIRST",
+      "unreachableStrategy": {
+        "inactiveAfterSeconds": 900,
+        "expungeAfterSeconds": 604800
+      }
+    },
+    "executorResources": {
+      "cpus": 0.1,
+      "mem": 32,
+      "disk": 10
+    }
+  }
+```
+
 # A pod with multiple containers
-	
+
 The following pod definition specifies a pod with 3 containers. <!-- Validated by Joel 1/3/17 -->
 
 ```json
@@ -113,6 +409,58 @@ The following pod definition specifies a pod with 3 containers. <!-- Validated b
   }
 }
 ```
+
+## Additional pod fields
+
+| Field                       | Type     | Value                                                                                                                          |
+|-----------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------|
+| labels                      | object   | Pod metadata as key/value pairs.                                                                                               |
+| environment                 | object   | Environment variables at the pod level. All pod containers will inherit these environment variables. Must be capitalized.      |
+| secrets                     | object   | The fully qualified path to the secret in the store.                                                                           |
+| scheduling                  | object   | Defines exponential backoff behavior for faulty apps in order to prevent sandboxes from filling up.                            |
+|     - backoff               | number   | Initial backoff (seconds) applied when a launched instance fails (default: 1).                                                 |
+|     - backoffFactor         | number   | Factor applied to current backoff to determine the new backoff (default: 1.15).                                                |
+|     - maxLaunchDelay        | number   | Maximum backoff (seconds) applied when subsequent failures are detected (default: 3600).                                       |
+| upgrade                     | object   | Upgrade strategy that controls pod updates.                                                                                    |
+|     - minimumHealthCapacity | number   | Number between 0 and 1 representing the minimum number of healthy nodes to maintain during upgrade (default: 1).               |
+|     - maximumOverCapacity   | number   | Number between 0 and 1 representing the maximum number of additional instances to launch during upgrade (default: 1).          |
+| placement                   | object   | Controls placement of pod tasks.                                                                                               |
+|     - constraints           | string[] | Constraints control the placement policy of pod tasks. Options: `UNIQUE`, `CLUSTER`, `GROUP_BY`, `LIKE`, `UNLIKE`, `MAX_PER`.  |
+|     - acceptedResourceRoles | string[] | List of resource roles. Marathon will only consider resource offers with roles on this list for this pod's tasks.              |
+| killSelection               | string   | Defines which instance is killed first when an app is in an over-provisioned state. Options: `YOUNGEST_FIRST`, `OLDEST_FIRST`. |
+| unreachableStrategy         |          | Behavior when agents are partitioned from masters.                                                                             |
+|     - inactiveAfterSeconds  | integer  | Time in seconds to wait before replacing task (default: 900).                                                                  |
+|     - expungeAfterSeconds   | integer  | Time in seconds to wait for tasks to come back before expunging (default: 603800).                                             |
+| executorResources           | object   | Resources reserved for the pod executor.                                                                                       |
+|     - cpus                  | number   | CPU shares (default: 0.1).                                                                                                     |
+|     - mem                   | number   | Memory resources in MiB (default: 32).                                                                                         |
+|     - disk                  | number   | Disk resources in MiB (default: 10.0),                                                                                         |
+
+## Additional pod container fields
+
+| Field                        | Type    | Value                                                                                                                   |
+|------------------------------|---------|-------------------------------------------------------------------------------------------------------------------------|
+| labels                       | object  | Container metadata as key/value pairs.                                                                                  |
+| environment                  | object  | Container environment variables. Can override pod environment variables. Must be capitalized.                           |
+| healthCheck                  |         |                                                                                                                         |
+|     - http                   |         | Protocol type. Options: `http`, `tcp`, `exec`.                                                                          |
+|         - endpoint           | string  | Endpoint name to use.                                                                                                   |
+|         - path               | string  | Path to the endpoint exposed by the task that provides health status.                                                   |
+|         - scheme             | string  | For httpHealthCheck, use `HTTP`.                                                                                        |
+|     - gracePeriodSeconds     | integer | Interval to ignore health check failures after a task is first started or until a task is first healthy (default: 300). |
+|     - intervalSeconds        | integer | Interval between health checks (default: 60).                                                                           |
+|     - maxConsecutiveFailures | integer | Number of consecutive failures before task is killed (default: 3).                                                      |
+|     - timeoutSeconds         | integer | Time to wait until health check is complete (default: 20).                                                              |
+|     - delaySeconds           | integer | Time to wait until starting health check (default: 2).                                                                  |
+| artifacts                    | array   | Array of artifact objects                                                                                               |
+|     - uri                    | strings | URI to resources to download (i.e., .tgz, tar.gz, .zip, .txz, etc).                                                     |
+|     - extract                | boolean | Extract fetched artifact.                                                                                               |
+|     - executable             | boolean | Set fetched artifact as executable.                                                                                     |
+|     - cache                  | boolean | Cache fetched artifact.                                                                                                 |
+|     - destPath               | strings | Destination path of artifact.                                                                                           |
+
+# Further examples
+Below are several other pod definition examples.
 
 # A Pod that Uses Ephemeral Volumes
 
@@ -372,8 +720,8 @@ This pod declares a “web” endpoint that listens on port 80. <!-- Validated b
 }
 ```
 
-# Complete Pod 
-The following pod definition can serve as a reference to create more complicated pods. 
+# Complete Pod
+The following pod definition can serve as a reference to create more complicated pods.
 
 ```json
 {
@@ -393,7 +741,7 @@ The following pod definition can serve as a reference to create more complicated
   ],
   "networks": [
     {
-     "mode": "container", 
+     "mode": "container",
      "name": "dcos"
     }
   ],
