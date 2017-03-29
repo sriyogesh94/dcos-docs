@@ -53,7 +53,7 @@ This page provides instructions on how to contribute to the DC/OS documentation.
   - In most cases you should be able to create your content within the existing directory structure.
   - If you're not sure how to add formatting, take a look at [dcos.io/docs](dcos.io/docs/) for examples.
   - Be sure you follow the style and formatting guidelines in the [next section](#styling).
-  - Don't forget to update your post's metadata if necessary, including the required metadata `post_title` and optional `nav_title` and `menu_order`. Where applicable, add the optional `feature_maturity` label. Description of various feature maturity phases can be found [here](https://dcos.io/docs/1.8/overview/feature-maturity/).
+  - Don't forget to update your post's metadata if necessary, including the required metadata `post_title` and optional `nav_title` and `menu_order`. Where applicable, add the optional `feature_maturity` label. Description of various feature maturity phases can be found [here](dcos.io/docs/overview/feature-maturity/).
 
   The metadata should be at the very top of the post's file, and look something like this:
 

@@ -316,10 +316,10 @@ dcos package uninstall jenkins
 
 [amazon-efs-console]: https://console.aws.amazon.com/efs/
 [azure-storage-account]: https://portal.azure.com/#create/Microsoft.StorageAccount-ARM
-[dcos-nfs-docs]: https://dcos.io/docs/1.7/administration/storage/nfs/
+[dcos-nfs-docs]: /docs/1.7/administration/storage/nfs/
 [jenkins-mesos-plugin]: https://github.com/jenkinsci/mesos-plugin
 [jenkins-service-docs]: https://docs.mesosphere.com/1.7/usage/service-guides/jenkins/
 [jenkins-website]: https://jenkins-ci.org
-[marathon-service-docs]: https://dcos.io/docs/1.7/usage/managing-services/install/
+[marathon-service-docs]: /docs/1.7/usage/managing-services/install/
 [mesosphere-universe-jenkins]: https://github.com/mesosphere/universe/tree/version-2.x/repo/packages/J/jenkins
 [mount-file-share-azure]: https://azure.microsoft.com/en-us/documentation/articles/storage-how-to-use-files-linux/

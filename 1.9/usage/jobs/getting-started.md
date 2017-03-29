@@ -8,7 +8,7 @@ You can create and administer jobs in the DC/OS web interface, from the DC/OS CL
 
 # DC/OS Web Interface
 
-**Note:** The DC/OS web interface provides a subset of the CLI and API functionality. For advanced job configurations, use the [dcos job](https://dcos.io/docs/1.9/usage/cli/command-reference/dcos-job/) commands or the Jobs [API](#jobs-api).
+**Note:** The DC/OS web interface provides a subset of the CLI and API functionality. For advanced job configurations, use the [dcos job](/docs/1.9/usage/cli/command-reference/dcos-job/) commands or the Jobs [API](#jobs-api).
 
 ## Add a Job
 
