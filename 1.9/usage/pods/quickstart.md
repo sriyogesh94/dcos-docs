@@ -49,4 +49,4 @@ If you already have other services running, go to **Services -> Services**, then
 
 After you launch your pod, you’ll see your new pod on the **Services** tab of the DC/OS web interface. Click the pod to see information about the status of the containers in your pod.
 
-![Pods UI](../img/pods-service-dashboard.png)
+![Pods UI](/docs/1.9/usage/pods/img/pods-service-dashboard.png)

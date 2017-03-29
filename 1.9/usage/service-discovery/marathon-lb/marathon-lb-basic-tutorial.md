@@ -72,6 +72,6 @@ In this tutorial, Marathon-LB is used as the edge load balancer and service disc
 
 1.  Go to the **Services** tab of the DC/OS web interface to verify that your application is healthy.
 
-    ![Healthy Service](../img/healthy-dcos-website.png)
+    ![Healthy Service](/docs/1.9/usage/service-discovery/marathon-lb/img/healthy-dcos-website.png)
 
 1.  Go to your public agent to see the site running. For information about how to find your public agent IP, see the [documentation](/docs/1.9/administration/locate-public-agent/).
