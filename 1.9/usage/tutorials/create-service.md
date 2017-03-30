@@ -16,7 +16,7 @@ This tutorial shows how to create and deploy a simple one-command service and a 
     
    1. In the **SERVICE ID** field, enter a name for your service. 
    1. In the **Command** field, enter `sleep 10`.
-   1. In the **Container Image** field, enter a container image to use.
+   1. In the **Container Image** field, enter a Docker container image to use, or click **MORE SETTINGS > MESOS RUNTIME** to use the default Mesos containerizer.
 1. Click **REVIEW & RUN**.
 
     ![Create a service in the DC/OS UI](/docs/1.9/usage/tutorials/img/deploy-svs-ui.png)
