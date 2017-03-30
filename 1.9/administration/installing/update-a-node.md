@@ -11,13 +11,13 @@ These steps are useful if you are downsizing a cluster, reconfiguring agent node
 
 ### Prerequisites:
 
-*   SSH installed and configured. This is required when removing nodes by manually killing agents.
+*   [SSH installed and configured](/docs/1.9/administration/access-node/sshcluster/). This is required when removing nodes by manually killing agents.
 *   Access to the [Admin Router permissions](/docs/1.9/overview/architecture/components/#admin-router).
 
 # Updating nodes by using maintenance windows
 With maintenance windows you can drain multiple nodes at the same time from outside the cluster. SSH access is not required.
 
-You can define a maintenance schedule to evacuate your tasks prior to changing agent attributes or resources. ⁠⁠⁠All tasks that are running on the agent at that time are killed when you change agent attributes or resources. Mesos treats re-registered agents as new agents.
+You can define a maintenance schedule to evacuate your tasks prior to changing agent attributes or resources. 
 
 1.  Define a maintenance schedule. For example, here is a basic maintenance schedule JSON file with the example machines  (`machine_ids`) and maintenance window (`unavailability`) specified:
     
