@@ -10,7 +10,7 @@ You can debug your service or pod from the DC/OS web interface.
 
 If you have added a Marathon health check to your service or pod, the **Services Health** box on the DC/OS dashboard will report the health of your service or pod.
 
-The **Services** > **Services** page lists each service or pod, the resouces it has requested, and its status. Possible statuses are `Deploying`, `Waiting`, or `Running`. If you have set up a Marathon health check, you can also see the health of your service or pod: a green dot for healthy and a red dot for unhealthy. If you have not set up a health check, the dot will be gray.
+The **Services** > **Services** page lists each service or pod, the resources it has requested, and its status. Possible statuses are `Deploying`, `Waiting`, or `Running`. If you have set up a Marathon health check, you can also see the health of your service or pod: a green dot for healthy and a red dot for unhealthy. If you have not set up a health check, the dot will be gray.
 
 ## Debugging Page
 
