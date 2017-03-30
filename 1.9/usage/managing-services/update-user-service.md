@@ -58,4 +58,4 @@ dcos marathon app show test-app | jq '.env'
 ```
 
  [1]: /docs/1.9/usage/cli/
- [2]: https://mesosphere.github.io/managing-services/docs/task-environment-vars.html
+ [2]: https://mesosphere.github.io/marathon/docs/task-environment-vars.html

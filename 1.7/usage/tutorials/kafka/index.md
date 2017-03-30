@@ -153,6 +153,6 @@ Then, use the [framework cleaner](/docs/1.7/usage/managing-services/uninstall/#f
 
 ## Further resources
 
-- [DC/OS Kafka Official Documentation](http://docs.mesosphere.com/1.7/usage/service-guides/kafka)
+- [DC/OS Kafka Official Documentation](http://docs.mesosphere.com/service-docs/kafka)
 
 - <a name=api-reference></a>[Kafka API Reference](https://kafka.apache.org/documentation.html)

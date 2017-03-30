@@ -132,9 +132,9 @@ Next, you'll perform real-time analytics on the stream of tweets coming in from 
 
 ![Top Tweeters][16]
 
- [1]: https://docs.mesosphere.com/1.8/usage/service-guides/cassandra/
- [2]: https://docs.mesosphere.com/1.8/usage/service-guides/kafka
- [3]: https://docs.mesosphere.com/1.8/usage/service-guides/spark/
+ [1]: http://docs.mesosphere.com/service-docs/cassandra/
+ [2]: http://docs.mesosphere.com/service-docs/kafka
+ [3]: http://docs.mesosphere.com/service-docs/spark/
  [4]: http://zeppelin.apache.org/
  [5]: https://github.com/mesosphere/marathon-lb
  [6]: /docs/1.8/overview/concepts/
