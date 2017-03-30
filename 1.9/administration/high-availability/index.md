@@ -1,5 +1,5 @@
 ---
-post_title: High-Availibility
+post_title: High-Availability
 feature_maturity: preview
 menu_order: 3.1
 ---
