@@ -66,7 +66,7 @@ This pod, named `simple-pod` has a single container, `simpletask1`. The containe
 | - name                   | string  | Unique name for the container.                                                                             |
 | - exec                   | object  |                                                                                                            |
 |     - command            | object  | Command executed by Mesos.                                                                                 |
-|         - shell          | string  | Command to execute. If using container entrypoint, use an empty string.                                    |
+|         - command:shell          | string  | Command to execute. If using container entrypoint, use an empty string.                                    |
 |     - overrideEntrypoint | boolean | If `command` is supplied, this is implicitly set to `true`. To use the default entrypoint, set to `false`. |
 | - resources (required)   | object  | Container specifications for resources.                                                                    |
 |     - cpus               | number  | CPU shares (default: 1.0).                                                                                 |
@@ -87,7 +87,7 @@ This pod, named `simple-pod` has a single container, `simpletask1`. The containe
 |     - protocol           | array   | Protocol of port (`tcp` or `http`).                                                                        |
 |     - labels						 | object  | Metadata as key/value pairs.																																								|
 
-# Multi-pod with all parameters
+# Annotated multi-pod with all parameters
 The example below shows a pod, `test-pod`, with three containers, `healthtask1`, `healthtask2`, and `clienttask`. The pod makes uses shared volumes and the native DC/OS virtual networking solution.
 
 ```
@@ -300,6 +300,58 @@ The example below shows a pod, `test-pod`, with three containers, `healthtask1`,
   }
 ```
 
+## Additional pod fields
+
+| Field                       | Type     | Value                                                                                                                          |
+|-----------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------|
+| labels                      | object   | Pod metadata as key/value pairs.                                                                                               |
+| environment                 | object   | Environment variables at the pod level. All pod containers will inherit these environment variables. Must be capitalized.      |
+| secrets                     | object   | The fully qualified path to the secret in the store.                                                                           |
+| scheduling                  | object   | Defines exponential backoff behavior for faulty apps in order to prevent sandboxes from filling up.                            |
+|     - backoff               | number   | Initial backoff (seconds) applied when a launched instance fails (default: 1).                                                 |
+|     - backoffFactor         | number   | Factor applied to current backoff to determine the new backoff (default: 1.15).                                                |
+|     - maxLaunchDelay        | number   | Maximum backoff (seconds) applied when subsequent failures are detected (default: 3600).                                       |
+| upgrade                     | object   | Upgrade strategy that controls pod updates.                                                                                    |
+|     - minimumHealthCapacity | number   | Number between 0 and 1 representing the minimum number of healthy nodes to maintain during upgrade (default: 1).               |
+|     - maximumOverCapacity   | number   | Number between 0 and 1 representing the maximum number of additional instances to launch during upgrade (default: 1).          |
+| placement                   | object   | Controls placement of pod tasks.                                                                                               |
+|     - constraints           | string[] | Constraints control the placement policy of pod tasks. Options: `UNIQUE`, `CLUSTER`, `GROUP_BY`, `LIKE`, `UNLIKE`, `MAX_PER`.  |
+|     - acceptedResourceRoles | string[] | List of resource roles. Marathon will only consider resource offers with roles on this list for this pod's tasks.              |
+| killSelection               | string   | Defines which instance is killed first when an app is in an over-provisioned state. Options: `YOUNGEST_FIRST`, `OLDEST_FIRST`. |
+| unreachableStrategy         |          | Behavior when agents are partitioned from masters.                                                                             |
+|     - inactiveAfterSeconds  | integer  | Time in seconds to wait before replacing task (default: 900).                                                                  |
+|     - expungeAfterSeconds   | integer  | Time in seconds to wait for tasks to come back before expunging (default: 603800).                                             |
+| executorResources           | object   | Resources reserved for the pod executor.                                                                                       |
+|     - cpus                  | number   | CPU shares (default: 0.1).                                                                                                     |
+|     - mem                   | number   | Memory resources in MiB (default: 32).                                                                                         |
+|     - disk                  | number   | Disk resources in MiB (default: 10.0),                                                                                         |
+
+## Additional pod container fields
+
+| Field                        | Type    | Value                                                                                                                   |
+|------------------------------|---------|-------------------------------------------------------------------------------------------------------------------------|
+| labels                       | object  | Container metadata as key/value pairs.                                                                                  |
+| environment                  | object  | Container environment variables. Can override pod environment variables. Must be capitalized.                           |
+| healthCheck                  |         |                                                                                                                         |
+|     - http                   |         | Protocol type. Options: `http`, `tcp`, `exec`.                                                                          |
+|         - http:endpoint           | string  | Endpoint name to use.                                                                                                   |
+|         - http:path               | string  | Path to the endpoint exposed by the task that provides health status.                                                   |
+|         - http:scheme             | string  | For httpHealthCheck, use `HTTP`.                                                                                        |
+|     - gracePeriodSeconds     | integer | Interval to ignore health check failures after a task is first started or until a task is first healthy (default: 300). |
+|     - intervalSeconds        | integer | Interval between health checks (default: 60).                                                                           |
+|     - maxConsecutiveFailures | integer | Number of consecutive failures before task is killed (default: 3).                                                      |
+|     - timeoutSeconds         | integer | Time to wait until health check is complete (default: 20).                                                              |
+|     - delaySeconds           | integer | Time to wait until starting health check (default: 2).                                                                  |
+| artifacts                    | array   | Array of artifact objects                                                                                               |
+|     - uri                    | strings | URI to resources to download (i.e., .tgz, tar.gz, .zip, .txz, etc).                                                     |
+|     - extract                | boolean | Extract fetched artifact.                                                                                               |
+|     - executable             | boolean | Set fetched artifact as executable.                                                                                     |
+|     - cache                  | boolean | Cache fetched artifact.                                                                                                 |
+|     - destPath               | strings | Destination path of artifact.                                                                                           |
+
+# Further examples
+Below are several other pod definition examples.
+
 # A pod with multiple containers
 
 The following pod definition specifies a pod with 3 containers. <!-- Validated by Joel 1/3/17 -->
@@ -409,58 +461,6 @@ The following pod definition specifies a pod with 3 containers. <!-- Validated b
   }
 }
 ```
-
-## Additional pod fields
-
-| Field                       | Type     | Value                                                                                                                          |
-|-----------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------|
-| labels                      | object   | Pod metadata as key/value pairs.                                                                                               |
-| environment                 | object   | Environment variables at the pod level. All pod containers will inherit these environment variables. Must be capitalized.      |
-| secrets                     | object   | The fully qualified path to the secret in the store.                                                                           |
-| scheduling                  | object   | Defines exponential backoff behavior for faulty apps in order to prevent sandboxes from filling up.                            |
-|     - backoff               | number   | Initial backoff (seconds) applied when a launched instance fails (default: 1).                                                 |
-|     - backoffFactor         | number   | Factor applied to current backoff to determine the new backoff (default: 1.15).                                                |
-|     - maxLaunchDelay        | number   | Maximum backoff (seconds) applied when subsequent failures are detected (default: 3600).                                       |
-| upgrade                     | object   | Upgrade strategy that controls pod updates.                                                                                    |
-|     - minimumHealthCapacity | number   | Number between 0 and 1 representing the minimum number of healthy nodes to maintain during upgrade (default: 1).               |
-|     - maximumOverCapacity   | number   | Number between 0 and 1 representing the maximum number of additional instances to launch during upgrade (default: 1).          |
-| placement                   | object   | Controls placement of pod tasks.                                                                                               |
-|     - constraints           | string[] | Constraints control the placement policy of pod tasks. Options: `UNIQUE`, `CLUSTER`, `GROUP_BY`, `LIKE`, `UNLIKE`, `MAX_PER`.  |
-|     - acceptedResourceRoles | string[] | List of resource roles. Marathon will only consider resource offers with roles on this list for this pod's tasks.              |
-| killSelection               | string   | Defines which instance is killed first when an app is in an over-provisioned state. Options: `YOUNGEST_FIRST`, `OLDEST_FIRST`. |
-| unreachableStrategy         |          | Behavior when agents are partitioned from masters.                                                                             |
-|     - inactiveAfterSeconds  | integer  | Time in seconds to wait before replacing task (default: 900).                                                                  |
-|     - expungeAfterSeconds   | integer  | Time in seconds to wait for tasks to come back before expunging (default: 603800).                                             |
-| executorResources           | object   | Resources reserved for the pod executor.                                                                                       |
-|     - cpus                  | number   | CPU shares (default: 0.1).                                                                                                     |
-|     - mem                   | number   | Memory resources in MiB (default: 32).                                                                                         |
-|     - disk                  | number   | Disk resources in MiB (default: 10.0),                                                                                         |
-
-## Additional pod container fields
-
-| Field                        | Type    | Value                                                                                                                   |
-|------------------------------|---------|-------------------------------------------------------------------------------------------------------------------------|
-| labels                       | object  | Container metadata as key/value pairs.                                                                                  |
-| environment                  | object  | Container environment variables. Can override pod environment variables. Must be capitalized.                           |
-| healthCheck                  |         |                                                                                                                         |
-|     - http                   |         | Protocol type. Options: `http`, `tcp`, `exec`.                                                                          |
-|         - endpoint           | string  | Endpoint name to use.                                                                                                   |
-|         - path               | string  | Path to the endpoint exposed by the task that provides health status.                                                   |
-|         - scheme             | string  | For httpHealthCheck, use `HTTP`.                                                                                        |
-|     - gracePeriodSeconds     | integer | Interval to ignore health check failures after a task is first started or until a task is first healthy (default: 300). |
-|     - intervalSeconds        | integer | Interval between health checks (default: 60).                                                                           |
-|     - maxConsecutiveFailures | integer | Number of consecutive failures before task is killed (default: 3).                                                      |
-|     - timeoutSeconds         | integer | Time to wait until health check is complete (default: 20).                                                              |
-|     - delaySeconds           | integer | Time to wait until starting health check (default: 2).                                                                  |
-| artifacts                    | array   | Array of artifact objects                                                                                               |
-|     - uri                    | strings | URI to resources to download (i.e., .tgz, tar.gz, .zip, .txz, etc).                                                     |
-|     - extract                | boolean | Extract fetched artifact.                                                                                               |
-|     - executable             | boolean | Set fetched artifact as executable.                                                                                     |
-|     - cache                  | boolean | Cache fetched artifact.                                                                                                 |
-|     - destPath               | strings | Destination path of artifact.                                                                                           |
-
-# Further examples
-Below are several other pod definition examples.
 
 # A Pod that Uses Ephemeral Volumes
 
