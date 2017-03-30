@@ -10,19 +10,19 @@ Services can be uninstalled from either the web interface or the CLI. If a Unive
 
 ## CLI
 
-1.  Uninstall a datacenter service with this command:
+Uninstall a datacenter service with this command:
 
-    ```bash
-    dcos package uninstall <servicename>
-    ```
+```bash
+dcos package uninstall <servicename>
+```
 
-    For example, to uninstall Chronos:
+For example, to uninstall Chronos:
 
-    ```bash
-    dcos package uninstall chronos
-    ```
+```bash
+dcos package uninstall chronos
+```
 
-### Web interface
+## Web interface
 
 From the DC/OS web interface you can uninstall services from the **Services** or **Universe** tab. The Universe tab shows all of the available DC/OS services from package [repositories](/docs/1.9/usage/repo/). The Services tab provides a full-featured interface to the native DC/OS Marathon instance.
 
@@ -37,7 +37,29 @@ From the DC/OS web interface you can uninstall services from the **Services** or
 1.  Navigate to the [**Services**](/docs/1.9/usage/webinterface/#services) tab in the DC/OS web interface.
 1.  Select your application and click the toggle to **Destroy**.
     
-    ![Destory app](/docs/1.9/usage/managing-services/img/app-destroy.png)
+    ![Destroy app](/docs/1.9/usage/managing-services/img/app-destroy.png)
+
+## Troubleshooting
+
+It's possible for an uninstall to fail with the following error message:
+
+```
+Incomplete uninstall of package [chronos] due to Mesos unavailability
+```
+
+The service may be inactive and will not be shown in the DC/OS UI, but you can find it by using this CLI command:
+
+```bash
+dcos service --inactive
+NAME          HOST     ACTIVE  TASKS  CPU  MEM  DISK  ID
+chronos    10.0.6.138  False     0    0.0  0.0  0.0   7c0a7bd4-3649-4ec1-866c-5db8f2292bf2-0001
+```
+
+You can complete the uninstall by shutting down the service by using this CLI command with the service ID specified, and then run the [framework cleaner](#framework-cleaner):
+
+```bash
+dcos service shutdown 7c0a7bd4-3649-4ec1-866c-5db8f2292bf2-0001
+```
 
 # Uninstalling user-created services
 
