@@ -36,6 +36,13 @@ Containers within a pod share ephemeral storage. Volumes are declared at the pod
 # Pod Definitions
 Pods are configured via a JSON pod definition, which is similar to a Marathon [application definition](/docs/1.9/usage/managing-services/application-basics/). You must declare the resources required by each container in the pod because Mesos, not Marathon, determines how and when to perform isolation for all resources requested by a pod. See the [Examples](#examples) section for complete pod definitions.
 
+# Environment variables
+Environment variables defined at the pod level are propagated to all pod containers. Pod-level environment variables are overridden by environment variables defined at the pod container level.
+
+Environment variables for ports are defined using the pod container endpoint names ( i.e ENDPOINT_<ENDPOINT_NAME>=<PORT>)
+
+Below are example environment variables reflecting the [multi-pod JSON pod definition example](/docs/1.9/usage/pods/examples/#multi-pod).
+
 ## Executor Resources
 
 The executor runs on each node to manage the pods. By default, the executor reserves 32 MB and .1 CPUs per pod for overhead. Take this overhead into account when declaring resource needs for the containers in your pod. You can modify the executor resources in the `executorResources` field of your pod definition.
