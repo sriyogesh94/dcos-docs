@@ -43,6 +43,32 @@ Environment variables for ports are defined using the pod container endpoint nam
 
 Below are example environment variables reflecting the [multi-pod JSON pod definition example](/docs/1.9/usage/pods/examples/#multi-pod).
 
+```
+MESOS_EXECUTOR_ID=instance-test-pod.c2b47e5c-d1f5-11e6-a247-a65e72d2dda4
+MARATHON_CONTAINER_RESOURCE_DISK=32.0
+SHLVL=1
+EP_CONTAINER_HTTPENDPOINT=8080
+PYTHON_PIP_VERSION=9.0.1
+MARATHON_CONTAINER_RESOURCE_MEM=32.0
+ENDPOINT_HTTPENDPOINT=8080
+GPG_KEY=97FC712E4C024BBEA48A61ED3A5CA953F73C700D
+EP_HOST_HTTPENDPOINT2=21529
+MARATHON_APP_ID=/test-pod
+EP_CONTAINER_HTTPENDPOINT2=8081
+ENDPOINT_HTTPENDPOINT2=8081
+MARATHON_CONTAINER_RESOURCE_CPUS=0.1
+PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+MESOS_SANDBOX=/mnt/mesos/sandbox
+MARATHON_CONTAINER_RESOURCE_GPUS=0
+HOST=10.0.1.60
+PYTHON_VERSION=3.5.2
+MARATHON_APP_VERSION=2017-01-03T20:46:54.497Z
+MARATHON_APP_LABELS=
+MARATHON_CONTAINER_ID=healthtask1
+PWD=/mnt/mesos/sandbox
+EP_HOST_HTTPENDPOINT=21528
+```
+
 ## Executor Resources
 
 The executor runs on each node to manage the pods. By default, the executor reserves 32 MB and .1 CPUs per pod for overhead. Take this overhead into account when declaring resource needs for the containers in your pod. You can modify the executor resources in the `executorResources` field of your pod definition.
