@@ -385,7 +385,9 @@ No software runs perfectly, especially not the first time. Distribute tasks acro
 In a world where machines are are given numbers instead of names, tasks are scheduled automatically, dependencies are declaratively defined, and services run in distributed sets, network administration also needs to be elevated from plugging in cables to configuring software-defined networks. To accomplish this, DC/OS includes a fleet of networking components for routing, proxying, name resolution, virtual IPs, load balancing, and distributed reconfiguration.
 
 <div data-role="collapsible">
+<a name="admin-router"></a>
 <h2>Admin Router</h2>
+
 <div>
 <p><strong>Description:</strong> Admin Router exposes a unified control plane proxy for components and services using <a href="https://www.nginx.com/">NGINX</a>. Admin Router Agent proxies node-specific health, logs, metrics, and package management internal endpoints.</p>
 <p>
