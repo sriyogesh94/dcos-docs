@@ -111,6 +111,17 @@ This page provides instructions on how to contribute to the DC/OS documentation.
 
 In addition to the above technical notes, make sure you read your doc for clarity and accuracy. Pretend you are someone else seeing your instructions for the first time, and try to follow them based only on the information you provided.
 
+## <a name="screenshots"></a>Screenshots
+
+- We should always use a more realistic cluster name and user name (e.g. not `joel-master-ee-` or `Bootstrap User`). 
+- For the browser window, we should stick with a standard resolution (1440x900) and be consistent with it across all screenshots, unless we are intentionally cropping in on a key area of the window. 
+- For the browser window, we should strip all browser chrome, bookmarks, user-specific extensions, themes, etc. You can easily hide this without having to remove them.
+- Don’t zoom in/out on your browser. This creates weird styling issues.
+- Be careful of focus. For example, be careful that the browser toolbar is not the focus. This causes the viewer to assume there is a reason we are focused on the address bar.
+- Crop to the pixel. If you want a clean capture of the entire browser:
+    - (a) lose the browser entirely and crop to the exact bounds of the UI 
+    - (b) use CMD+SHIFT+4 then hit SPACE then click the window you want to capture
+
 ## <a name="test-local"></a>Building and testing your content locally
 
 Pick one of the below methods to build your changes, integrated with the rest of dcos.io, on your local machine. This makes sure that your changes don't break the docs or the website. If you're not sure which method you should use to build the website locally, we recommend the automated build, because it has fewer prerequisites and is more reliable. If you find problems with your doc, edit the file. Your local build should update every time you save your changes.
