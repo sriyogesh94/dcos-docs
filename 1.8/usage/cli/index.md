@@ -11,7 +11,6 @@ You can quickly [install](/docs/1.8/usage/cli/install) the CLI from the DC/OS we
 To list available commands, either run `dcos` with no parameters or run `dcos help`:
 
 ```bash
-dcos
 Command line utility for the Mesosphere Datacenter Operating
 System (DC/OS). The Mesosphere DC/OS is a distributed operating
 system built around Apache Mesos. This utility provides tools
