@@ -28,7 +28,7 @@ The DC/OS installation creates these folders:
     <td>Contains copies of the units in `/etc/systemd/system/dcos.target.wants`. They must be at the top folder as well as inside `dcos.target.wants`.</td>
   </tr>
   <tr>
-    <td><code>/var/lib/zookeeper</code></td>
+    <td><code>/var/lib/dcos/exhibitor/zookeeper</code></td>
     <td>Contains the [ZooKeeper](/docs/1.8/overview/concepts/#zookeeper) data.</td>
   </tr>
   <tr>
@@ -131,7 +131,7 @@ The DC/OS installation creates these folders:
    **Important:* If you exit your GUI installation before launching DC/OS, you must do this before reinstalling:
 
     *   SSH to each node in your cluster and run `rm -rf /opt/mesosphere`.
-    *   SSH to your bootstrap master node and run `rm -rf /var/lib/zookeeper`
+    *   SSH to your bootstrap master node and run `rm -rf /var/lib/dcos/exhibitor/zookeeper`
 
     ![preflight](../img/dcos-gui-run-preflight.png)
 

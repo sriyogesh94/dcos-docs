@@ -28,7 +28,7 @@ The DC/OS installation creates these folders:
     <td>Contains copies of the units in `/etc/systemd/system/dcos.target.wants`. They must be at the top folder as well as inside `dcos.target.wants`.</td>
   </tr>
   <tr>
-    <td><code>/var/lib/zookeeper</code></td>
+    <td><code>/var/lib/dcos/exhibitor/zookeeper</code></td>
     <td>Contains the [ZooKeeper](/docs/1.9/overview/concepts/#zookeeper) data.</td>
   </tr>
   <tr>
