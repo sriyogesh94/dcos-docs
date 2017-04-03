@@ -20,7 +20,7 @@ This tutorial shows how to create and deploy a simple one-command service and a 
       
       -  **DOCKER ENGINE** Use this option if you require specific features of the Docker package. If you select this option you must specify a Docker container image in the **Container Image** field. For example, you can specify the `Alpine` a Docker image.
       -  **MESOS RUNTIME** Use this option if you prefer the original Mesos container runtime. It does not support Docker containers. 
-      -  **UNIVERSAL CONTAINER RUNTIME** Use this option if you are using Pods or GPUs. This option also supports Docker images without depending on the Docker Engine. If you select this option you can optionally specify a Docker container image in the **Container Image** field. For example, you can specify the `Alpine` a Docker image.
+      -  **UNIVERSAL CONTAINER RUNTIME** Use this option if you are using Pods or GPUs. This option also supports Docker images without depending on the Docker Engine. If you select this option, you can optionally specify a Docker container image in the **Container Image** field. For example, you can specify the `Alpine` [Docker image](https://hub.docker.com/_/alpine/).
       
       For more information, see the containerizer [documentation](/docs/1.9/usage/containerizers/).
       
