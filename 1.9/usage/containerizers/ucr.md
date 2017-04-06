@@ -14,37 +14,41 @@ The Universal Container Runtime offers the following advantages:
 * The UCR offers features not available in the Docker containerizer, such as GPU and CNI support.
 * The UCR allows you to take advantage of continuing innovation within both the Mesos and DC/OS, including features such as IP per container, strict container isolation, and more.
 
-# Provision Docker Containers with the Universal Container Runtime from the DC/OS Web Interface
+# Provision Containers with the Universal Container Runtime from the DC/OS Web Interface
 
 1. Specify the UCR from the web interface. Go to **Services**  > **Run a Service** > **Single Container** > **More Settings**. In the **Container Runtime** section, choose the **Universal Container Runtime** radio button.
 
-1. In the **Container Image** field, enter your Docker container image.
+1. In the **Container Image** field, enter your container image.
 
-# Provision Docker Containers with the Universal Container Runtime from the DC/OS CLI
+# Provision Containers with the Universal Container Runtime from the DC/OS CLI
 
-To provision Docker containers with the UCR from the DC/OS CLI, specify the container type `MESOS` and a `docker` object in your [Marathon application definition](http://mesosphere.github.io/marathon/docs/application-basics.html).
+To provision containers with the UCR from the DC/OS CLI, specify the container type `MESOS` and a the appropriate object in your [Marathon application definition](http://mesosphere.github.io/marathon/docs/application-basics.html). Here, we specify a Docker container with the `docker` object.
 
 The Mesos containerizer provides a `credential`, with a `principal` and an optional `secret` field to authenticate when downloading the Docker image.
 
 ```json
-{
-	"id": "mesos-docker",
-    "container": {
-		"docker": {
-			"image": "mesosphere/inky",
-            "credential": {
-				"principal": "<my-principal>",
-                "secret": "<my-secret>"
-			}
-		},
-		"type": "MESOS"
-	},
-	"args": ["<my-arg>"],
-    "cpus": 0.2,
-    "mem": 16.0,
-    "instances": 1
+{  
+   "id":"mesos-docker",
+   "container":{  
+      "docker":{  
+         "image":"mesosphere/inky",
+         "credential":{  
+            "principal":"<my-principal>",
+            "secret":"<my-secret>"
+         }
+      },
+      "type":"MESOS"
+   },
+   "args":[  
+      "<my-arg>"
+   ],
+   "cpus":0.2,
+   "mem":16.0,
+   "instances":1
 }
 ```
+
+**Important:** If you leave the `args` field empty, the default entry point will be the launch command for the container. If your container does not have a default entry point, you must specify a command in the `args` field. If you do not, your service will fail to deploy.
 
 # Limitations
 - The UCR is a [preview](/docs/1.8/overview/feature-maturity/) feature in DC/OS 1.9.

@@ -15,18 +15,21 @@ To specify the Docker Containerizer from the web interface, go to **Services**  
 To specify the Docker containerizer from the DC/OS CLI, add the following parameter to your Marathon application definition:
 
 ```json
-{
-	"id": "docker",
-    "container": {
-		"type": "DOCKER",
-        "docker": {
-			"network": "HOST",
-          	"image": "<my-image>"
-        }
-    },
-    "args": ["<my-arg>"]
+{  
+   "id":"docker",
+   "container":{  
+      "type":"DOCKER",
+      "docker":{  
+         "network":"HOST",
+         "image":"<my-image>"
+      }
+   },
+   "args":[  
+      "<my-arg>"
+   ]
 }
 ```
+
 - [Learn more about launching Docker containers on Marathon](http://mesosphere.github.io/marathon/docs/native-docker.html).
 - [Follow a Docker app tutorial](/docs/1.8/usage/managing-services/application-basics/deploy-docker-app/).
 - [View the Mesos docs for the Mesos containerizer](http://mesos.apache.org/documentation/latest/containerizer/#Docker).

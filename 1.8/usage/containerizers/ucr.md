@@ -14,9 +14,9 @@ The Universal Container Runtime offers the following advantages:
 * The UCR offers features not available in the Docker containerizer, such as GPU and CNI support.
 * The UCR allows you to take advantage of continuing innovation within both the Mesos and DC/OS, including features such as IP per container, strict container isolation and more.
 
-# Provisioning Docker Containers with the Universal Container Runtime
+# Provisioning Containers with the Universal Container Runtime
 
-To run Docker containers with the UCR, specify the container type `MESOS` and a `docker` object in your [Marathon application definition](http://mesosphere.github.io/marathon/docs/application-basics.html).
+To run containers with the UCR, specify the container type `MESOS` and the appropriate object in your [Marathon application definition](http://mesosphere.github.io/marathon/docs/application-basics.html). Here, we specify a Docker container with the `docker` object.
 
 The Mesos containerizer provides a `credential`, with a `principal` and an optional `secret` field to authenticate when downloading the Docker image.
 
