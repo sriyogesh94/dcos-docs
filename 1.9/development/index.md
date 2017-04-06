@@ -4,94 +4,66 @@ nav_title: Development
 menu_order: 5
 ---
 
-## <a name="universe"></a>Package Repositories
+This section describes the developer-specific DC/OS components, explaining what is necessary to package and provide your own service on DC/OS.
 
-In DC/OS, the [Universe][1] contains packages that are installable as services in a cluster. Everyone is welcome and encouraged to submit a package to Universe. Some packages are "selected" by Mesosphere and are identified as such in the DC/OS UI and DC/OS CLI.
+The Mesosphere Datacenter Operating System (DC/OS) provides the optimal user experience possible for orchestrating and managing a datacenter. If you are an Apache Mesos developer, you are already familiar with developing a framework. DC/OS extends Apache Mesos by including a web interface for health checks and monitoring, a command-line, a service packaging description, and a [repository](/docs/1.9/usage/repo/) that catalogs those packages.
 
-All services in the Universe are required to meet a standard as defined by the DC/OS project team. For details on publishing a release of a DC/OS service, see [Publish a Package][2] in the Universe documentation.
+# <a name="universe"></a>Package Repositories
 
-For detailed information about the JSON files of a package, see the [Universe][1] docs.
+The DC/OS Universe contains all of the services that are installable on DC/OS. For more information on DC/OS Universe, see the [GitHub Universe repository](https://github.com/mesosphere/universe).
 
-## <a name="dcos-integration"></a>DC/OS Integration
+All packaged services are required to meet a certain standard as defined by Mesosphere. For details on submitting a DC/OS service, see [Contributing a package](/docs/1.9/development/create-package/).
 
-When creating DC/OS Service there are several integration points that can be leveraged. The sections below provide detailed explanations on how to integrate with each respective component.
+# <a name="adminrouter"></a>Admin Router and web interface integration
 
-### <a name="adminrouter"></a>Admin Router
+By default, a DC/OS service is deployed on a [private agent node](/docs/1.9/overview/concepts/#private-agent-node). To allow configuration control or monitoring of a service by a user, the Admin Router proxies calls on the master node to the service in a private node on the cluster. The HTTP service endpoint requires relative paths for artifacts and resources. The service endpoint can provide a web interface, a RESTful endpoint, or both. When creating a DC/OS CLI subcommand, it is common to have a RESTful endpoint to communicate with the scheduler service.
 
-When a DC/OS Service is installed and ran on DC/OS, the service is generally deployed on a [private agent node][3]. In order to allow users to access a running instance of the service, Admin Router can functions as a reverse proxy for the DC/OS Service.
+The integration to the Admin Router is automatic when a framework scheduler registers a `webui_url` during the registration process with the Mesos master. There are a couple of limitations:
 
-Admin Router currently supports only one reverse proxy destination.
+*   The URL must NOT end with a forward slash (/). For example, this is good `internal.dcos.host.name:10000`, and this is bad `internal.dcos.host.name:10000/`.
+*   DC/OS supports 1 URL and port.
 
-#### Service Endpoints
+When the `webui_url` is provided, the service is listed on the DC/OS web interface as a service with a link. That link is the Admin Router proxy URL name that is based on a naming convention of: `/service/<service_name>`. For example, `<dcos_host>/service/unicorn` is the proxy to the `webui_url`. If you provide a web interface, it will be integrated with the DC/OS web interface and users can click the link for quick access to your service.
 
-Admin Router allows marathon tasks to define custom service UI and HTTP endpoints, which are made available as `/service/<service-name>`. Set the following marathon task labels to enable this:
+Service health check information is provided from the DC/OS service tab when:
 
+*   There are service health checks defined in the `marathon.json` file. For example:
+
+```json
+"healthChecks": [
+    {
+  "path": "/",
+  "portIndex": 1,
+  "protocol": "HTTP",
+  "gracePeriodSeconds": 5,
+  "intervalSeconds": 60,
+  "timeoutSeconds": 10,
+  "maxConsecutiveFailures": 3
+    }
+]
 ```
-"labels": {
-    "DCOS_SERVICE_NAME": "<service-name>",
-    "DCOS_SERVICE_PORT_INDEX": "0",
-    "DCOS_SERVICE_SCHEME": "http"
-  }
-```
 
-In this case, `http://<dcos-cluster>/service/<service-name>` would be forwarded to the host running the task using the first port allocated to the task.
+*   The `framework-name` property in the `marathon.json` file is valid. For example:
+    
+          "id": "{{kafka.framework-name}}"
+        
 
-In order for the forwarding to work reliably across task failures, we recommend co-locating the endpoints with the task. This way, if the task is restarted on another host and with different ports, Admin Router will pick up the new labels and update the routing. **Note:** Due to caching, there can be an up to 30-second delay before the new routing is working.
+*   The framework property in the `package.json` file is set to true. For example:
+    
+          "framework": true
+        
 
-We recommend having only a single task setting these labels for a given service name. If multiple task instances have the same service name label, Admin Router will pick one of the task instances deterministically, but this might make debugging issues more difficult.
+You can provide public access to your service through the Admin Router or by deploying your own proxy or router to the public agent node. It is recommend to use the Admin Router for scheduler configuration and control, allowing integration with the DC/OS web interface. You can also provide a [CLI subcommand](/docs/1.9/development/cli-spec/) for command-line control of a RESTful service endpoint for the scheduler.
 
-Since the paths to resources for clients connecting to Admin Router will differ from those paths the service actually has, ensure the service is configured to run behind a proxy. This often means relative paths are preferred to absolute paths. In particular, resources expected to be used by a UI should be verified to work through a proxy.
+# DC/OS service structure
 
-Tasks running in nested [marathon app groups](https://mesosphere.github.io/marathon/docs/application-groups.html) will be available only using their service name (i.e., `/service/<service-name>`), not by the marathon app group name (i.e., `/service/app-group/<service-name>`).
+Each DC/OS service in the Universe repo is comprised of JSON configuration files. These files are used create the packages that are installed on DC/OS.
 
+| Filename               | Description                                                                                              | Required |
+|------------------------|----------------------------------------------------------------------------------------------------------|----------|
+| `config.json`            | Specifies the supported configuration properties, represented as a JSON-schema.                          | No       |
+| `marathon.json.mustache` | Specifies a mustache template that creates a Marathon app definition capable of running your service.    | No       |
+| `package.json`           | Specifies the high level metadata about the package.                                                     | Yes      |
+| `resource.json`          | Specifies all of the required externally hosted resources (e.g. Docker images, HTTP objects and images). | No       |
 
-### <a name="dcos-ui"></a>DC/OS UI
-
-Service health check information can be surfaced in the DC/OS services UI tab by:
-
-1. Defining one or more healthChecks in the Service's Marathon template, for example:
-
-        "healthChecks": [
-            {
-                "path": "/",
-                "portIndex": 1,
-                "protocol": "HTTP",
-                "gracePeriodSeconds": 5,
-                "intervalSeconds": 60,
-                "timeoutSeconds": 10,
-                "maxConsecutiveFailures": 3
-            }
-        ]
-
-2. Defining the label `DCOS_PACKAGE_FRAMEWORK_NAME` in the Service's Marathon template, with the same value that will be used when the framework registers with Mesos. For example:
-
-         "labels": {
-            "DCOS_PACKAGE_FRAMEWORK_NAME": "unicorn"
-          }
-
-3. Setting `.framework` to true in `package.json`
-
-### <a name="cli-subcommand"></a>CLI Subcommand
-
-If you would like to publish a DC/OS CLI Subcommand for use with your service it is common to have the Subcommand communicate with the running Service by sending HTTP requests through Admin Router to the Service.
-
-See [dcos-helloworld][6] for an example on how to develop a CLI Subcommand.
-
-## Package Guidelines
-
-The following are a set of guidelines that should be considered when creating a DC/OS Package.
-
-### `package.json`
-
-* Focus the description on the service. Assume that all users are familiar with DC/OS and Mesos.
-* The `tags` parameter is used for user searches (`dcos package search <criteria>`). Add tags that distinguish the service in some way. Avoid the following terms: Mesos, Mesosphere, DC/OS, and datacenter. For example, the unicorns service could have: `"tags": ["rainbows", "mythical"]`.
-* The `preInstallNotes` parameter gives the user information they'll need before starting the installation process. For example, you could explain what the resource requirements are for the service: `"preInstallNotes": "Unicorns take 7 nodes with 1 core each and 1TB of ram."`
-* The `postInstallNotes` parameter gives the user information they'll need after the installation. Focus on providing a documentation URL, a tutorial, or both. For example: `"postInstallNotes": "Thank you for installing the Unicorn service.\n\n\tDocumentation: http://<service-url>\n\tIssues: https://github.com/"`
-* The `postUninstallNotes` parameter gives the user information they'll need after an uninstall. For example, further cleanup before reinstalling again and a link to the details. A common issue is cleaning up ZooKeeper entries. For example: `postUninstallNotes": "The Unicorn DC/OS Service has been uninstalled and will no longer run.\nPlease follow the instructions at http://<service-URL> to clean up any persisted state" }`
-
- [1]: http://mesosphere.github.io/universe/
- [2]: http://mesosphere.github.io/universe/#publish-a-package-1
- [3]: /docs/1.9/administration/securing-your-cluster/
- [4]: https://github.com/mesosphere/universe
- [5]: http://mesosphere.github.io/universe/#submit-your-package
- [6]: https://github.com/mesosphere/dcos-helloworld
+For more information, see [Creating a Universe Package](/docs/1.9/development/create-package/).
