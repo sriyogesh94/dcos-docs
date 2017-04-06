@@ -19,18 +19,18 @@ The tables below provide a feature comparison of your containerizer choices on D
 
 | 																				| Docker			| Original Mesos				| UCR 			| Comments |
 | --------------------------------------- | ----------- | --------------------- | --------- | -------- |
-| **Command** <!-- ? -->                  | Yes         | ???                   | Yes
+| **Command**  what is this??              | Yes         | ???                   | Yes
 | **Container Images** 										| Yes					| No										| Yes				|					 |
 | **Docker Containers** 									| Yes					| No										| Yes				|					 |
 | **Pods**																| No					| No										| Yes				|					 |
 | **GPUs**																| No					| No										| Yes				|					 |
 | **DC/OS CLI**														| No					| Yes										| Yes				|					 |
 | **URIs**																| Yes					| Yes										| Yes				|					 |
-| **Runtime Privileges** <!-- is this the same as "privileged mode" -->									| Yes					| No										| No				|					 |
+| **Runtime Privileges** ??is this the same as "privileged mode"?								| Yes					| No										| No				|					 |
 | **Docker Options**											| Yes					| No										| No				|					 |
 | **Force Pull**													| Yes					| No										| No				|					 |
 | **Secrets**															| Yes					| Yes										| Yes				| Enterprise only |
-| **Image GC**???                         | Yes         | ??                    | No        |          |
+| **Image GC** what is this??             | Yes         | ??                    | No        |          |
 | **Debugging with exec**         				| No					| ??										| Yes				|	CLI only |
 | **All Security Modes**									| Yes					| Yes										| Yes				| Enterprise only |
 
