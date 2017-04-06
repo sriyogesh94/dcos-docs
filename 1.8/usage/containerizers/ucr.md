@@ -21,24 +21,28 @@ To run Docker containers with the UCR, specify the container type `MESOS` and a 
 The Mesos containerizer provides a `credential`, with a `principal` and an optional `secret` field to authenticate when downloading the Docker image.
 
 ```json
-{
-	"id": "mesos-docker",
-    "container": {
-		"docker": {
-			"image": "mesosphere/inky",
-            "credential": {
-				"principal": "<my-principal>",
-                "secret": "<my-secret>"
-			}
-		},
-		"type": "MESOS"
-	},
-	"args": ["<my-arg>"],
-    "cpus": 0.2,
-    "mem": 16.0,
-    "instances": 1
+{  
+   "id":"mesos-docker",
+   "container":{  
+      "docker":{  
+         "image":"mesosphere/inky",
+         "credential":{  
+            "principal":"<my-principal>",
+            "secret":"<my-secret>"
+         }
+      },
+      "type":"MESOS"
+   },
+   "args":[  
+      "<my-arg>"
+   ],
+   "cpus":0.2,
+   "mem":16.0,
+   "instances":1
 }
 ```
+
+**Important:** If you leave the `args` field empty, the default entry point will be the launch command for the container. If your container does not have a default entry point, you must specify a command in the `args` field. If you do not, your service will fail to deploy.
 
 # Limitations
 - The UCR is considered [experimental](/docs/1.8/overview/feature-maturity/) in DC/OS 1.8.

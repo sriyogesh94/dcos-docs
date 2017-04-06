@@ -9,16 +9,18 @@ Use the Docker containerizer if you need specific features of the Docker package
 To specify the Docker containerizer, add the following parameter to your Marathon application definition:
 
 ```json
-{
-	"id": "docker",
-    "container": {
-		"type": "DOCKER",
-        "docker": {
-			"network": "HOST",
-          	"image": "<my-image>"
-        }
-    },
-    "args": ["<my-arg>"]
+{  
+   "id":"docker",
+   "container":{  
+      "type":"DOCKER",
+      "docker":{  
+         "network":"HOST",
+         "image":"<my-image>"
+      }
+   },
+   "args":[  
+      "<my-arg>"
+   ]
 }
 ```
 - [Learn more about launching Docker containers on Marathon](http://mesosphere.github.io/marathon/docs/native-docker.html).
