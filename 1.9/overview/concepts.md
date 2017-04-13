@@ -99,7 +99,7 @@ A DC/OS agent node is a virtual or physical machine on which Mesos tasks are run
 - Each agent node contains multiple DC/OS components, including most notably a [Mesos agent](#mesos-agent) process.
 - Agent nodes can be [private](#private-agent-node) or [public](#public-agent-node), depending on agent and network configuration.
 
-For more information, see [Network Security](/docs/1.9/administering-clusters/) and [Adding Agent Nodes](/docs/1.9/installing/custom/add-a-node/).
+For more information, see [Network Security](/docs/1.9/administering-clusters/) and [Adding Agent Nodes](/docs/1.9/administering-clusters/add-a-node/).
 
 ##### <a name="private-agent-node"></a>Private Agent Node
 
@@ -117,7 +117,7 @@ A public agent node is an agent node that is on a network that *does* allow ingr
 - Public agent nodes are used primarily for externally facing reverse proxy load balancers, like [Marathon-LB](/docs/1.9/service-discovery/marathon-lb/).
 - Clusters generally have only a few public agent nodes, because a single load balancer can handle proxying multiple services.
 
-For more information, see [Converting Agent Node Types](/docs/1.9/installing/custom/convert-agent-type/).
+For more information, see [Converting Agent Node Types](/docs/1.9/administering-clusters/convert-agent-type/).
 
 ### <a name="host-operating-system"></a>Host Operating System
 
@@ -133,7 +133,7 @@ A bootstrap machine is the machine on which the DC/OS installer artifacts are co
 - The bootstrap machine is not technically considered part of the cluster since it does not have DC/OS installed on it (this may change in the future). For most installation methods, the bootstrap node must be accessible to and from the machines in the cluster via infrastructure networking.
 - The bootstrap machine is sometimes used as a jumpbox to control SSH access into other nodes in the cluster for added security and logging.
 - One method of allowing master nodes to change IPs involves running ZooKeeper with Exhibitor on the bootstrap machine. Other alternatives include using S3, DNS, or static IPs, with various tradeoffs. For more information, see [configuring the exhibitor storage backend](/docs/1.9/installing/custom/configuration-parameters/#exhibitor_storage_backend).
-- If a bootstrap machine is not required for managing master node IP changes or as an SSH jumpbox, it can be shut down after bootstrapping and spun up on demand to [add new nodes](/docs/1.9/installing/custom/add-a-node/) to the cluster.
+- If a bootstrap machine is not required for managing master node IP changes or as an SSH jumpbox, it can be shut down after bootstrapping and spun up on demand to [add new nodes](/docs/1.9/administering-clusters/add-a-node/) to the cluster.
 
 For more information, see the [system requirements](/docs/1.9/installing/custom/system-requirements/#bootstrap-node).
 

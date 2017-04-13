@@ -333,7 +333,7 @@ No software runs perfectly, especially not the first time. Distribute tasks acro
   <strong>See Also:</strong>
   <ul>
     <li><a href="https://github.com/dcos/dcos-metrics">Source</a></li>
-    <li><a href="/docs/1.9/monitoring/metrics/metrics-api/">API Reference</a></li>
+    <li><a href="/docs/1.9/metrics/metrics-api/">API Reference</a></li>
   </ul>
 </p>
 </div>

@@ -74,6 +74,6 @@ For more on master and agent node components, see [Components](/docs/1.9/overvie
 
 For more on security, see [Securing Your Cluster](/docs/1.9/administering-clusters/).
 
-For more on scaling your cluster, see [Adding Agent Nodes](/docs/1.9/installing/custom/add-a-node/).
+For more on scaling your cluster, see [Adding Agent Nodes](/docs/1.9/administering-clusters/add-a-node/).
 
-For more on configuring public nodes, see [Converting Agent Node Types](/docs/1.9/installing/custom/convert-agent-type/).
+For more on configuring public nodes, see [Converting Agent Node Types](/docs/1.9/administering-clusters/convert-agent-type/).

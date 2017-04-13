@@ -32,7 +32,7 @@ Access to the Metrics API is proxied through the Admin Router on each node.
   http://<cluster-url>/system/v1/agent/{agent_id}/metrics/v0/<resource-path>
   ```
 
-For more examples, see the Metrics [Quick Start Guide](/docs/1.9/monitoring/metrics/quickstart/).
+For more examples, see the Metrics [Quick Start Guide](/docs/1.9/metrics/quickstart/).
 
 ## Format
 

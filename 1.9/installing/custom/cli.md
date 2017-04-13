@@ -187,7 +187,7 @@ In this step you create a custom DC/OS build file on your bootstrap node and the
 
 **Important:**
 
-- Do not install DC/OS until you have these items working: ip-detect script, DNS, and NTP everywhere. For help with troubleshooting, see the [documentation](/docs/1.9/installing/custom/troubleshooting/).
+- Do not install DC/OS until you have these items working: ip-detect script, DNS, and NTP everywhere. For help with troubleshooting, see the [documentation](/docs/1.9/installing/troubleshooting/).
 - If something goes wrong and you want to rerun your setup, use these cluster [cleanup instructions][7].
 
 To install DC/OS:
@@ -391,6 +391,6 @@ After DC/OS is installed and deployed across your cluster, you can add more agen
  [5]: https://downloads.dcos.io/dcos/stable/dcos_generate_config.sh
  [6]: /docs/1.9/installing/custom/configuration-parameters/
  [7]: /docs/1.9/installing/custom/uninstall/
- [9]: /docs/1.9/installing/custom/troubleshooting/
+ [9]: /docs/1.9/installing/troubleshooting/
  [10]: /docs/1.9/id-and-access-mgt/user-management/
- [11]: /docs/1.9/installing/custom/convert-agent-type/
+ [11]: /docs/1.9/administering-clusters/convert-agent-type/

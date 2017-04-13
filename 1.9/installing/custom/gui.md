@@ -188,8 +188,8 @@ It is recommended that you save your DC/OS installer file immediately after inst
 [1]: https://downloads.dcos.io/dcos/stable/dcos_generate_config.sh
 [2]: /docs/1.9/service-discovery/
 [3]: /docs/1.9/installing/custom/system-requirements/
-[4]: /docs/1.9/installing/custom/convert-agent-type/
+[4]: /docs/1.9/administering-clusters/convert-agent-type/
 [5]: /docs/1.9/administering-clusters/cli/install/
 [7]: /docs/1.9/installing/custom/uninstall/
-[9]: /docs/1.9/installing/custom/troubleshooting/
+[9]: /docs/1.9/installing/troubleshooting/
 [10]: /docs/1.9/id-and-access-mgt/user-management/

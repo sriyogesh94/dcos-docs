@@ -65,4 +65,4 @@ We recommend using CoreOS, matched with its correct versions and sensible defaul
 [1]: /docs/1.9/service-discovery/load-balancing-vips/
 [2]: /docs/1.9/service-discovery/
 [4]: https://support.mesosphere.com/hc/en-us/articles/206474745-How-to-reserve-resources-for-certain-frameworks-in-Mesos-cluster-
-[5]: /docs/1.9/installing/custom/convert-agent-type/
+[5]: /docs/1.9/administering-clusters/convert-agent-type/

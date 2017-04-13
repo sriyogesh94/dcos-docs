@@ -12,15 +12,15 @@ The component health page provides the health status of all DC/OS system compone
 ## Getting Started
 Launch the [DC/OS UI](/docs/1.9/administering-clusters/webinterface/) and navigate to the **Components** page. You can sort components by health.
 
-![sort](img/component-system-view.png)
+![sort](/docs/1.9/img/component-system-view.png)
 
 You can click on a DC/OS component to view the details, including role, node, and health.
 
-![nodes](img/component-node-detail.png)
+![nodes](/docs/1.9/img/component-node-detail.png)
 
 You can debug further by clicking the node to view the component journald (log) output:
 
-![output](img/component-node-output.png)
+![output](/docs/1.9/img/component-node-output.png)
 
 ## Health States
 
