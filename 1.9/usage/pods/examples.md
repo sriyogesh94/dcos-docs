@@ -45,47 +45,48 @@ This pod, named `simple-pod` has a single container, `simpletask1`. The containe
 
 | Field                 | Type    | Value                                                                                                                                                                                                             |
 |-----------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| id (required)         | string  | Unique ID for the pod.                                                                                                                                                                                            |
-| containers (required) | array   | See _Basic pod container fields_.                                                                                                                                                                                     |
-| volumes               | array   | All volumes associated with the pod.                                                                                                                                                                              |
-| volumes.name                | string  | Name of shared volume.                                                                                                                                                                                            |
-| volumes.host                | string  | Absolute path of the file or directory on the agent, or else the relative path of the directory in the executor's sandbox. Useful for mapping directories that exist on the agent or within the executor sandbox. |
-| networks              |         |                                                                                                                                                                                                                   |
-| networks.mode                | string  | Network mode: `host` or `container`. `host` uses the network namespace of the host. `container` uses virtual networking, and a virtual network name must be specified.                                            |
-| networks:name                | string  | Required for `container` network mode.                                                                                                                                                                            |
-| networks.labels              | object  | Key/value pairs (i.e., for passing metadata to Mesos modules).                                                                                                                                                    |
-| scaling               |         |                                                                                                                                                                                                                   |
-| scaling.kind                | string  | Type of scaling. Only `fixed` is currently supported.                                                                                                                                                             |
-| scaling.instances           | integer | Initial number of pod instances (default: 1).                                                                                                                                                                     |
-| scaling.maxInstances        | integer | Maximum number of instances of this pod.                                                                                                                                                                          |
+| `id` (required)         | string  | Unique ID for the pod.                                                                                                                                                                                            |
+| `containers` (required) | array   | See [Basic pod container fields](#basic-pod-container-fields).                                                                                                                                                                                     |
+| `volumes`               | array   | All volumes associated with the pod.                                                                                                                                                                              |
+| `volumes.name`                | string  | Name of shared volume.                                                                                                                                                                                            |
+| `volumes.host`                | string  | Absolute path of the file or directory on the agent, or else the relative path of the directory in the executor's sandbox. Useful for mapping directories that exist on the agent or within the executor sandbox. |
+| `networks`              |         |                                                                                                                                                                                                                   |
+| `networks.mode`                | string  | Network mode: `host` or `container`. `host` uses the network namespace of the host. `container` uses virtual networking, and a virtual network name must be specified.                                            |
+| `networks:name`                | string  | Required for `container` network mode.                                                                                                                                                                            |
+| `networks.labels`              | object  | Key/value pairs (i.e., for passing metadata to Mesos modules).                                                                                                                                                    |
+| `scaling`               |         |                                                                                                                                                                                                                   |
+| `scaling.kind`                | string  | Type of scaling. Only `fixed` is currently supported.                                                                                                                                                             |
+| `scaling.instances`           | integer | Initial number of pod instances (default: 1).                                                                                                                                                                     |
+| `scaling.maxInstances`        | integer | Maximum number of instances of this pod.                                                                                                                                                                          |
 
+<a name="basic-pod-container-fields"</a>
 ## Basic pod container fields.
 | Field                    | Type    | Value                                                                                                      |
 |--------------------------|---------|------------------------------------------------------------------------------------------------------------|
-| containers (required)    | array   | Container definitions for all containers that belong to a pod.                                             |
-| containers.name                   | string  | Unique name for the container.                                                                             |
-| containers.exec                   | object  |                                                                                                            |
-| containers.exec.command            | object  | Command executed by Mesos.                                                                                 |
-| containers.exec.command.shell          | string  | Command to execute. If using container entrypoint, use an empty string.                                    |
-| containers.exec.overrideEntrypoint | boolean | If `command` is supplied, this is implicitly set to `true`. To use the default entrypoint, set to `false`. |
-| containers:resources (required)   | object  | Container specifications for resources.                                                                    |
-| containers.resources.cpus               | number  | CPU shares (default: 1.0).                                                                                 |
-| containers.resources.mem                | number  | Memory resources in MiB (default: 128).                                                                    |
-| containers.resources.disk               | double  | Disk resources in MiB (default: 128).                                                                      |
-| containers.resources.gpus               | integer | GPU resources (default: 0).                                                                                |
-| containers.image                  | object  | If `image` is omitted, the Mesos containerizer is used.                                                    |
-| containers.image.kind               | string  | Container image format (`DOCKER` or `APPC`).                                                               |
-| containers.image.id                 | string  | Container image tag.                                                                                       |
-| containers.image.forcePull          | boolean | Set to true to always pull image (default: false).                                                         |
-| containers.volumeMounts           | array   |                                                                                                            |
-| containers.volumeMounts.name               | string  | Name of the shared volume (must be a valid volume defined at the pod layer).                               |
-| containers.volumeMounts.mountPath          | string  | Container path to mount volume.                                                                            |
-| containers.endpoints              | array   | Array of objects.                                                                                          |
-| containers.endpoints.name               | string  | Unique name of port.                                                                                       |
-| containers.endpoints.containerPort      | number  | The container point the container task is listening on. Required if network mode is `container`.           |
-| containers.endpoints.hostPort           | number  | Mapped port on host. If set to 0, Marathon dynamically allocates the port.                                 |
-| containers.endpoints.protocol           | array   | Protocol of port (`tcp` or `http`).                                                                        |
-| containers.endpoints.labels						 | object  | Metadata as key/value pairs.																																								|
+| `containers` (required)    | array   | Container definitions for all containers that belong to a pod.                                             |
+| `containers.name`                   | string  | Unique name for the container.                                                                             |
+| `containers.exec`                   | object  |                                                                                                            |
+| `containers.exec.command`            | object  | Command executed by Mesos.                                                                                 |
+| `containers.exec.command.shell`          | string  | Command to execute. If using container entrypoint, use an empty string.                                    |
+| `containers.exec.overrideEntrypoint` | boolean | If `command` is supplied, this is implicitly set to `true`. To use the default entrypoint, set to `false`. |
+| `containers:resources` (required)   | object  | Container specifications for resources.                                                                    |
+| `containers.resources.cpus`               | number  | CPU shares (default: 1.0).                                                                                 |
+| `containers.resources.mem`                | number  | Memory resources in MiB (default: 128).                                                                    |
+| `containers.resources.disk`               | double  | Disk resources in MiB (default: 128).                                                                      |
+| `containers.resources.gpus`               | integer | GPU resources (default: 0).                                                                                |
+| `containers.image`                  | object  | If `image` is omitted, the Mesos containerizer is used.                                                    |
+| `containers.image.kind`               | string  | Container image format (`DOCKER` or `APPC`).                                                               |
+| `containers.image.id`                 | string  | Container image tag.                                                                                       |
+| `containers.image.forcePull`          | boolean | Set to true to always pull image (default: false).                                                         |
+| `containers.volumeMounts`           | array   |                                                                                                            |
+| `containers.volumeMounts.name`               | string  | Name of the shared volume (must be a valid volume defined at the pod layer).                               |
+| `containers.volumeMounts.mountPath`          | string  | Container path to mount volume.                                                                            |
+| `containers.endpoints`              | array   | Array of objects.                                                                                          |
+| `ontainers.endpoints.name`               | string  | Unique name of port.                                                                                       |
+| `containers.endpoints.containerPort`      | number  | The container point the container task is listening on. Required if network mode is `container`.           |
+| `containers.endpoints.hostPort`           | number  | Mapped port on host. If set to `0`, Marathon dynamically allocates the port.                                 |
+| `containers.endpoints.protocol`           | array   | Protocol of port (`tcp` or `http`).                                                                        |
+| `containers.endpoints.labels`						 | object  | Metadata as key/value pairs.																																								|
 
 <a name="multi-pod"></a>
 # Annotated multi-pod with all parameters
@@ -305,50 +306,50 @@ The example below shows a pod, `test-pod`, with three containers, `healthtask1`,
 
 | Field                       | Type     | Value                                                                                                                          |
 |-----------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------|
-| labels                      | object   | Pod metadata as key/value pairs.                                                                                               |
-| environment                 | object   | Environment variables at the pod level. All pod containers will inherit these environment variables. Must be capitalized.      |
-| secrets                     | object   | The fully qualified path to the secret in the store.                                                                           |
-| scheduling                  | object   | Defines exponential backoff behavior for faulty apps in order to prevent sandboxes from filling up.                            |
-| scheduling.backoff               | number   | Initial backoff (seconds) applied when a launched instance fails (default: 1).                                                 |
-| scheduling.backoffFactor         | number   | Factor applied to current backoff to determine the new backoff (default: 1.15).                                                |
-| scheduling.maxLaunchDelay        | number   | Maximum backoff (seconds) applied when subsequent failures are detected (default: 3600).                                       |
-| upgrade                     | object   | Upgrade strategy that controls pod updates.                                                                                    |
-| upgrade.minimumHealthCapacity | number   | Number between 0 and 1 representing the minimum number of healthy nodes to maintain during upgrade (default: 1).               |
-| upgrade.maximumOverCapacity   | number   | Number between 0 and 1 representing the maximum number of additional instances to launch during upgrade (default: 1).          |
-| placement                   | object   | Controls placement of pod tasks.                                                                                               |
-| placement.constraints           | string[] | Constraints control the placement policy of pod tasks. Options: `UNIQUE`, `CLUSTER`, `GROUP_BY`, `LIKE`, `UNLIKE`, `MAX_PER`.  |
-| placement.acceptedResourceRoles | string[] | List of resource roles. Marathon will only consider resource offers with roles on this list for this pod's tasks.              |
-| killSelection               | string   | Defines which instance is killed first when an app is in an over-provisioned state. Options: `YOUNGEST_FIRST`, `OLDEST_FIRST`. |
-| unreachableStrategy         |          | Behavior when agents are partitioned from masters.                                                                             |
-| killSelection.inactiveAfterSeconds  | integer  | Time in seconds to wait before replacing task (default: 900).                                                                  |
-| killSelection.expungeAfterSeconds   | integer  | Time in seconds to wait for tasks to come back before expunging (default: 603800).                                             |
-| executorResources           | object   | Resources reserved for the pod executor.                                                                                       |
-| executorResources.cpus                  | number   | CPU shares (default: 0.1).                                                                                                     |
-| executorResources.mem                   | number   | Memory resources in MiB (default: 32).                                                                                         |
-| executorResources.disk                  | number   | Disk resources in MiB (default: 10.0),                                                                                         |
+| `labels`                      | object   | Pod metadata as key/value pairs.                                                                                               |
+| `environment`                 | object   | Environment variables at the pod level. All pod containers will inherit these environment variables. Must be capitalized.      |
+| `secrets`                     | object   | The fully qualified path to the secret in the store.                                                                           |
+| `scheduling`                  | object   | Defines exponential backoff behavior for faulty apps in order to prevent sandboxes from filling up.                            |
+| `scheduling.backoff`               | number   | Initial backoff (seconds) applied when a launched instance fails (default: 1).                                                 |
+| `scheduling.backoffFactor`         | number   | Factor applied to current backoff to determine the new backoff (default: 1.15).                                                |
+| `scheduling.maxLaunchDelay`        | number   | Maximum backoff (seconds) applied when subsequent failures are detected (default: 3600).                                       |
+| `upgrade`                     | object   | Upgrade strategy that controls pod updates.                                                                                    |
+| `upgrade.minimumHealthCapacity` | number   | Number between 0 and 1 that represents the minimum number of healthy nodes to maintain during upgrade (default: 1).               |
+| `upgrade.maximumOverCapacity`   | number   | Number between 0 and 1 representing the maximum number of additional instances to launch during upgrade (default: 1).          |
+| `placement`                   | object   | Controls placement of pod tasks.                                                                                               |
+| `placement.constraints`           | string[] | Constraints control the placement policy of pod tasks. Options: `UNIQUE`, `CLUSTER`, `GROUP_BY`, `LIKE`, `UNLIKE`, `MAX_PER`.  |
+| `placement.acceptedResourceRoles` | string[] | List of resource roles. The Marathon component will only consider resource offers with roles on this list for this pod's tasks.              |
+| `killSelection`               | string   | Defines which instance is killed first when an app is in an over-provisioned state. Options: `YOUNGEST_FIRST`, `OLDEST_FIRST`. |
+| `unreachableStrategy`         |          | Behavior when agents are partitioned from masters.                                                                             |
+| `killSelection.inactiveAfterSeconds`  | integer  | Time in seconds to wait before replacing task (default: 900).                                                                  |
+| `killSelection.expungeAfterSeconds`   | integer  | Time in seconds to wait for tasks to come back before expunging (default: 603800).                                             |
+| `executorResources`           | object   | Resources reserved for the pod executor.                                                                                       |
+| `executorResources.cpus`                  | number   | CPU shares (default: 0.1).                                                                                                     |
+| `executorResources.mem`                   | number   | Memory resources in MiB (default: 32).                                                                                         |
+| `executorResources.disk`                  | number   | Disk resources in MiB (default: 10.0),                                                                                         |
 
 ## Additional pod container fields
 
 | Field                        | Type    | Value                                                                                                                   |
 |------------------------------|---------|-------------------------------------------------------------------------------------------------------------------------|
-| labels                       | object  | Container metadata as key/value pairs.                                                                                  |
-| environment                  | object  | Container environment variables. Can override pod environment variables. Must be capitalized.                           |
-| healthCheck                  |         |                                                                                                                         |
-| healthCheck.http                   |         | Protocol type. Options: `http`, `tcp`, `exec`.                                                                          |
-| healthCheck.http.endpoint           | string  | Endpoint name to use.                                                                                                   |
-| healthCheck.http.path               | string  | Path to the endpoint exposed by the task that provides health status.                                                   |
-| healthCheck.http.scheme             | string  | For httpHealthCheck, use `HTTP`.                                                                                        |
-| healthCheck.gracePeriodSeconds     | integer | Interval to ignore health check failures after a task is first started or until a task is first healthy (default: 300). |
-| healthCheck.intervalSeconds        | integer | Interval between health checks (default: 60).                                                                           |
-| healthCheck.maxConsecutiveFailures | integer | Number of consecutive failures before task is killed (default: 3).                                                      |
-| healthCheck.timeoutSeconds         | integer | Time to wait until health check is complete (default: 20).                                                              |
-| healthCheck.delaySeconds           | integer | Time to wait until starting health check (default: 2).                                                                  |
-| artifacts                    | array   | Array of artifact objects                                                                                               |
-| healthCheck.uri                    | strings | URI to resources to download (i.e., .tgz, tar.gz, .zip, .txz, etc).                                                     |
-| healthCheck.extract                | boolean | Extract fetched artifact.                                                                                               |
-| healthCheck.executable             | boolean | Set fetched artifact as executable.                                                                                     |
-| healthCheck.cache                  | boolean | Cache fetched artifact.                                                                                                 |
-| healthCheck.destPath               | strings | Destination path of artifact.                                                                                           |
+| `labels`                       | object  | Container metadata as key/value pairs.                                                                                  |
+| `environment`                  | object  | Container environment variables. Can override pod environment variables. Must be capitalized.                           |
+| `healthCheck`                  |         |                                                                                                                         |
+| `healthCheck.http`                   |         | Protocol type. Options: `http`, `tcp`, `exec`.                                                                          |
+| `healthCheck.http.endpoint`           | string  | Endpoint name to use.                                                                                                   |
+| `healthCheck.http.path`               | string  | Path to the endpoint exposed by the task that provides health status.                                                   |
+| `healthCheck.http.scheme`             | string  | For httpHealthCheck, use `http`.                                                                                        |
+| `healthCheck.gracePeriodSeconds`     | integer | Interval to ignore health check failures after a task is first started or until a task is first healthy (default: 300). |
+| `healthCheck.intervalSeconds`        | integer | Interval between health checks (default: 60).                                                                           |
+| `healthCheck.maxConsecutiveFailures` | integer | Number of consecutive failures before task is killed (default: 3).                                                      |
+| `healthCheck.timeoutSeconds`         | integer | Time to wait until health check is complete (default: 20).                                                              |
+| `healthCheck.delaySeconds`           | integer | Time to wait until starting health check (default: 2).                                                                  |
+| `artifacts`                    | array   | Array of artifact objects                                                                                               |
+| `healthCheck.uri`                    | strings | URI to resources to download (i.e., `.tgz`, `tar.gz`, `.zip`, `.txz`, etc).                                                     |
+| `healthCheck.extract`                | boolean | Extract fetched artifact.                                                                                               |
+| `healthCheck.executable`             | boolean | Set fetched artifact as executable.                                                                                     |
+| `healthCheck.cache`                  | boolean | Cache fetched artifact.                                                                                                 |
+| `healthCheck.destPath`               | strings | Destination path of artifact.                                                                                           |
 
 # Further examples
 Below are several other pod definition examples.
