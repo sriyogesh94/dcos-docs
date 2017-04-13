@@ -120,6 +120,7 @@ HOSTNAME    ROLE  CONSTRAINTS  CPUS  MEM  DISK  PORTS  RECEIVED
 ```
 
 The output of the command shows:
+
 - Which hosts are running the service or pod.
 - The status of the role, constraints, CPUs, memory, disk, and ports the service or pod has requested.
 - When the last resource offer was received.
