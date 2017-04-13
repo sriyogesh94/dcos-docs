@@ -351,9 +351,6 @@ The example below shows a pod, `test-pod`, with three containers, `healthtask1`,
 | `healthCheck.cache`                  | boolean | Cache fetched artifact.                                                                                                 |
 | `healthCheck.destPath`               | strings | Destination path of artifact.                                                                                           |
 
-# Further examples
-Below are several other pod definition examples.
-
 # A pod with multiple containers
 
 The following pod definition specifies a pod with 3 containers. <!-- Validated by Joel 1/3/17 -->
