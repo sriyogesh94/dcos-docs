@@ -1,6 +1,6 @@
 ---
 post_title: Mesos-DNS
-menu_order: 200
+menu_order: 03
 ---
 
 [Mesos-DNS][1] provides service discovery within DC/OS clusters. It is fully integrated into DC/OS and allows applications and services on the cluster to find each other through the [domain name system (DNS)][2], similar to how services discover each other throughout the Internet.

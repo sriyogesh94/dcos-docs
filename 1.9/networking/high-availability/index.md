@@ -1,7 +1,7 @@
 ---
 post_title: High-Availability
 feature_maturity: preview
-menu_order: 201
+menu_order: 05
 ---
 
 This document discusses the high availability (HA) features in DC/OS and best practices for building HA applications on DC/OS.
