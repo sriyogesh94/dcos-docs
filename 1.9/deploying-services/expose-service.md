@@ -10,7 +10,7 @@ To launch a service on a public node, you must create a Marathon app definition 
 **Prerequisites:**
 
 * DC/OS is [installed](/docs/1.9/installing/)
-* DC/OS CLI is [installed](/docs/1.9/administering-clusters/cli/install/)
+* DC/OS CLI is [installed](/docs/1.9/cli/install/)
 
 1.  Create a Marathon app definition with the required `"acceptedResourceRoles":["slave_public"]` parameter specified. For example:
 
@@ -44,7 +44,7 @@ To launch a service on a public node, you must create a Marathon app definition 
 
     If this is added successfully, there is no output.
     
-     **Tip:** You can also add your app by using the **Services** tab of DC/OS [GUI](/docs/1.9/administering-clusters/webinterface/#services). 
+     **Tip:** You can also add your app by using the **Services** tab of DC/OS [GUI](/docs/1.9/gui/#services). 
 
 1.  Verify that the app is added with this command:
 
@@ -59,7 +59,7 @@ To launch a service on a public node, you must create a Marathon app definition 
     /myApp   64  0.1    0/1    ---      scale       DOCKER   None
     ```
     
-    **Tip:** You can also view deployed apps by using the **Services** tab of DC/OS [GUI](/docs/1.9/administering-clusters/webinterface/#services).
+    **Tip:** You can also view deployed apps by using the **Services** tab of DC/OS [GUI](/docs/1.9/gui/#services).
 
 1.  Configure an edge load balancer and service discovery mechanism. 
 

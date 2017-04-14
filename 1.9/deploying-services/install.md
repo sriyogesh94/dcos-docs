@@ -27,7 +27,7 @@ From the DC/OS GUI you can install services from the **Services** or **Universe*
 
 ### Universe tab
 
-1.  Navigate to the [**Universe > Packages**](/docs/1.9/administering-clusters/webinterface/#universe) page in the DC/OS GUI.
+1.  Navigate to the [**Universe > Packages**](/docs/1.9/gui/#universe) page in the DC/OS GUI.
 
     ![universe](/docs/1.9/img/ui-dashboard-universe.gif)
 
@@ -37,7 +37,7 @@ From the DC/OS GUI you can install services from the **Services** or **Universe*
 
 ### Services tab
 
-1.  Navigate to the [**Services**](/docs/1.9/administering-clusters/webinterface/#services) tab in the DC/OS GUI.
+1.  Navigate to the [**Services**](/docs/1.9/gui/#services) tab in the DC/OS GUI.
 1.  Click **RUN A SERVICE** and specify your Marathon app definition.
 
     ![service tab](/docs/1.9/img/run-a-service.png)
@@ -52,7 +52,7 @@ dcos package list
 
 ### Web GUI
 
-Go to the **Services** tab and confirm that the service is running. For more information, see the GUI [documentation](/docs/1.9/administering-clusters/webinterface/#services).
+Go to the **Services** tab and confirm that the service is running. For more information, see the GUI [documentation](/docs/1.9/gui/#services).
 
 ![Services](/docs/1.9/img/tweeter-services6.png)
 

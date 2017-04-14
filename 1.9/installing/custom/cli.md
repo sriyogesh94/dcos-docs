@@ -386,7 +386,7 @@ After DC/OS is installed and deployed across your cluster, you can add more agen
     18:17:14:: ====> 10.10.0.160:22 FAILED
     ```
 
- [2]: /docs/1.9/administering-clusters/cli/install/
+ [2]: /docs/1.9/cli/install/
  [4]: /docs/1.9/installing/custom/system-requirements/
  [5]: https://downloads.dcos.io/dcos/stable/dcos_generate_config.sh
  [6]: /docs/1.9/installing/custom/configuration-parameters/

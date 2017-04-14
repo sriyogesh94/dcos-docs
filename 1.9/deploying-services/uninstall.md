@@ -28,13 +28,13 @@ From the DC/OS web interface you can uninstall services from the **Services** or
 
 ### Universe tab
 
-1.  Navigate to the **Universe > Packages** page in the DC/OS [web interface](/docs/1.9/administering-clusters/webinterface/#universe).
+1.  Navigate to the **Universe > Packages** page in the DC/OS [web interface](/docs/1.9/gui/#universe).
 2.  Click on the **Installed** tab to see your installed services.
 3.  Hover your cursor over the name of the package you wish to uninstall and you will see a red "Uninstall" link to the right. Click this link to uninstall the package.
 
 ### Services tab
 
-1.  Navigate to the [**Services**](/docs/1.9/administering-clusters/webinterface/#services) tab in the DC/OS web interface.
+1.  Navigate to the [**Services**](/docs/1.9/gui/#services) tab in the DC/OS web interface.
 1.  Select your application and click the toggle to **Destroy**.
     
     ![Destroy app](/docs/1.9/img/app-destroy.png)
@@ -71,7 +71,7 @@ Uninstall a user-created service with this command:
 dcos marathon app remove [--force] <app-id>
 ```
 
-For more information, see the [command reference](/docs/1.9/administering-clusters/cli/command-reference/#dcos-marathon).
+For more information, see the [command reference](/docs/1.9/cli/command-reference/#dcos-marathon).
 
 ### Web interface
 
@@ -79,7 +79,7 @@ From the DC/OS web interface you can uninstall services from the **Services**. T
 
 ### Services tab
 
-1.  Navigate to the [**Services**](/docs/1.9/administering-clusters/webinterface/#services) tab in the DC/OS web interface.
+1.  Navigate to the [**Services**](/docs/1.9/gui/#services) tab in the DC/OS web interface.
 2.  Click on the **Installed** tab to see your installed services.
 3.  Hover your cursor over the name of the package you wish to uninstall and you will see a red "Uninstall" link to the right. Click this link to uninstall the package.
 
@@ -139,7 +139,7 @@ Connect to the leader and start the script:
 
 ### Running from Marathon
 
-From the DC/OS [**Services**](/docs/1.9/administering-clusters/webinterface/) tab, use the JSON editor to add the following as a Marathon task. Replace the values passed to `-r`/`-p`/`-z` according to what needs to be cleaned up.
+From the DC/OS [**Services**](/docs/1.9/gui/) tab, use the JSON editor to add the following as a Marathon task. Replace the values passed to `-r`/`-p`/`-z` according to what needs to be cleaned up.
 
     {
       "id": "janitor",

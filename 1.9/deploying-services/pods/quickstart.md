@@ -6,7 +6,7 @@ menu_order: 0
 
 ### Prerequisites
 - DC/OS [installed](/docs/1.9/installing/)
-- DC/OS CLI [installed](/docs/1.9/administering-clusters/cli/install/)
+- DC/OS CLI [installed](/docs/1.9/cli/install/)
 
 # Launching a pod from the DC/OS CLI
 
@@ -43,7 +43,7 @@ menu_order: 0
 
 # Launching a pod from the DC/OS UI
 
-You can also launch a pod from the [**Services**](/docs/1.9/administering-clusters/webinterface/) tab of the DC/OS web interface. Select **Services -> Services -> RUN A SERVICE -> Multi-container (Pod)**, then toggle to JSON mode and paste in the application definition supplied above.
+You can also launch a pod from the [**Services**](/docs/1.9/gui/) tab of the DC/OS web interface. Select **Services -> Services -> RUN A SERVICE -> Multi-container (Pod)**, then toggle to JSON mode and paste in the application definition supplied above.
 
 If you already have other services running, go to **Services -> Services**, then click the **+** on the upper right hand side.
 

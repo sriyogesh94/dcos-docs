@@ -34,7 +34,7 @@ To access the logs for an agent node, run `dcos node` to get the Mesos IDs of yo
 dcos node log --mesos-id=<node-id>
 ```
 
-You can download all the log files for your service from the **Services > Services** tab in the [DC/OS GUI](/docs/1.9/administering-clusters/webinterface/). You can also monitor stdout/stderr.
+You can download all the log files for your service from the **Services > Services** tab in the [DC/OS GUI](/docs/1.9/gui/). You can also monitor stdout/stderr.
 
 For more information, see the Service and Task Logs [quick start guide](/docs/1.9/monitoring/logging/quickstart/).
 
@@ -65,7 +65,7 @@ Unfortunately, streaming logs from machines in your cluster isn’t always viabl
 
 
 [1]: /docs/1.9/monitoring/logging/quickstart/
-[2]: /docs/1.9/administering-clusters/cli/install/
+[2]: /docs/1.9/cli/install/
 [3]: /docs/1.9/monitoring/logging/aggregating/elk/
 [4]: /docs/1.9/monitoring/logging/aggregating/splunk/
-[5]: /docs/1.9/administering-clusters/access-node/sshcluster/
+[5]: /docs/1.9/administering-clusters/sshcluster/

@@ -189,7 +189,7 @@ It is recommended that you save your DC/OS installer file immediately after inst
 [2]: /docs/1.9/networking/
 [3]: /docs/1.9/installing/custom/system-requirements/
 [4]: /docs/1.9/administering-clusters/convert-agent-type/
-[5]: /docs/1.9/administering-clusters/cli/install/
+[5]: /docs/1.9/cli/install/
 [7]: /docs/1.9/installing/custom/uninstall/
 [9]: /docs/1.9/installing/troubleshooting/
 [10]: /docs/1.9/security/user-management/

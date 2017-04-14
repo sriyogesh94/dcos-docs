@@ -45,4 +45,4 @@ For more information, see [Installing](/docs/1.9/installing/).
 
 ## External Components
 
-In addition to the software that runs in the datacenter, DC/OS includes and integrates with several external components: the [GUI](/docs/1.9/administering-clusters/webinterface/), [CLI](/docs/1.9/administering-clusters/cli/), [package repository](/docs/1.9/administering-clusters/repo/), and [container registry](/docs/1.9/overview/concepts/#container-registry).
+In addition to the software that runs in the datacenter, DC/OS includes and integrates with several external components: the [GUI](/docs/1.9/gui/), [CLI](/docs/1.9/cli/), [package repository](/docs/1.9/administering-clusters/repo/), and [container registry](/docs/1.9/overview/concepts/#container-registry).

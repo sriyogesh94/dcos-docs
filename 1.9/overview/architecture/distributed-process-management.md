@@ -42,7 +42,7 @@ In detail, here are the steps:
 </tr>
 <tr>
 <td>4</td>
-<td>Client initiates process launch. For example, this could be a user creating a Marathon app via the DC/OS <a href="/docs/1.9/administering-clusters/webinterface/">Services</a> tab or via the HTTP endpoint <code>/v2/app</code>.</td>
+<td>Client initiates process launch. For example, this could be a user creating a Marathon app via the DC/OS <a href="/docs/1.9/gui/">Services</a> tab or via the HTTP endpoint <code>/v2/app</code>.</td>
 </tr>
 <tr>
 <td>5</td>

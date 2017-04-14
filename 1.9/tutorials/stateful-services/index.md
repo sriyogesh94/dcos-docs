@@ -144,5 +144,5 @@ For further information on stateful services in DC/OS, visit the [Storage sectio
 
 
 [1]: /docs/1.9/installing/
-[2]: /docs/1.9/administering-clusters/cli/install/
+[2]: /docs/1.9/cli/install/
 [4]: postgres.marathon.json

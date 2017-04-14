@@ -1,6 +1,6 @@
 ---
 post_title: Administering Clusters
-menu_order: 4
+menu_order: 060
 ---
 
 

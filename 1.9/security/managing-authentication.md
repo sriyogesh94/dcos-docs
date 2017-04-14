@@ -53,7 +53,7 @@ To manage users:
 
 ## <a name="log-in-cli"></a>Logging in to the DC/OS CLI
 
-Authentication is only supported for DC/OS CLI version 0.4.3 and above. See [here](/docs/1.9/administering-clusters/cli/update/) for upgrade instructions.
+Authentication is only supported for DC/OS CLI version 0.4.3 and above. See [here](/docs/1.9/cli/update/) for upgrade instructions.
 
 The DC/OS CLI stores the token in a configuration file in the `.dcos` directory under the home directory of the user running the CLI. This token can be used with the curl command to access DC/OS APIs, using curl or wget. For example, `curl -H 'Authorization: token=<token>' http://cluster`.
 

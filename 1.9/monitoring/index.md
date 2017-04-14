@@ -1,6 +1,6 @@
 ---
 post_title: Monitoring, Logging, and Debugging
-menu_order: 7
+menu_order: 110
 ---
 
 Monitoring the health of all the pieces that make up DC/OS is vital to datacenter operators and for troubleshoooting hard-to-diagnose bugs. You can monitor the health of your cluster components from the DC/OS UI component health page. The component health page displays information from the system health API, which monitors the core DC/OS components.
@@ -10,7 +10,7 @@ DC/OS components are the [systemd units](https://www.freedesktop.org/wiki/Softwa
 The component health page provides the health status of all DC/OS system components that are running in systemd. You can drill down by health status, host IP address, or specific systemd unit.
 
 ## Getting Started
-Launch the [DC/OS UI](/docs/1.9/administering-clusters/webinterface/) and navigate to the **Components** page. You can sort components by health.
+Launch the [DC/OS UI](/docs/1.9/gui/) and navigate to the **Components** page. You can sort components by health.
 
 ![sort](/docs/1.9/img/component-system-view.png)
 

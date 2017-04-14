@@ -12,7 +12,7 @@ For example, to troubleshoot HDFS package installation, use
 ```
 dcos -—log-level="debug" package install hdfs
 ```
-For more information about log levels, consult the [CLI command reference](/docs/1.9/administering-clusters/cli/command-reference/) or run `dcos --help`.
+For more information about log levels, consult the [CLI command reference](/docs/1.9/cli/command-reference/) or run `dcos --help`.
 
 # Debug Subcommands for Stuck Deployments
 

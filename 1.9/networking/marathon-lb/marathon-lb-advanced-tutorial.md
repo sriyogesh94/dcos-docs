@@ -273,6 +273,6 @@ To demonstrate the vhost feature:
     ![lb6](/docs/1.9/img/lb6.jpg)
 
  [1]: /docs/1.9/installing/
- [2]: /docs/1.9/administering-clusters/cli/install/
+ [2]: /docs/1.9/cli/install/
  [3]: /docs/1.9/administering-clusters/locate-public-agent/
- [4]: /docs/1.9/administering-clusters/access-node/sshcluster/
+ [4]: /docs/1.9/administering-clusters/sshcluster/

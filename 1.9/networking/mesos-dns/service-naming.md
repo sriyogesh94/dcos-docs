@@ -289,7 +289,7 @@ You can get a comprehensive list of the apps running on your DC/OS cluster nodes
     dcos node ssh --leader --master-proxy
     ```
 
-    For more information, see the SSH [documentation](/docs/1.9/administering-clusters/access-node/sshcluster/).
+    For more information, see the SSH [documentation](/docs/1.9/administering-clusters/sshcluster/).
 
 2.  Run this command from your master node to view the node details:
 

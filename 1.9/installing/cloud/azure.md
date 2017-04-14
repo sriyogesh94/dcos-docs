@@ -98,5 +98,5 @@ If you've created a new resource group in the deployment step, it is as easy as 
 - [Scaling considerations][4]
 
 [1]: /docs/1.9/security/user-management/
-[2]: /docs/1.9/administering-clusters/cli/install/
+[2]: /docs/1.9/cli/install/
 [4]: https://azure.microsoft.com/en-us/documentation/articles/best-practices-auto-scaling/

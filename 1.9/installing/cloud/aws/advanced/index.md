@@ -240,4 +240,4 @@ Public agents:
 ### Template reference
 For the complete advanced configuration options, see the template reference [documentation](/docs/1.9/installing/cloud/aws/advanced/template-reference/).
 
- [2]: /docs/1.9/administering-clusters/cli/install/
+ [2]: /docs/1.9/cli/install/

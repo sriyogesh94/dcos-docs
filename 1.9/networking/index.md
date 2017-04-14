@@ -1,7 +1,7 @@
 ---
 post_title: Service Discovery and Load Balancing
 nav_title: Networking
-menu_order: 10
+menu_order: 070
 ---
 
 DC/OS provides a number of tools out of the box for service discovery and load balancing. Here's an overview of the options, with some general guidelines on what to use in which situations.

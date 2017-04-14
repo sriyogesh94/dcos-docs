@@ -52,11 +52,11 @@ DC/OS is a [distributed operating system](https://en.wikipedia.org/wiki/Distribu
 
 ### <a name="dcos-gui"></a>DC/OS GUI
 
-The [DC/OS graphical user interface (GUI)](/docs/1.9/administering-clusters/webinterface/) is an interface for remotely controlling and managing a DC/OS cluster from a web browser. The GUI is also sometimes called the DC/OS UI or DC/OS web interface.
+The [DC/OS graphical user interface (GUI)](/docs/1.9/gui/) is an interface for remotely controlling and managing a DC/OS cluster from a web browser. The GUI is also sometimes called the DC/OS UI or DC/OS web interface.
 
 ### <a name="dcos-cli"></a>DC/OS CLI
 
-The [DC/OS command line interface (CLI)](/docs/1.9/administering-clusters/cli/) is an interface for remotely controlling and managing a DC/OS cluster from a terminal.
+The [DC/OS command line interface (CLI)](/docs/1.9/cli/) is an interface for remotely controlling and managing a DC/OS cluster from a terminal.
 
 ### <a name="dcos-cluster"></a>Cluster
 

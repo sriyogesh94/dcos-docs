@@ -105,7 +105,7 @@ DC/OS provides a way to view and operate a large number of individual machine-le
 <p>
   <strong>See Also:</strong>
   <ul>
-    <li><a href="/docs/1.9/administering-clusters/webinterface/">Documentation</a></li>
+    <li><a href="/docs/1.9/gui/">Documentation</a></li>
     <li><a href="https://github.com/dcos/dcos-ui">Source</a></li>
   </ul>
 </p>
@@ -120,7 +120,7 @@ DC/OS provides a way to view and operate a large number of individual machine-le
 <p>
   <strong>See Also:</strong>
   <ul>
-    <li><a href="/docs/1.9/administering-clusters/cli/">Documentation</a></li>
+    <li><a href="/docs/1.9/cli/">Documentation</a></li>
     <li><a href="https://github.com/dcos/dcos-cli">Source</a></li>
   </ul>
 </p>
@@ -171,7 +171,7 @@ DC/OS includes built-in orchestration of the most commonly used high level conta
 <p>
   <strong>See Also:</strong>
   <ul>
-    <li><a href="/docs/1.9/jobs/">Documentation</a></li>
+    <li><a href="/docs/1.9/deploying-jobs/">Documentation</a></li>
     <li><a href="https://github.com/dcos/metronome">Source</a></li>
     <li><a href="https://dcos.github.io/metronome/docs/generated/api.html">API Reference</a></li>
   </ul>

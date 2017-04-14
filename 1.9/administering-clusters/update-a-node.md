@@ -11,7 +11,7 @@ These steps are useful if you are downsizing a cluster, reconfiguring agent node
 
 ### Prerequisites:
 
-*   [SSH installed and configured](/docs/1.9/administering-clusters/access-node/sshcluster/). This is required when removing nodes by manually killing agents.
+*   [SSH installed and configured](/docs/1.9/administering-clusters/sshcluster/). This is required when removing nodes by manually killing agents.
 *   Access to the [Admin Router permissions](/docs/1.9/overview/architecture/components/#admin-router).
 
 # Updating nodes by using maintenance windows
@@ -57,7 +57,7 @@ You can define a maintenance schedule to evacuate your tasks prior to changing a
 # Updating nodes by manually killing agents
 Draining nodes by using terminate signal, SIGUSR1, is easy to integrate with automation tools that can execute tasks on nodes in parallel, for example Ansible, Chef, and Puppet. 
 
-1.  [SSH to the agent nodes](/docs/1.9/administering-clusters/access-node/sshcluster/).
+1.  [SSH to the agent nodes](/docs/1.9/administering-clusters/sshcluster/).
 1.  Stop the agents.
 
     -  **Private agent**

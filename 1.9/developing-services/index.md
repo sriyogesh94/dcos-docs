@@ -1,7 +1,7 @@
 ---
 post_title: Developing DC/OS Services
 nav_title: Developing Services
-menu_order: 13
+menu_order: 160
 ---
 
 This section describes the developer-specific DC/OS components, explaining what is necessary to package and provide your own service on DC/OS.

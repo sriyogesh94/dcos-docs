@@ -7,7 +7,7 @@ menu_order: 000
 **Prerequisites:**
 
 - DC/OS [installed](/docs/1.9/installing/)
-- DC/OS CLI [installed](/docs/1.9/administering-clusters/cli/install/)
+- DC/OS CLI [installed](/docs/1.9/cli/install/)
 
 # Default installation
 
@@ -17,7 +17,7 @@ menu_order: 000
     dcos package install marathon-lb
     ```
     
-    **Tip:** You can also install from the DC/OS [GUI](/docs/1.9/administering-clusters/webinterface/). 
+    **Tip:** You can also install from the DC/OS [GUI](/docs/1.9/gui/). 
 
 
 # Custom installation

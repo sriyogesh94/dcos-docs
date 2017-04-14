@@ -1,7 +1,7 @@
 ---
 post_title: Installing and Upgrading DC/OS
 nav_title: Installing and Upgrading
-menu_order: 1
+menu_order: 030
 ---
 
 DC/OS can be installed on any cluster of physical or virtual machines.
