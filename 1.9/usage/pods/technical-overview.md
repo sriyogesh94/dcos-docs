@@ -154,4 +154,4 @@ The following JSON specifies a Docker image for a pod:
 - Readiness checks are not supported.
 - Service ports are not supported.
 - Dependencies cannot be configured.
-- Generic environmental variables, such as $PORT0, are not passed.
+- Generic environmental variables, such as `$PORT0`, are not passed.
