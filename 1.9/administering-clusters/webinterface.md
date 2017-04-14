@@ -75,7 +75,7 @@ Clicking on a node opens the Nodes side panel, which provides CPU, memory, and d
 
 # <a name="network"></a>Networking
 
-The Network tab provides information for troubleshooting your virtual networks. You can see which containers are on which network and see their IP addresses. For more information, see the [documentation](/docs/1.9/service-discovery/virtual-networks/ip-per-container/).
+The Network tab provides information for troubleshooting your virtual networks. You can see which containers are on which network and see their IP addresses. For more information, see the [documentation](/docs/1.9/networking/virtual-networks/ip-per-container/).
 
 ![Network](/docs/1.9/img/ui-dashboard-network.gif)
 

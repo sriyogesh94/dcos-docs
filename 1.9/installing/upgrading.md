@@ -11,8 +11,8 @@ This document provides instructions for upgrading a DC/OS cluster from version 1
 
 - Review the [release notes](https://dcos.io/releases/) before upgrading DC/OS.
 - The Advanced Installation method is the _only_ recommended upgrade path for DC/OS. It is recommended that you familiarize yourself with the [Advanced DC/OS Installation Guide][advanced-install] before proceeding.
-- The [VIP features](/docs/1.9/service-discovery/load-balancing-vips/virtual-ip-addresses/), added in DC/OS 1.8, require that ports 32768 - 65535 are open between all agent and master nodes for both TCP and UDP.
-- Virtual networks require minimum Docker version 1.11. For more information, see the [documentation](/docs/1.9/service-discovery/virtual-networks/).
+- The [VIP features](/docs/1.9/networking/load-balancing-vips/virtual-ip-addresses/), added in DC/OS 1.8, require that ports 32768 - 65535 are open between all agent and master nodes for both TCP and UDP.
+- Virtual networks require minimum Docker version 1.11. For more information, see the [documentation](/docs/1.9/networking/virtual-networks/).
 - The DC/OS UI and APIs may be inconsistent or unavailable while masters are being upgraded. Avoid using them until all masters have been upgraded and have rejoined the cluster. You can monitor the health of a master during an upgrade by watching Exhibitor on port 8181.
 - Task history in the Mesos UI will not persist through the upgrade.
 

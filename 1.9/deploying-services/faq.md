@@ -32,7 +32,7 @@ A comprehensive overview of a few common service discovery implementations is av
 
 ## Is it possible to span my cluster over different cloud providers?
 
-This is not currently supported. For more information, see [this document](/docs/1.9/installing/high-availability/).
+This is not currently supported. For more information, see [this document](/docs/1.9/networking/high-availability/).
 
 ## How to add Mesos roles for a node in order to dedicate this node for some apps?
 
@@ -62,7 +62,7 @@ For more information, see the installation [documentation](/docs/1.9/installing/
 
 We recommend using CoreOS, matched with its correct versions and sensible defaults of Docker, filesystem, and other settings.
 
-[1]: /docs/1.9/service-discovery/load-balancing-vips/
-[2]: /docs/1.9/service-discovery/
+[1]: /docs/1.9/networking/load-balancing-vips/
+[2]: /docs/1.9/networking/
 [4]: https://support.mesosphere.com/hc/en-us/articles/206474745-How-to-reserve-resources-for-certain-frameworks-in-Mesos-cluster-
 [5]: /docs/1.9/administering-clusters/convert-agent-type/

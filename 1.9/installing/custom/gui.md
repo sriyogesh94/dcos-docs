@@ -124,7 +124,7 @@ The DC/OS installation creates these folders:
     Indicate whether to allow Mesosphere to collect anonymous DC/OS usage data. For more information, see the [documentation](/docs/1.9/overview/telemetry/).
 
     #### Enable Authentication
-    Indicate whether to enable authentication for your DC/OS cluster. For more information, see the [documentation](/docs/1.9/id-and-access-mgt/).
+    Indicate whether to enable authentication for your DC/OS cluster. For more information, see the [documentation](/docs/1.9/security/).
 
 5.  Click **Run Pre-Flight**. The preflight script installs the cluster prerequisites and validates that your cluster is installable. For a list of cluster prerequisites, see the scripted installer [prerequisites][3]. This step can take up to 15 minutes to complete. If errors any errors are found, fix and then click **Retry**.
 
@@ -186,10 +186,10 @@ It is recommended that you save your DC/OS installer file immediately after inst
 - [Uninstall DC/OS][7]
 
 [1]: https://downloads.dcos.io/dcos/stable/dcos_generate_config.sh
-[2]: /docs/1.9/service-discovery/
+[2]: /docs/1.9/networking/
 [3]: /docs/1.9/installing/custom/system-requirements/
 [4]: /docs/1.9/administering-clusters/convert-agent-type/
 [5]: /docs/1.9/administering-clusters/cli/install/
 [7]: /docs/1.9/installing/custom/uninstall/
 [9]: /docs/1.9/installing/troubleshooting/
-[10]: /docs/1.9/id-and-access-mgt/user-management/
+[10]: /docs/1.9/security/user-management/

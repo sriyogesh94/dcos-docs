@@ -1,5 +1,5 @@
 ---
-post_title: Deploying a local Universe
+post_title: Deploying a Local Universe
 menu_order: 1000
 feature_maturity: preview
 ---

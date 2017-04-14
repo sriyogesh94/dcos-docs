@@ -78,7 +78,7 @@ To determine which method to use, see the specific backend component's API refer
 
 Some routes are unauthenticated, but most require an authentication token.
 
-For details on how to obtain and use an authentication token, see [Authentication HTTP API Endpoint](/docs/1.9/id-and-access-mgt/iam-api/).
+For details on how to obtain and use an authentication token, see [Authentication HTTP API Endpoint](/docs/1.9/security/iam-api/).
 
 
 ## Route Topology

@@ -425,7 +425,7 @@ In a world where machines are are given numbers instead of names, tasks are sche
   <ul>
     <li><a href="http://mesosphere.github.io/mesos-dns/">Documentation</a></li>
     <li><a href="https://github.com/mesosphere/mesos-dns">Source</a></li>
-    <li><a href="/docs/1.9/service-discovery/mesos-dns/http-interface/">API Reference</a></li>
+    <li><a href="/docs/1.9/networking/mesos-dns/http-interface/">API Reference</a></li>
   </ul>
 </p>
 </div>
@@ -488,7 +488,7 @@ In a world where machines are are given numbers instead of names, tasks are sche
 <p>
   <strong>See Also:</strong>
   <ul>
-    <li><a href="/docs/1.9/service-discovery/load-balancing-vips/">Documentation</a></li>
+    <li><a href="/docs/1.9/networking/load-balancing-vips/">Documentation</a></li>
     <li><a href="https://github.com/dcos/minuteman">Source</a></li>
   </ul>
 </p>
@@ -605,7 +605,7 @@ Identity management in DC/OS is delegated to external identity providers, taking
   <strong>See Also:</strong>
   <ul>
     <li><a href="https://github.com/dcos/dcos-oauth">Source</a></li>
-    <li><a href="/docs/1.9/id-and-access-mgt/iam-api/">API Reference</a></li>
+    <li><a href="/docs/1.9/security/iam-api/">API Reference</a></li>
   </ul>
 </p>
 </div>

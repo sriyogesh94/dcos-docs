@@ -45,4 +45,4 @@ To manage users:
 
 ## Next Steps
 
-For more information on security, check out [Security and Authentication](/docs/1.9/id-and-access-mgt/)
+For more information on security, check out [Security and Authentication](/docs/1.9/security/)

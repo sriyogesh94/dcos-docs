@@ -161,11 +161,11 @@ This parameter specifies whether to enable DC/OS virtual networks.
             
             **Important:** The last 3 bytes must be `00`.
         *  __overlays__
-            *  `name` This parameter specifies the canonical name (see [limitations](/docs/1.9/service-discovery/virtual-networks/) for constraints on naming virtual networks).
+            *  `name` This parameter specifies the canonical name (see [limitations](/docs/1.9/networking/virtual-networks/) for constraints on naming virtual networks).
             *  `subnet` This parameter specifies the subnet that is allocated to the virtual network.
             *  `prefix` This parameter specifies the size of the subnet that is allocated to each agent and thus defines the number of agents on which the overlay can run. The size of the subnet is carved from the overlay subnet.
 
- For more information see the [example](#overlay) and [documentation](/docs/1.9/service-discovery/virtual-networks/).
+ For more information see the [example](#overlay) and [documentation](/docs/1.9/networking/virtual-networks/).
 
 ### <a name="dns-search"></a>dns_search
 This parameter specifies a space-separated list of domains that are tried when an unqualified domain is entered (e.g. domain searches that do not contain &#8216;.&#8217;). The Linux implementation of `/etc/resolv.conf` restricts the maximum number of domains to 6 and the maximum number of characters the setting can have to 256. For more information, see <a href="http://man7.org/linux/man-pages/man5/resolv.conf.5.html">man /etc/resolv.conf</a>.
@@ -189,7 +189,7 @@ This required parameter specifies a YAML nested list (`-`) of DNS resolvers for 
     - 8.8.4.4
     - 8.8.8.8
     ```
--  If you do not have a DNS infrastructure and do not have access to internet DNS servers, you can specify `resolvers: []`. By specifying this setting, all requests to non-`.mesos` will return an error. For more information, see the Mesos-DNS [documentation](/docs/1.9/service-discovery/mesos-dns/).
+-  If you do not have a DNS infrastructure and do not have access to internet DNS servers, you can specify `resolvers: []`. By specifying this setting, all requests to non-`.mesos` will return an error. For more information, see the Mesos-DNS [documentation](/docs/1.9/networking/mesos-dns/).
 
 **Caution:** If you set the `resolvers` parameter incorrectly, you will permanently damage your configuration and have to reinstall DC/OS.
 

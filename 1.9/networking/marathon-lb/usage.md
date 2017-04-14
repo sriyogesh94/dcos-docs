@@ -69,6 +69,6 @@ menu_order: 000
 
 ## Next steps
 
-- [Tutorial - Deploying a Load Balanced App with Marathon-LB](/docs/1.9/service-discovery/marathon-lb/marathon-lb-basic-tutorial/)
-- [Tutorial - Using Marathon-LB for Internal and External Load Balancing](/docs/1.9/service-discovery/marathon-lb/marathon-lb-advanced-tutorial/)
-- See the advanced Marathon-LB [documentation](/docs/1.9/service-discovery/marathon-lb/advanced/).
+- [Tutorial - Deploying a Load Balanced App with Marathon-LB](/docs/1.9/networking/marathon-lb/marathon-lb-basic-tutorial/)
+- [Tutorial - Using Marathon-LB for Internal and External Load Balancing](/docs/1.9/networking/marathon-lb/marathon-lb-advanced-tutorial/)
+- See the advanced Marathon-LB [documentation](/docs/1.9/networking/marathon-lb/advanced/).

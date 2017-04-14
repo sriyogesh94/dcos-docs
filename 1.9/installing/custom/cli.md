@@ -392,5 +392,5 @@ After DC/OS is installed and deployed across your cluster, you can add more agen
  [6]: /docs/1.9/installing/custom/configuration-parameters/
  [7]: /docs/1.9/installing/custom/uninstall/
  [9]: /docs/1.9/installing/troubleshooting/
- [10]: /docs/1.9/id-and-access-mgt/user-management/
+ [10]: /docs/1.9/security/user-management/
  [11]: /docs/1.9/administering-clusters/convert-agent-type/

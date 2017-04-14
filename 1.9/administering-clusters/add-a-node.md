@@ -1,6 +1,6 @@
 ---
 post_title: Adding Agent Nodes
-nav_title: Add Node
+nav_title: Adding Node
 menu_order: 800
 ---
 

@@ -97,6 +97,6 @@ If you've created a new resource group in the deployment step, it is as easy as 
 - [Install the DC/OS Command-Line Interface (CLI)][2]
 - [Scaling considerations][4]
 
-[1]: /docs/1.9/id-and-access-mgt/user-management/
+[1]: /docs/1.9/security/user-management/
 [2]: /docs/1.9/administering-clusters/cli/install/
 [4]: https://azure.microsoft.com/en-us/documentation/articles/best-practices-auto-scaling/
