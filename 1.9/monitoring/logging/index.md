@@ -56,7 +56,6 @@ You can find which components are unhealthy in the DC/OS GUI from the **Nodes** 
 
 ![system health](/docs/1.9/img/ui-system-health-logging.png)
 
-
 # Aggregation
 
 Unfortunately, streaming logs from machines in your cluster isn’t always viable. Sometimes, you need the logs stored somewhere else as a history of what’s happened. This is where log aggregation really is required. Check out how to get it setup with some of the most common solutions:
