@@ -41,7 +41,7 @@ Environment variables defined at the pod level are propagated to all pod contain
 
 Environment variables for ports are defined using the pod container endpoint names ( i.e ENDPOINT_<ENDPOINT_NAME>=<PORT>)
 
-Below are example environment variables reflecting the [multi-pod JSON pod definition example](/docs/1.9/usage/pods/examples/#multi-pod).
+Below are example environment variables reflecting the [multi-pod JSON pod definition example](/docs/1.9/deploying-services/pods/examples/#multi-pod).
 
 ```
 MESOS_EXECUTOR_ID=instance-test-pod.c2b47e5c-d1f5-11e6-a247-a65e72d2dda4
