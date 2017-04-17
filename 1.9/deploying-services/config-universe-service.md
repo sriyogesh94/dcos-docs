@@ -37,7 +37,7 @@ This topic describes how to use the DC/OS CLI to configure services. You can als
     nano marathon-config.json
     ```
 
-3.  Use the `properties` objects (see [Discovering the default parameters](#discover-defaults)) to build your JSON options file. For example, to change the number of Marathon CPU shares to 3 and memory allocation to 2048:
+3.  Use the `properties` objects to build your JSON options file. For example, to change the number of Marathon CPU shares to 3 and memory allocation to 2048:
 
     ```json
     {
