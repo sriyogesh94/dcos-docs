@@ -34,7 +34,7 @@ To launch a service on a public node, you must create a Marathon app definition 
     }
     ```
 
-    For more information about the `acceptedResourceRoles` parameter, see the Marathon REST API [documentation](/docs/1.9/deploying-services/rest-api/).
+    For more information about the `acceptedResourceRoles` parameter, see the Marathon REST API [documentation](/docs/1.9/deploying-services/marathon-api/).
 
 1.  Add the your app to Marathon by using this command, where `myApp.json` is your app:
 
