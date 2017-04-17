@@ -3,9 +3,7 @@ post_title: Using a Private Docker Registry
 menu_order: 004.5
 ---
 
-To supply credentials to pull from a private registry, add a `docker.tar.gz` file to
-the `uris` field of your app. The `docker.tar.gz` file should include the `.docker` folder that contains
-`.docker/config.json`
+To supply credentials to pull from a private Docker registry, create an archive of your Docker credentials, then add it as a URI in your application definition.
 
 # Step 1: Tar/Gzip credentials
 
@@ -18,13 +16,13 @@ the `uris` field of your app. The `docker.tar.gz` file should include the `.dock
       Email: foo@bar.com
     ```
 
-1. Tar this folder and its contents.
+1. Compress the `.docker` folder and its contents.
 
     ```bash
     cd ~
     tar -czf docker.tar.gz .docker
     ```
-1. Check you have both files in the tar.
+1. Verify that both files are in the archive.
 
     ```bash
       tar -tvf ~/docker.tar.gz
@@ -33,19 +31,19 @@ the `uris` field of your app. The `docker.tar.gz` file should include the `.dock
       -rw------- root/root       114 2015-07-28 01:31 .docker/config.json
     ```
 
-1. Put the gzipped file in location that you will then reference in your application definition.
+1. Put the archive file in a location that is accessible to your application definition.
 
     ```bash
     $ cp docker.tar.gz /etc/
     ```
 
-    **Important:** The URI you create must be accessible by all nodes that may start your application. You can distribute the
+    **Important:** The URI must be accessible by all nodes that will start your application. You can distribute the
 file to the local filesystem of all nodes, for example via RSYNC/SCP, or store it on a shared network drive like [Amazon
 S3](http://aws.amazon.com/s3/). Consider the security implications of your chosen approach carefully.
 
-### Step 2: Mesos/Marathon config
+# Step 2: Mesos/Marathon config
 
-1. Add the path to the gzipped login credentials to your Marathon app definition
+1. Add the path to the archive file login credentials to your app definition.
 
     ```bash
     "uris": [
@@ -74,4 +72,4 @@ S3](http://aws.amazon.com/s3/). Consider the security implications of your chose
     }
     ```
 
-1. The Docker image will now pull using the security credentials you provided.
+1. The Docker image will now pull using the security credentials you specified.
