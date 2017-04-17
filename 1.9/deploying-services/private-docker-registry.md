@@ -5,7 +5,7 @@ menu_order: 004.5
 
 To supply credentials to pull from a private Docker registry, create an archive of your Docker credentials, then add it as a URI in your application definition.
 
-# Step 1: Tar/Gzip credentials
+# Step 1: Compress Docker credentials
 
 1. Log in to the private registry manually. Login creates a `.docker` folder and a `.docker/config.json` file in your home directory.
 
@@ -41,7 +41,7 @@ To supply credentials to pull from a private Docker registry, create an archive 
 file to the local filesystem of all nodes, for example via RSYNC/SCP, or store it on a shared network drive like [Amazon
 S3](http://aws.amazon.com/s3/). Consider the security implications of your chosen approach carefully.
 
-# Step 2: Mesos/Marathon config
+# Step 2: Add URI path to app definition
 
 1. Add the path to the archive file login credentials to your app definition.
 
