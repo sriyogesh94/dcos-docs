@@ -1,6 +1,5 @@
 ---
-post_title: Troubleshooting a Custom Installation
-nav_title: Troubleshooting
+post_title: Troubleshooting
 menu_order: 400
 ---
 
