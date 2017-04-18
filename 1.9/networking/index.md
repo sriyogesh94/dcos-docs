@@ -1,6 +1,5 @@
 ---
-post_title: Service Discovery and Load Balancing
-nav_title: Networking
+post_title: Networking
 menu_order: 070
 ---
 
