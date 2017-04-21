@@ -47,13 +47,12 @@ Install the `datadog` package in DC/OS:
 1.  Go to the **Universe** tab of the DC/OS GUI and find the **Datadog** package. 
     ![datadog package](/docs/1.9/administration/monitoring/metrics/img/datadog-package.png)
 1.  Click **INSTALL PACKAGE** -> **ADVANCED INSTALLATION** and enter [your Datadog API_KEY](https://app.datadoghq.com/account/settings#api).
-    ![API key](/docs/1.9/administration/monitoring/metrics/img/datadog-api-key.png)
 1.  Click **REVIEW AND INSTALL** to complete your installation.
 
 After a minute or two a Datadog agent will be running in the cluster at `datadog-agent.marathon.mesos:8125`. This is the default location used by the Datadog plugin.
 
 ## Test the DC/OS Datadog metrics plugin (agents only)
-As a stopgap during testing, you may be able to manually run the Datadog plugin on your agents by running it as a Marathon task. You must first upload the binary you built to a web server that's visible to your cluster, then create a Marathon application like the following (with customized `cmd`, `instances`, and `uris` to meet your needs):
+As a stopgap during testing, you may be able to manually run the Datadog plugin on your agents by running it as a Marathon task. You must first upload your binary to a web server that's visible to your cluster, then create a Marathon application like the following (with customized `cmd`, `instances`, and `uris` to meet your needs):
 
 ```json
 {
@@ -68,18 +67,35 @@ As a stopgap during testing, you may be able to manually run the Datadog plugin 
 }
 ```
 
-## Install the DC/OS Datadog metrics plugin
-Once you're happy with the result, you'll need to install the plugin into your cluster. For each host in your cluster, you'll need to transfer the binary you build for the plugin and then add a systemd unit to manage the service. This unit differs slightly between agent and master hosts.
+### Install the DC/OS Datadog metrics plugin
+When you're happy with the test results, you'll need to install the plugin into your cluster. For each host in your cluster, transfer your binary for the plugin and then add a systemd unit to manage the service. This unit differs slightly between agent and master hosts.
 
 ### Create a Valid Auth Token for DC/OS
-The DC/OS docs have good info on making this auth token for [OSS](https://dcos.io/docs/1.7/administration/id-and-access-mgt/managing-authentication/) and [enterprise](https://docs.mesosphere.com/1.8/administration/id-and-access-mgt/service-auth/custom-service-auth/) DC/OS.
+Follow the instructions based on whether you are using Enterprise or open source DC/OS:
+
+- [Enterprise DC/OS](https://docs.mesosphere.com/administration/id-and-access-mgt/service-auth/custom-service-auth/)
+- [Open source DC/OS](https://dcos.io/docs/administration/id-and-access-mgt/managing-authentication/) 
+
+You will use this auth token below.
 
 ### Deploy the Metrics Plugin to Every Cluster Host
-1. `scp dcos-metrics-datadog-plugin-1.0.0-rc7 my.host:/usr/bin`
-1. `ssh my.master "chmod 0755 /usr/bin/dcos-metrics-datadog-plugin-1.0.0-rc7"`
+
+1.  Copy the Datadog plugin from a local host to your remote host (`my.host:/usr/bin`):
+
+    ```bash
+    scp dcos-metrics-datadog-plugin-1.0.0-rc7 my.host:/usr/bin
+    ```
+    
+    
+1.  [SSH to your master node] and assign permission to the plugin. 
+
+    ```bash
+    dcos node ssh --master-proxy --leader
+    chmod 0755 /usr/bin/dcos-metrics-datadog-plugin-1.0.0-rc7
+    ```
 
 ### Master Systemd Unit
-Add a master systemd unit file: `cat /etc/systemd/system/dcos-metrics-datadog-plugin.service`
+Create a master systemd unit file on your master node and save as `/etc/systemd/system/dcos-metrics-datadog-plugin.service`. 
 
 ```
 [Unit]
@@ -90,7 +106,7 @@ ExecStart=/usr/bin/dcos-metrics-datadog-plugin-1.0.0rc7 -dcos-role master -metri
 ```
 
 ### Agent Systemd Unit
-Add a agent systemd unit file: `cat /etc/systemd/system/dcos-metrics-datadog-plugin.service`
+Add a agent systemd unit file on your master node and save as `/etc/systemd/system/dcos-metrics-datadog-plugin.service`.
 
 ```
 [Unit]
@@ -100,11 +116,20 @@ Description=DC/OS Datadog Metrics Plugin (agent)
 ExecStart=/usr/bin/dcos-metrics-datadog-plugin-1.0.0rc7 -dcos-role agent -auth-token <MY_AUTH_TOKEN>
 ```
 
-*Note:* This plugin runs on port :61001 (agent adminrouter) by default, so we don't pass the port as we did in the master version of the service.
+*Note:* This plugin runs on the agent Admin Router port `:61001` by default, so the port is not passed as it was in the master version of the service.
 
-### Enable, Start & Verify
+### Enable, Start, and Verify
 
-1. `systemctl enable dcos-metrics-datadog-plugin && systemctl start dcos-metrics-datadog-plugin`
-1. `journalctl -u dcos-metrics-datadog-plugin` -> Make sure everything is OK
+1.  Enable and start the Datadog plugin.
 
-## That's it!
+    ```bash
+    systemctl enable dcos-metrics-datadog-plugin && systemctl start dcos-metrics-datadog-plugin
+    ```
+    
+1.  View the system logs and verify that everything is okay.
+    
+    ```bash
+    journalctl -u dcos-metrics-datadog-plugin
+    ```
+
+You're done!
