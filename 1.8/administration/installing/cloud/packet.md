@@ -22,9 +22,9 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Packe
 
 ## Prerequisites:
 
-- [Packet API Key](https://www.packet.net/resources/kb/how-do-i-create-api-keys/)
+- [Packet API Key](https://help.packet.net/technical/api/how-to-use-the-packet-api)
 
-- [Packet Project ID](https://www.packet.net/help/kb/where-do-i-locate-my-packet-project-id/)
+- [Packet Project ID](https://help.packet.net/technical/api/how-to-use-the-packet-api)
 
 - [Terraform by Hashicorp](https://www.terraform.io/intro/getting-started/install.html)
 
@@ -37,13 +37,13 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Packe
 2.  [Download the DC/OS Terraform manifests from GitHub](https://github.com/dcos/packet-terraform) into a local  directory.
 
     ```bash
-    $ git clone https://github.com/dcos/packet-terraform
+    git clone https://github.com/dcos/packet-terraform
     ```
 
 3.  From that directory, generate an ssh keypair:
 
     ```bash
-    $ ssh-keygen -t rsa -f ./packet-key
+    ssh-keygen -t rsa -f ./packet-key
     ```
 
 4.  Copy `sample.terraform.tfvars` to a new file named `terraform.tfvars`, and edit the new file, filling in the values as desired. The following are blank and if not filled in, you will be prompted by terraform when necessary:
