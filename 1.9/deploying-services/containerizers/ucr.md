@@ -2,7 +2,7 @@
 nav_title: Universal Container Runtime
 post_title: Universal Container Runtime (UCR)
 feature_maturity: preview
-menu_order: 20
+menu_order: 10
 ---
 
 The [Universal Container Runtime](http://mesos.apache.org/documentation/latest/container-image)(UCR) extends the Mesos containerizer to support provisioning [Docker](https://docker.com/) container images ([AppC](https://github.com/appc/spec) coming soon). This means that you can use both the Mesos containerizer and other container image types in DC/OS. You can still use the Docker container runtime directly with DC/OS, but the Universal Container Runtime supports running Docker images without depending on the Docker Engine, which allows for better integration with Mesos.
@@ -22,7 +22,7 @@ The Universal Container Runtime offers the following advantages:
 
 # Provision Containers with the Universal Container Runtime from the DC/OS CLI
 
-To provision containers with the UCR from the DC/OS CLI, specify the container type `MESOS` and a the appropriate object in your [Marathon application definition](http://mesosphere.github.io/marathon/docs/application-basics.html). Here, we specify a Docker container with the `docker` object.
+To provision containers with the UCR from the DC/OS CLI, specify the container type `MESOS` and a the appropriate object in your [Marathon application definition](/docs/1.9/deploying-services/creating-services/). Here, we specify a Docker container with the `docker` object.
 
 The Mesos containerizer provides a `credential`, with a `principal` and an optional `secret` field to authenticate when downloading the Docker image.
 
@@ -51,7 +51,7 @@ The Mesos containerizer provides a `credential`, with a `principal` and an optio
 **Important:** If you leave the `args` field empty, the default entry point will be the launch command for the container. If your container does not have a default entry point, you must specify a command in the `args` field. If you do not, your service will fail to deploy.
 
 # Limitations
-- The UCR is a [preview](/docs/1.8/overview/feature-maturity/) feature in DC/OS 1.9.
+- The UCR is a [preview](/docs/1.9/overview/feature-maturity/) feature in DC/OS 1.9.
 - The UCR does not support the following: runtime privileges, Docker options, force pull, named ports, numbered ports, bridge networking, port mapping, private registries with container authentication.
 
 # Further Reading

@@ -1,10 +1,10 @@
 ---
 nav_title: Docker Containerizer
 post_title: Docker Containerizer
-menu_order: 10
+menu_order: 20
 ---
 
-Use the Docker containerizer if you need specific features of the Docker package. Refer to the [features matrix](/docs/1.9/usage/containerizers/) to see if the Docker containerizer is the correct choice for your task.
+Use the Docker containerizer if you need specific features of the Docker package. Refer to the [features matrix](/docs/1.9/deploying-services/containerizers/) to see if the Docker containerizer is the correct choice for your task.
 
 # Specify the Docker Containerizer from the DC/OS Web Interface
 
@@ -30,6 +30,5 @@ To specify the Docker containerizer from the DC/OS CLI, add the following parame
 }
 ```
 
-- [Learn more about launching Docker containers on Marathon](http://mesosphere.github.io/marathon/docs/native-docker.html).
-- [Follow a Docker app tutorial](/docs/1.8/usage/managing-services/application-basics/deploy-docker-app/).
-- [View the Mesos docs for the Mesos containerizer](http://mesos.apache.org/documentation/latest/containerizer/#Docker).
+- [Follow a Docker app tutorial](/docs/1.9/deploying-services/creating-services/deploy-docker-app/).
+- [View the Mesos docs for the Docker containerizer](http://mesos.apache.org/documentation/latest/containerizer/#Docker).
