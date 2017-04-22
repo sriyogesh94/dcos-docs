@@ -3,9 +3,7 @@ post_title: Component Management
 menu_order: 5.5
 ---
 
-The component management API controls installation and management of DC/OS component services.
-
-The component management API is not designed to be used by operators or users of DC/OS directly but rather is orchestrated by the DC/OS installer during install, upgrade, and uninstall.
+The component management API controls installation and management of DC/OS component services. It is used by the DC/OS installer during install, upgrade, and uninstall. It is not designed for interaction by DC/OS users.
 
 ## Component Package Manager
 
@@ -16,7 +14,7 @@ The DC/OS Component Package Manager (Pkgpanda) implements the component manageme
 - The **package builder** builds and bundles component packages from source code and pre-compiled artifacts as part of the DC/OS release building process.
 - The **package manager** is included as part of DC/OS an runs on each node, managing the installed and activated component packages on that node.
 
-Component packages built by the package builder are distributed as part of the DC/OS installer for each release. The installer ships the component packages to each node and orchestrates the component management API to install them. Generally these component packages each contain one or more systemd service definitions, binaries, and configuration files.
+Component packages built by the package builder are distributed as part of the DC/OS installer for each release. The installer ships the component packages to each node and orchestrates the component management API to install them. The component packages contain one or more systemd service definitions, binaries, and configuration files.
 
 
 ## Component health
