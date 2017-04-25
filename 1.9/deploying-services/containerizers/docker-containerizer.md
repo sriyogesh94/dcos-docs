@@ -1,5 +1,4 @@
 ---
-nav_title: Docker Containerizer
 post_title: Docker Containerizer
 menu_order: 20
 ---
