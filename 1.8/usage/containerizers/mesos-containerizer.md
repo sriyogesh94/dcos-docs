@@ -1,5 +1,5 @@
 ---
-nav_title: Original Mesos Containerizer
+post_title: Original Mesos Containerizer
 menu_order: 0
 ---
 
