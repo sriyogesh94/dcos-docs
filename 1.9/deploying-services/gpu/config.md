@@ -2,7 +2,7 @@
 post_title: Configure Your Service for GPUs
 nav_title: Using GPUs
 feature_maturity: preview
-menu_order: 75 
+menu_order: 20 
 ---
 
 Once your cluster is [configured to support GPUs](/docs/1.9/deploying-services/gpu/), add the `gpus` parameter to your [Marathon application definition](/docs/1.9/deploying-services/creating-services/).
