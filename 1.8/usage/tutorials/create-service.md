@@ -121,4 +121,4 @@ This tutorial shows how to create and deploy a simple one-command service and a 
     ```bash
     dcos marathon app list
     ```
-1. In the **Services** tab of the DC/OS web interface, click the name of your service, then choose on of the task instances. Click **Logs**, then toggle to the **Output (stdout)** view to see the output of the service.
+1. In the **Services** tab of the DC/OS web interface, click the name of your service, then choose one of the task instances. Click **Logs**, then toggle to the **Output (stdout)** view to see the output of the service.
