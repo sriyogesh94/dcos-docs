@@ -24,7 +24,7 @@ The Datadog metrics plugin for DC/OS supports sending metrics from the DC/OS met
 1. Navigate to the `dcos-metrics` repository and run the build command:
 
    ```bash
-   $ cd dcos-metrics && make
+   $ cd dcos-metrics && make && make plugins
    ```
 
    The plugin is available in the build directory:
@@ -45,7 +45,7 @@ The Datadog metrics plugin for DC/OS supports sending metrics from the DC/OS met
 Install the `datadog` package in DC/OS:
 
 1.  Go to the **Universe** tab of the DC/OS GUI and find the **Datadog** package. 
-    ![datadog package](/docs/1.9/administration/monitoring/metrics/img/datadog-package.png)
+    ![datadog package](/docs/1.9/img/datadog-package.png)
 1.  Click **INSTALL PACKAGE** -> **ADVANCED INSTALLATION** and enter [your Datadog API_KEY](https://app.datadoghq.com/account/settings#api).
 1.  Click **REVIEW AND INSTALL** to complete your installation.
 
@@ -73,7 +73,7 @@ When you're happy with the test results, you'll need to install the plugin into 
 ### Create a Valid Auth Token for DC/OS
 Follow the instructions based on whether you are using Enterprise or open source DC/OS:
 
-- [Enterprise DC/OS](https://docs.mesosphere.com/administration/id-and-access-mgt/service-auth/custom-service-auth/)
+- [Enterprise DC/OS](https://docs.mesosphere.com/1.9/security/service-auth/custom-service-auth/)
 - [Open source DC/OS](https://dcos.io/docs/administration/id-and-access-mgt/managing-authentication/) 
 
 You will use this auth token below.
