@@ -9,14 +9,14 @@ You can get the cluster URL by using the following methods:
 - Log into the DC/OS CLI and type `dcos config show core.dcos_url` to get the cluster URL.
 
 
-## API ports
+# API ports
 
 On the master nodes, Admin Router is accessible through standard ports: `80` (HTTP) and `443` (HTTPS, if enabled).
 
 On the agent nodes, Admin Router Agent is accessible through port `61001` (HTTP).
 
 
-## Agent node access
+# Agent node access
 
 You can find the hostname of a specific agent node by using the following methods:
 
@@ -26,7 +26,7 @@ You can find the hostname of a specific agent node by using the following method
 To determine which agents are public agents, see [Finding a Public Agent IP](/docs/1.9/administering-clusters/locate-public-agent/).
 
 
-## Ingress
+# Ingress
 
 In most production deployments, administrative access to the cluster should be routed through an external proxy to the DC/OS master nodes, distributing traffic load between the master nodes. For example, the default AWS templates configure an AWS Elastic Load Balancer.
 

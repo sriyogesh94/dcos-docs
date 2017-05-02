@@ -7,7 +7,7 @@ menu_order: 150
 The DC/OS API is a collection of routes backed by [DC/OS components](/docs/1.9/overview/architecture/components/) that are made available through an API gateway called the [Admin Router](/docs/1.9/overview/architecture/components/#admin-router).
 
 
-## Admin Router
+# Admin Router
 
 Admin Router is an API gateway built on top of NGINX.
 
@@ -27,12 +27,12 @@ Admin Router uses these route types to accomplish these primary goals:
 - Serve up the DC/OS GUI
 
 
-## Cluster Access
+# Cluster Access
 
 To determine the URL of your cluster, see [Cluster Access](/docs/1.9/api/access/).
 
 
-## Route Usage
+# Route Usage
 
 - To determine the full URL of a API resource through a **proxy route**, join the cluster URL, route path, and backend component resource path.
 
@@ -63,25 +63,21 @@ To determine the URL of your cluster, see [Cluster Access](/docs/1.9/api/access/
     Most rewrites and redirects terminate in another DC/OS API route, with the notable exception of `/login`, which uses OpenID Connect to authorize with an external identity provider and then redirects back to the DC/OS API.
 
 
-## Versioning
+# Versioning
 
-API versioning in DC/OS is delegated to each individual route or backend component.
+Sections of the DC/OS API are versioned by component, route, or resource.
 
-Some components use **URL versioning** with a path prefix, like `/v2/`, between the route and the resource path.
-
-Other components version their API by **content negotiation** using HTTP headers.
-
-To determine which method to use, see the specific backend component's API reference documentation.
+For details on the versioning mechanisms, see [Versioning](/docs/1.9/api/versioning/).
 
 
-## Authentication
+# Authentication
 
 Some routes are unauthenticated, but most require an authentication token.
 
 For details on how to obtain and use an authentication token, see [Authentication HTTP API Endpoint](/docs/1.9/security/iam-api/).
 
 
-## Route Topology
+# Route Topology
 
 There are two varieties of Admin Router:
 
