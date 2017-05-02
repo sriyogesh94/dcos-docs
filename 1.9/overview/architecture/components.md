@@ -18,7 +18,7 @@ From the bottom, DC/OS is an operating system built on top of [Apache Mesos](htt
 DC/OS provides a way to view and operate a large number of individual machine-level systems as a single cluster-level system. It hides the complexity of Mesos, the distributed systems kernel, with higher level abstractions, interfaces, and tools. Cluster management is the core of that functionality, including the kernel, its dependencies, and its user interfaces.
 
 <div data-role="collapsible">
-<h2>Apache Mesos</h2>
+<h2 id="apache-mesos">Apache Mesos</h2>
 <div>
 <p><strong>Description:</strong> Mesos manages resources and tasks as a distributed systems kernel. Mesos Master exposes scheduler, executor, and operator interfaces to facilitate cluster management. Mesos Agent manages individual executors, tasks, and resources on each <a href="/docs/1.9/overview/concepts/#dcos-agent-node">DC/OS agent node</a>. Mesos Agent Public is a Mesos Agent configured to run on <a href="/docs/1.9/overview/concepts/#public-agent-node">DC/OS public agent nodes</a>.</p>
 <p>
@@ -41,7 +41,7 @@ DC/OS provides a way to view and operate a large number of individual machine-le
 </div>
 
 <div data-role="collapsible">
-<h2>Apache Zookeeper</h2>
+<h2 id="apache-zookeeper">Apache Zookeeper</h2>
 <div>
 <p><strong>Description:</strong> Zookeeper provides consistent, highly available, distributed key-value storage for configuration, synchronization, name registration, and cluster state storage.</p>
 <p><strong>System Service(s):</strong> N/A - Zookeeper is supervised by Exhibitor.</p>
@@ -56,7 +56,7 @@ DC/OS provides a way to view and operate a large number of individual machine-le
 </div>
 
 <div data-role="collapsible">
-<h2>Exhibitor</h2>
+<h2 id="exhibitor">Exhibitor</h2>
 <div>
 <p><strong>Description:</strong> Exhibitor supervises Zookeeper and provides a management web interface.</p>
 <p>
@@ -77,7 +77,7 @@ DC/OS provides a way to view and operate a large number of individual machine-le
 </div>
 
 <div data-role="collapsible">
-<h2>DC/OS Installer</h2>
+<h2 id="dcos-installer">DC/OS Installer</h2>
 <div>
 <p><strong>Description:</strong> The DC/OS Installer (dcos_generate_config.sh) generates install artifacts and installs DC/OS. As part of the install process on each node, the DC/OS Download service downloads the install artifacts from the bootstrap machine and the DC/OS Setup service installs components using the DC/OS Component Package Manager (Pkgpanda).</p>
 <p>
@@ -98,7 +98,7 @@ DC/OS provides a way to view and operate a large number of individual machine-le
 </div>
 
 <div data-role="collapsible">
-<h2>DC/OS GUI</h2>
+<h2 id="dcos-gui">DC/OS GUI</h2>
 <div>
 <p><strong>Description:</strong> The DC/OS GUI (web interface) is a browser-based system dashboard and control center.</p>
 <p><strong>System Service(s):</strong> N/A - The GUI is served by Admin Router.</p>
@@ -113,7 +113,7 @@ DC/OS provides a way to view and operate a large number of individual machine-le
 </div>
 
 <div data-role="collapsible">
-<h2>DC/OS CLI</h2>
+<h2 id="dcos-cli">DC/OS CLI</h2>
 <div>
 <p><strong>Description:</strong> The DC/OS CLI is a terminal-based remote client.</p>
 <p><strong>System Service(s):</strong> N/A - The CLI is a user downloadable binary.</p>
@@ -156,10 +156,8 @@ DC/OS includes built-in orchestration of the most commonly used high level conta
 </div>
 </div>
 
-<a name="metronome"></a>
-<a name="dcos-jobs"></a>
 <div data-role="collapsible">
-<h2>DC/OS Jobs (Metronome)</h2>
+<h2 id="dcos-jobs">DC/OS Jobs (Metronome)</h2>
 <div>
 <p><strong>Description:</strong> DC/OS Jobs (Metronome) orchestrates short-lived, scheduled or immediate, containerized jobs.</p>
 <p>
@@ -187,7 +185,7 @@ Container runtimes execute and manage machine level processes in isolated operat
 DC/OS supports multiple container runtimes using [Mesos' containerizer abstraction](http://mesos.apache.org/documentation/latest/containerizer/).
 
 <div data-role="collapsible">
-<h2>Universal Container Runtime</h2>
+<h2 id="universal-container-runtime">Universal Container Runtime</h2>
 <div>
 <p><strong>Description:</strong> Universal Container Runtime (Mesos Containerizer) is a logical component built-in to the Mesos Agent, not technically a separate process. It containerizes Mesos tasks with configurable isolators. Universal Container Runtime supports multiple image formats, including Docker images without using Docker Engine.</p>
 <p><strong>System Service(s):</strong> N/A - Universal Container Runtime is part of Mesos Agent.</p>
@@ -201,7 +199,7 @@ DC/OS supports multiple container runtimes using [Mesos' containerizer abstracti
 </div>
 
 <div data-role="collapsible">
-<h2>Docker Engine</h2>
+<h2 id="docker-engine">Docker Engine</h2>
 <div>
 <p><strong>Description:</strong> Docker Engine is not installed by the DC/OS Installer, but rather is a system dependency that runs on each node. Mesos Agent also includes a separate logical component called Docker Containerizer which delegates the containerization of Mesos task to Docker Engine.</p>
 <p>
@@ -222,7 +220,7 @@ DC/OS supports multiple container runtimes using [Mesos' containerizer abstracti
 </div>
 
 <div data-role="collapsible">
-<h2>Docker GC</h2>
+<h2 id="docker-gc">Docker GC</h2>
 <div>
 <p><strong><em>NEW IN 1.9.0</em></strong></p>
 <p><strong>Description:</strong> Docker GC periodically garbage collects Docker containers and images.</p>
@@ -248,7 +246,7 @@ DC/OS supports multiple container runtimes using [Mesos' containerizer abstracti
 No software runs perfectly, especially not the first time. Distribute tasks across a cluster and the normal patterns of analyzing and debugging these services become tedious and painful. So DC/OS includes several components to help ease the pain of debugging distributed systems by aggregating, caching, and streaming logs, metrics, and cluster state metadata.
 
 <div data-role="collapsible">
-<h2>DC/OS Diagnostics (3DT)</h2>
+<h2 id="dcos-diagnostics">DC/OS Diagnostics (3DT)</h2>
 <div>
 <p><strong>Description:</strong> DC/OS Diagnostics (3DT) aggregates and exposes component health. DC/OS Diagnostics is also known as DC/OS Distributed Diagnostics Tool (3DT).</p>
 <p>
@@ -269,7 +267,7 @@ No software runs perfectly, especially not the first time. Distribute tasks acro
 </div>
 
 <div data-role="collapsible">
-<h2>DC/OS Log</h2>
+<h2 id="dcos-log">DC/OS Log</h2>
 <div>
 <p><strong><em>NEW IN 1.9.0</em></strong></p>
 <p><strong>Description:</strong> The DC/OS Log service exposes node, component, and container (task) logs.</p>
@@ -293,7 +291,7 @@ No software runs perfectly, especially not the first time. Distribute tasks acro
 </div>
 
 <div data-role="collapsible">
-<h2>Logrotate</h2>
+<h2 id="logrotate">Logrotate</h2>
 <div>
 <p><strong>Description:</strong> Logrotate manages rotation, compression, and deletion of historical log files.</p>
 <p>
@@ -316,8 +314,7 @@ No software runs perfectly, especially not the first time. Distribute tasks acro
 </div>
 
 <div data-role="collapsible">
-<a name="dcos-metrics"></a>
-<h2>DC/OS Metrics</h2>
+<h2 id="dcos-metrics">DC/OS Metrics</h2>
 <div>
 <p><strong><em>NEW IN 1.9.0</em></strong></p>
 <p><strong>Description:</strong> The DC/OS Metrics service exposes node, container, and application metrics.</p>
@@ -341,7 +338,7 @@ No software runs perfectly, especially not the first time. Distribute tasks acro
 </div>
 
 <div data-role="collapsible">
-<h2>DC/OS Signal</h2>
+<h2 id="dcos-signal">DC/OS Signal</h2>
 <div>
 <p><strong>Description:</strong> The DC/OS Signal service reports cluster telemetry and analytics to help improve DC/OS. Administrators can <a href="/docs/1.9/installing/opt-out/#telemetry">opt-out of telemetry</a> at install time.</p>
 <p>
@@ -361,7 +358,7 @@ No software runs perfectly, especially not the first time. Distribute tasks acro
 </div>
 
 <div data-role="collapsible">
-<h2>DC/OS History</h2>
+<h2 id="dcos-history">DC/OS History</h2>
 <div>
 <p><strong>Description:</strong> The DC/OS History service caches and exposes historical system state to facilitate cluster usage statistics in the GUI.</p>
 <p>
@@ -386,9 +383,7 @@ No software runs perfectly, especially not the first time. Distribute tasks acro
 In a world where machines are are given numbers instead of names, tasks are scheduled automatically, dependencies are declaratively defined, and services run in distributed sets, network administration also needs to be elevated from plugging in cables to configuring software-defined networks. To accomplish this, DC/OS includes a fleet of networking components for routing, proxying, name resolution, virtual IPs, load balancing, and distributed reconfiguration.
 
 <div data-role="collapsible">
-<a name="admin-router"></a>
-<h2>Admin Router</h2>
-
+<h2 id="admin-router">Admin Router</h2>
 <div>
 <p><strong>Description:</strong> Admin Router exposes a unified control plane proxy for components and services using <a href="https://www.nginx.com/">NGINX</a>. Admin Router Agent proxies node-specific health, logs, metrics, and package management internal endpoints.</p>
 <p>
@@ -412,7 +407,7 @@ In a world where machines are are given numbers instead of names, tasks are sche
 </div>
 
 <div data-role="collapsible">
-<h2>Mesos DNS</h2>
+<h2 id="mesos-dns">Mesos DNS</h2>
 <div>
 <p><strong>Description:</strong> Mesos DNS provides domain name based service discovery within the cluster.</p>
 <p>
@@ -432,10 +427,8 @@ In a world where machines are are given numbers instead of names, tasks are sche
 </div>
 </div>
 
-<a name="spartan"></a>
-<a name="dns-forwarder"></a>
 <div data-role="collapsible">
-<h2>DNS Forwarder (Spartan)</h2>
+<h2 id="dns-forwarder">DNS Forwarder (Spartan)</h2>
 <div>
 <p><strong>Description:</strong> DNS Forwarder (Spartan) forwards DNS requests to multiple DNS servers. Spartan Watchdog restarts Spartan when it is unhealthy.</p>
 <p>
@@ -456,7 +449,7 @@ In a world where machines are are given numbers instead of names, tasks are sche
 </div>
 
 <div data-role="collapsible">
-<h2>Generate resolv.conf</h2>
+<h2 id="generate-resolv.conf">Generate resolv.conf</h2>
 <div>
 <p><strong>Description:</strong> Generate resolv.conf configures network name resolution by updating <code class="nowrap">/etc/resolv.conf</code> to facilitate DC/OS's software defined networking.</p>
 <p>
@@ -475,9 +468,8 @@ In a world where machines are are given numbers instead of names, tasks are sche
 </div>
 </div>
 
-<a name="minuteman"></a>
 <div data-role="collapsible">
-<h2>Minuteman</h2>
+<h2 id="minuteman">Minuteman</h2>
 <div>
 <p><strong>Description:</strong> Minuteman provides distributed <a href="https://en.wikipedia.org/wiki/Transport_layer">Layer 4</a> virtual IP load balancing.</p>
 <p>
@@ -496,9 +488,8 @@ In a world where machines are are given numbers instead of names, tasks are sche
 </div>
 </div>
 
-<a name="navstar"></a>
 <div data-role="collapsible">
-<h2>Navstar</h2>
+<h2 id="navstar">Navstar</h2>
 <div>
 <p><strong>Description:</strong> Navstar orchestrates virtual overlay networks using <a href="https://en.wikipedia.org/wiki/Virtual_Extensible_LAN">VXLAN</a>.</p>
 <p>
@@ -516,10 +507,8 @@ In a world where machines are are given numbers instead of names, tasks are sche
 </div>
 </div>
 
-<a name="epmd"></a>
-<a name="erlang-port-mapping-daemon"></a>
 <div data-role="collapsible">
-<h2>Erlang Port Mapping Daemon (EPMD)</h2>
+<h2 id="epmd">Erlang Port Mapping Daemon (EPMD)</h2>
 <div>
 <p><strong>Description:</strong> Erlang Port Mapping Daemon (EPMD) facilitates communication between distributed Erlang programs.</p>
 <p>
@@ -542,10 +531,8 @@ In a world where machines are are given numbers instead of names, tasks are sche
 
 Just as machine operating systems need package management to install, upgrade, configure, and remove individual applications and services, a datacenter operating system needs package management to do the same for distributed services. In DC/OS there are two levels of package management: machine-level for components; and cluster-level for user services.
 
-<a name="cosmos"></a>
-<a name="dcos-package-manager"></a>
 <div data-role="collapsible">
-<h2>DC/OS Package Manager (Cosmos)</h2>
+<h2 id="dcos-package-manager">DC/OS Package Manager (Cosmos)</h2>
 <div>
 <p><strong>Description:</strong> DC/OS Package Manager (Cosmos) installs and manages DC/OS packages from <a href="/docs/1.9/administering-clusters/repo/">DC/OS package repositories</a>, such as the <a href="https://github.com/mesosphere/universe">Mesosphere Universe</a>.</p>
 <p>
@@ -564,10 +551,8 @@ Just as machine operating systems need package management to install, upgrade, c
 </div>
 </div>
 
-<a name="pkgpanda"></a>
-<a name="dcos-component-package-manager"></a>
 <div data-role="collapsible">
-<h2>DC/OS Component Package Manager (Pkgpanda)</h2>
+<h2 id="dcos-component-package-manager">DC/OS Component Package Manager (Pkgpanda)</h2>
 <div>
 <p><strong>Description:</strong> DC/OS Component Package Manager (Pkgpanda) installs and manages DC/OS components.</p>
 <p>
@@ -593,7 +578,7 @@ Just as machine operating systems need package management to install, upgrade, c
 Identity management in DC/OS is delegated to external identity providers, taking advantage of existing infrastructure to reduce the cost and time to market. Security is provided via OpenID Connect authentication and enforced at the edge by Admin Router's reverse proxy.
 
 <div data-role="collapsible">
-<h2>DC/OS Authentication</h2>
+<h2 id="dcos-authentication">DC/OS Authentication</h2>
 <div>
 <p><strong>Description:</strong> The DC/OS Authentication (OAuth) service authenticates DC/OS users using [OpenID Connect](http://openid.net/connect/) and [Auth0](https://auth0.com/).</p>
 <p>
@@ -618,7 +603,7 @@ Identity management in DC/OS is delegated to external identity providers, taking
 DC/OS provides multiple different ways to provision and allocate disk space and volumes to tasks. One of those methods, external persistent volumes, is managed by its own component.
 
 <div data-role="collapsible">
-<h2>REX-Ray</h2>
+<h2 id="rex-ray">REX-Ray</h2>
 <div>
 <p><strong>Description:</strong> REX-Ray orchestrates provisioning, attachment, and mounting of external persistent volumes.</p>
 <p>

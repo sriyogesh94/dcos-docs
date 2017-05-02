@@ -36,25 +36,25 @@ To determine the URL of your cluster, see [Cluster Access](/docs/1.9/api/access/
 
 - To determine the full URL of a API resource through a **proxy route**, join the cluster URL, route path, and backend component resource path.
 
-    ```bash
-    ${cluster-url}/${route}/${component-resource-path}
+    ```
+    <cluster-url>/<route>/<resource-path>
     ```
 
     For example, get the Mesos version from: `https://dcos.example.com/mesos/version`
 
 - **File routes** have no backend component, but may serve a directory of files or a single file. So for file routes, specify the file path instead of the backend component resource path.
 
-    ```bash
-    ${cluster-url}/${route}/${file-path}
+    ```
+    <cluster-url>/<route>/<file-path>
     ```
 
     For example, get the DC/OS version of the cluster from: `https://dcos.example.com/dcos-metadata/dcos-version.json`
 
 - **Lua routes** immediately execute code in Admin Router without proxying to an external backend component. So for Lua routes, no path is required after the route.
 
-     ```bash
-     ${cluster-url}/${route}
-     ```
+    ```
+    <cluster-url>/<route>
+    ```
 
      For example, get the public IP of the master node and cluster ID from: `https://dcos.example.com/metadata`
 
