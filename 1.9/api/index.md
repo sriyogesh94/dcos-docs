@@ -65,13 +65,9 @@ To determine the URL of your cluster, see [Cluster Access](/docs/1.9/api/access/
 
 ## Versioning
 
-API versioning in DC/OS is delegated to each individual route or backend component.
+Sections of the DC/OS API are versioned by component, route, or resource.
 
-Some components use **URL versioning** with a path prefix, like `/v2/`, between the route and the resource path.
-
-Other components version their API by **content negotiation** using HTTP headers.
-
-To determine which method to use, see the specific backend component's API reference documentation.
+For details on the versioning mechanisms, see [Versioning](/docs/1.9/api/versioning/).
 
 
 ## Authentication
