@@ -37,7 +37,7 @@ To determine the URL of your cluster, see [Cluster Access](/docs/1.9/api/access/
 - To determine the full URL of a API resource through a **proxy route**, join the cluster URL, route path, and backend component resource path.
 
     ```bash
-    ${cluster-url}/${route}/${component-resource-path}
+    ${cluster-url}/${route}/${resource-path}
     ```
 
     For example, get the Mesos version from: `https://dcos.example.com/mesos/version`
