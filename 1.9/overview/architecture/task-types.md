@@ -42,7 +42,7 @@ Additional schedulers can be installed as [scheduler services](/docs/1.9/overvie
 
 Example user space schedulers:
 
-- The Kakfa scheduler provides **Kakfa brokers**, which run as lifecycle managed Kafka nodes.
+- The Kafka scheduler provides **Kafka brokers**, which run as lifecycle managed Kafka nodes.
 - The Cassandra scheduler provides **Cassandra nodes**, which run as lifecycle managed Cassandra nodes.
 - The Spark scheduler (dispatcher) provides **Spark jobs**, which are themselves schedulers for Spark tasks.
 
