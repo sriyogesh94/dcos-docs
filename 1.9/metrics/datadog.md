@@ -49,7 +49,7 @@ Install the `datadog` package in DC/OS:
 1.  Click **INSTALL PACKAGE** -> **ADVANCED INSTALLATION** and enter [your Datadog API_KEY](https://app.datadoghq.com/account/settings#api).
 1.  Click **REVIEW AND INSTALL** to complete your installation.
 
-After a minute or two a Datadog agent will be running in the cluster at `datadog-agent.marathon.mesos:8125`. This is the default location used by the Datadog plugin.
+After a few minutes, a Datadog agent will be running in the cluster at `datadog-agent.marathon.mesos:8125`. This is the default location used by the Datadog plugin.
 
 ## Test the DC/OS Datadog metrics plugin (agents only)
 As a stopgap during testing, you may be able to manually run the Datadog plugin on your agents by running it as a Marathon task. You must first upload your binary to a web server that's visible to your cluster, then create a Marathon application like the following (with customized `cmd`, `instances`, and `uris` to meet your needs):
@@ -57,7 +57,7 @@ As a stopgap during testing, you may be able to manually run the Datadog plugin 
 ```json
 {
   "cmd": "chmod +x ./dcos-metrics-* && ./dcos-metrics-* -dcos-role agent -auth-token <CONTENT OF 'dcos config show core.dcos_acs_token'>",
-  "instances": NUMBER_OF_AGENTS,
+  "instances": <number-of-agents>,
   "uris": [ "https://YOURFILEHOST.COM/dcos-metrics-datadog_plugin-YOURBUILDVERSION" ],
   "id": "test-datadog-plugin",
   "cpus": 0.1,
@@ -87,7 +87,7 @@ You will use this auth token below.
     ```
     
     
-1.  [SSH to your master node] and assign permission to the plugin. 
+1.  [SSH to your master node] and assign permissions to the plugin. 
 
     ```bash
     dcos node ssh --master-proxy --leader
@@ -106,7 +106,7 @@ ExecStart=/usr/bin/dcos-metrics-datadog-plugin-1.0.0rc7 -dcos-role master -metri
 ```
 
 ### Agent Systemd Unit
-Add a agent systemd unit file on your master node and save as `/etc/systemd/system/dcos-metrics-datadog-plugin.service`.
+Add an agent systemd unit file on your master node and save as `/etc/systemd/system/dcos-metrics-datadog-plugin.service`.
 
 ```
 [Unit]
