@@ -13,7 +13,9 @@ The Datadog metrics plugin for DC/OS supports sending metrics from the DC/OS met
 **Prerequisite:** 
 - DC/OS is installed
 - [Go programming environment](https://golang.org/doc/install) <!-- dcos-metrics must be run from within the go directory -->
-- GitHub
+-  Git:
+   -  **macOS:** Get the installer from [Git downloads](http://git-scm.com/download/mac).
+   -  **Unix/Linux:** See these <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank">installation instructions</a>.
 
 1. Clone the DC/OS metrics repository:
 
