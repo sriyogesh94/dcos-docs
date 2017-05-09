@@ -520,7 +520,8 @@ In a world where machines are are given numbers instead of names, tasks are sche
 <p>
   <strong>See Also:</strong>
   <ul>
-    <li><a href="https://github.com/erlang/epmd">Source</a></li>
+    <li><a href="http://erlang.org/doc/man/epmd.html">Documentation</a></li>
+    <li><a href="https://github.com/dcos/otp/tree/master/erts/epmd">Source</a></li>
   </ul>
 </p>
 </div>
