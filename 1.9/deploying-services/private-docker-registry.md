@@ -1,5 +1,5 @@
 ---
-post_title: Using a Private Docker Registry 
+post_title: Using a Private Docker Registry
 menu_order: 004.5
 ---
 
@@ -37,9 +37,7 @@ To supply credentials to pull from a private Docker registry, create an archive 
     $ cp docker.tar.gz /etc/
     ```
 
-    **Important:** The URI must be accessible by all nodes that will start your application. You can distribute the
-file to the local filesystem of all nodes, for example via RSYNC/SCP, or store it on a shared network drive like [Amazon
-S3](http://aws.amazon.com/s3/). Consider the security implications of your chosen approach carefully.
+**Important:** The URI must be accessible by all nodes that will start your application. You can distribute the file to the local filesystem of all nodes, for example via RSYNC/SCP, or store it on a shared network drive like [Amazon S3](http://aws.amazon.com/s3/). Consider the security implications of your chosen approach carefully.
 
 # Step 2: Add URI path to app definition
 
