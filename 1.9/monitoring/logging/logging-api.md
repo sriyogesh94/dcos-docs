@@ -13,6 +13,15 @@ For more information about using the Logging API, see [Logging](/docs/1.9/monito
 For usage examples, see [Logging API Examples](/docs/1.9/monitoring/logging/logging-api-examples/).
 
 
+# Compatibility
+
+The Logging API preview was added in DC/OS 1.9.0.
+
+Prior to DC/OS 1.9.0, all node, component, and container logs were managed by Logrotate.
+
+In DC/OS 1.9.0, node and component logs are managed by journald. However, the [Mesos task journald log sink was disabled](https://github.com/dcos/dcos/pull/1269) due to [journald performance issues](https://github.com/systemd/systemd/issues/5102). So container log files are still accessible via the [Mesos task sandbox files API](http://mesos.apache.org/documentation/latest/sandbox/).
+
+
 # Routes
 
 Access to the Logging API is proxied through the Admin Router on each node using the following route:
