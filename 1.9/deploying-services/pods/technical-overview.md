@@ -131,7 +131,7 @@ Pods also support host volumes. A pod volume parameter can declare a `host` fiel
 }
 ```
 
-**Note:** Data is not persisted through a restart of a Marathon pod.
+**Note:** Data does not persist if a pod is restarted.
 
 ## Containerizers
 
