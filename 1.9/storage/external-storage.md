@@ -86,7 +86,7 @@ You can specify an external volume in your Marathon app definition. [Learn more 
       "instances": 1,
       "cpus": 0.1,
       "mem": 32,
-      "cmd": "/usr/bin/tail -f /dev/null",
+      "cmd": "mkdir my-test-vol && touch my-test-vol/test.txt && ls my-test-vol/",
       "container": {
         "type": "MESOS",
         "volumes": [
@@ -136,7 +136,7 @@ Below is a sample app definition that uses a Docker container and specifies an e
       "instances": 1,
       "cpus": 0.1,
       "mem": 32,
-      "cmd": "/usr/bin/tail -f /dev/null",
+      "cmd": "mkdir my-test-vol && touch my-test-vol/test.txt && ls my-test-vol/",
       "container": {
         "type": "DOCKER",
         "docker": {
