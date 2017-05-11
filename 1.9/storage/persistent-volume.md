@@ -45,9 +45,9 @@ You also need to set the `residency` node in order to tell Marathon to setup a s
 ```
 
 <a name="abs-paths"></a>
-### Specifing an unsupported container path
+### Specifying an unsupported container path
 
-The value of `containerPath` must be relative to allow you to dynamically add a local persistent volume to a running container and to ensure consistency across operating systems. However, your application may require an absolute or container path, or a relative one with slashes.
+The value of `containerPath` must be relative to allow you to dynamically add a local persistent volume to a running container and to ensure consistency across operating systems. However, your application may require an absolute container path or a relative one with slashes.
 
 If your application does require an unsupported `containerPath`, configure two volumes. The first volume has the absolute container path you need and does not have the `persistent` parameter. The `hostPath` parameter will match the relative `containerPath` value for the second volume.
 
