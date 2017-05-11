@@ -13,15 +13,13 @@ This topic provides common usage examples for the Logging API.
 - [jq](https://stedolan.github.io/jq/)
 - [DC/OS](/docs/1.9/installing/)
 - [DC/OS CLI](/docs/1.9/cli/) must be installed, configured, and logged in.
-- Extract the `DCOS_URL` and `DCOS_AUTH_TOKEN` from the DC/OS CLI...
+- Extract `DCOS_URL` and `DCOS_AUTH_TOKEN` from the DC/OS CLI:
 
-The [DC/OS CLI](/docs/1.9/cli/) must be installed, configured, and logged in. Then, extract `DCOS_URL` and `DCOS_AUTH_TOKEN` from the DC/OS CLI:
-
-```
-DCOS_URL="$(dcos config show core.dcos_url)"
-DCOS_URL="${DCOS_URL%/}" # strip trailing slash, if present
-DCOS_AUTH_TOKEN="$(dcos config show core.dcos_acs_token)"
-```
+    ```
+    DCOS_URL="$(dcos config show core.dcos_url)"
+    DCOS_URL="${DCOS_URL%/}" # strip trailing slash, if present
+    DCOS_AUTH_TOKEN="$(dcos config show core.dcos_acs_token)"
+    ```
 
 # Node Logs
 
