@@ -60,7 +60,7 @@ Here is the output:
 
 In this example, the verify SSL certificates for HTTPS is set to `true`.
 
-``bash
+```bash
 dcos config set core.ssl_verify true
 ```
 
@@ -69,5 +69,3 @@ Here is the output:
 ```bash
 [core.ssl_verify]: set to 'true'
 ```
-
-
