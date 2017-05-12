@@ -8,7 +8,7 @@ You can define health checks for your DC/OS services. Health checks are defined 
 Health checks begin immediately when a task is launched. By default, health checks are run using the Marathon scheduler. Health checks with the Marathon scheduler only support the COMMAND protocol and each app is limited to a single health check.
 
 - The default health check leverages Mesos' knowledge of the task state `TASK_RUNNING => healthy`.
-- Marathon provides a `health` member of the task resource via the [REST API](/docs/1.8/usage/marathon/rest-api/) that you can add to your application definition.
+- Marathon provides a `health` member of the task resource via the [REST API](/docs/1.9/deploying-services/marathon-api/) that you can add to your application definition.
 
 A health check is considered passing if both of these conditions are met:
  
@@ -47,4 +47,4 @@ For example, here is the health check specified as JSON in an application defini
 
 And here is the same health check specified by using the DC/OS GUI.
 
-![GUI health check](/docs/1.8/img/health-check-gui.png)
+![GUI health check](/docs/1.9/img/health-check-gui.png)
