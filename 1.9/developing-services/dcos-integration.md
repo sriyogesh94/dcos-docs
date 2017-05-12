@@ -38,7 +38,7 @@ Tasks running in nested [Marathon app groups](https://mesosphere.github.io/marat
 
 Service health check information can be surfaced in the DC/OS services UI tab by:
 
-1. Defining one or more [healthChecks](/docs/1.9/deploying-services/creating-services/healthchecks/) in the service's Marathon template, for example:
+1. Defining one or more [healthChecks](/docs/1.9/deploying-services/creating-services/health-checks/) in the service's Marathon template, for example:
 
         "healthChecks": [
             {
