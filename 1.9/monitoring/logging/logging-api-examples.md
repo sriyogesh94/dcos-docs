@@ -80,7 +80,7 @@ curl -k -H "Authorization: token=${DCOS_AUTH_TOKEN}" "${DCOS_URL}/system/v1/agen
 ```
 
 **Important:**
-Journald task logging is disabled in DC/OS 1.9.0. For more information, see [Logging API: Compatibility]()/docs/1.9/monitoring/logging/logging-api/#compatibility).
+Journald task logging is disabled in DC/OS 1.9.0. For more information, see [Logging API: Compatibility](/docs/1.9/monitoring/logging/logging-api/#compatibility).
 
 # Tail
 
