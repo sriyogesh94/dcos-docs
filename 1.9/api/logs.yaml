@@ -10,7 +10,7 @@ info:
     endpoints. Therefore, on a DC/OS cluster, the final URL to query will resemble:
     `http://{cluster-url}/system/v1/agent/{agent-id}/logs/v1/{resource-path}`
     For more information, see
-    [DC/OS Logging](http://localhost:3000/docs/latest/monitoring/logging/) or
+    [DC/OS Logging](http://dcos.io/docs/latest/monitoring/logging/) or
     the [DC/OS Log Source](https://github.com/dcos/dcos-log).
 basePath: "/v1"
 parameters:
