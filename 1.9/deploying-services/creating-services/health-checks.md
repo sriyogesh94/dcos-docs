@@ -5,6 +5,8 @@ menu_order: 1
 
 You can define health checks for your DC/OS services. Health checks are defined on a per application basis, and are run against that application's tasks.
 
+Marathon health checks perform periodic checks on the containers distributed across a cluster to make sure they’re up and responding. If a container is down for any reason, Marathon will detect this and stop sending traffic to the container and try to restart it.
+
 Health checks begin immediately when a task is launched. By default, health checks are run using the Marathon scheduler. Health checks with the Marathon scheduler only support the COMMAND protocol and each app is limited to a single health check.
 
 - The default health check leverages Mesos' knowledge of the task state `TASK_RUNNING => healthy`.
@@ -16,6 +18,15 @@ A health check is considered passing if both of these conditions are met:
 - The response is received within the `timeoutSeconds` period. If a task fails more than `maxConsecutiveFailures` health checks consecutively, that task is killed.
 
 You can define health checks in your JSON application definition or by using the DC/OS GUI **Services** tab. 
+
+You can also define custom commands to be executed for health. These can be defined in your Dockerfile, for example:
+
+```json
+{
+  "protocol": "COMMAND",
+  "command": { "value": “source ./myHealthCheck.sh” }
+}
+```
 
 # Health check options
 When creating a service, you can configure JSON health checks in the DC/OS GUI or directly as JSON. This table shows the equivalent GUI fields and JSON options.
@@ -48,3 +59,6 @@ For example, here is the health check specified as JSON in an application defini
 And here is the same health check specified by using the DC/OS GUI.
 
 ![GUI health check](/docs/1.9/img/health-check-gui.png)
+
+## More information
+Check out [this blog post](https://mesosphere.com/blog/2017/05/16/13-factor-app-building-releasing-for-cloud-native/) for more information about health checks!
