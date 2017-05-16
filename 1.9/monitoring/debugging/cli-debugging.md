@@ -6,10 +6,9 @@ menu_order: 10
 
 The DC/OS CLI provides commands to debug services that are not deploying or behaving as expected.
 
-To see full logs, append `--log-level=debug` to any DC/OS CLI command.
+To see full logs, append `--log-level=debug` to any DC/OS CLI command. For example, to troubleshoot HDFS package installation, use this command:
 
-For example, to troubleshoot HDFS package installation, use
-```
+```bash
 dcos -—log-level="debug" package install hdfs
 ```
 For more information about log levels, consult the [CLI command reference](/docs/1.9/cli/command-reference/) or run `dcos --help`.
