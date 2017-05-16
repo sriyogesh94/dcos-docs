@@ -131,6 +131,8 @@ Pods also support host volumes. A pod volume parameter can declare a `host` fiel
 }
 ```
 
+**Note:** Data does not persist if pods are restarted.
+
 ## Containerizers
 
 Marathon pods support the [DC/OS Universal container runtime](/docs/1.9/deploying-services/containerizers/). The Universal container runtime [supports multiple images, such as Docker](http://mesos.apache.org/documentation/latest/container-image/).
