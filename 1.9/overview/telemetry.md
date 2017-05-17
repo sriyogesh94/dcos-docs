@@ -199,8 +199,6 @@ Here is an example of the JSON telemetry report that is collected:
             "health-unit-dcos-mesos-slave-service-unhealthy": 0,
             "health-unit-dcos-metronome-service-total": 1,
             "health-unit-dcos-metronome-service-unhealthy": 0,
-            "health-unit-dcos-minuteman-service-total": 3,
-            "health-unit-dcos-minuteman-service-unhealthy": 0,
             "health-unit-dcos-navstar-service-total": 3,
             "health-unit-dcos-navstar-service-unhealthy": 0,
             "health-unit-dcos-oauth-service-total": 1,
@@ -275,4 +273,4 @@ The DC/OS UI sends two types of notifications to [Segment](https://segment.com/d
 
 ## Opt-Out
 
-You can also choose to opt-out of the telemetry features. For more information, see the [documentation](/docs/1.9/administration/installing/opt-out/).
+You can also choose to opt-out of the telemetry features. For more information, see the [documentation](/docs/1.9/installing/opt-out/).
