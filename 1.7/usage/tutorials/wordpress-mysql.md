@@ -219,4 +219,4 @@ At this address, you will be greeted by the WordPress setup page. From there, yo
 
 ## Conclusions
 
-**Note:** For the purposes of this tutorial, we haven't touched on how to ensure that the MySQL data can be persisted. Head over to the [Cassandra](/docs/1.7/usage/tutorials/cassandra) tutorial to learn how to deploy stateful applications in DC/OS.
+**Note:** For the purposes of this tutorial, we haven't touched on how to ensure that the MySQL data can be persisted. Head over to the [Cassandra](/docs/1.7/usage/tutorials/iot_pipeline/) tutorial to learn how to deploy stateful applications in DC/OS.
