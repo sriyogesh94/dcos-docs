@@ -5,8 +5,8 @@ menu_order: 5
 ---
 
 # Prerequisites
-* A [running DC/OS cluster](/docs/1.9/usage/tutorials/dcos-101/cli/) with [the DC/OS CLI installed](/docs/1.9/usage/tutorials/dcos-101/cli/).
-* [app1](/docs/1.9/usage/tutorials/dcos-101/app1/) deployed and running in your cluster.
+* A [running DC/OS cluster](/docs/1.9/tutorials/dcos-101/cli/) with [the DC/OS CLI installed](/docs/1.9/tutorials/dcos-101/cli/).
+* [app1](/docs/1.9/tutorials/dcos-101/app1/) deployed and running in your cluster.
 
 # Objective
 You already deployed an app which is running internally in your cluster (i.e., it is not targeted to users directly). Next, you will deploy an app which provides a web GUI to users.
@@ -52,9 +52,9 @@ You want to deploy this app natively, i.e., not relying on Docker (which is thir
 # Deep Dive
 You have now deployed apps in two different ways: using Docker (app1) and natively (app2).
 Let us explore the differences in some more detail.
-DC/OS uses [containerizers](/docs/1.9/usage/containerizers/) to run tasks in containers. Running tasks in containers offers a number of benefits, including the ability to isolate tasks from one another and control task resources programmatically. DC/OS supports the Mesos containerizer types DC/OS Universal container runtime and Docker containerizer.
+DC/OS uses [containerizers](/docs/1.9/deploying-services/containerizers/) to run tasks in containers. Running tasks in containers offers a number of benefits, including the ability to isolate tasks from one another and control task resources programmatically. DC/OS supports the Mesos containerizer types DC/OS Universal container runtime and Docker containerizer.
 
 For your first app, you actually used a Docker container image to package app1's depencies (remember: never rely on depencies being installed on an agent!) and then used the Docker containerizer to execute it. As the Docker containerizer internally uses the [Docker runtime](https://docs.docker.com/engine/userguide/intro/), you effectively used the Docker runtime.
 
 For your second app, you did not have any depencies and hence could rely on the default DC/OS Universal container runtime. Internally, both runtimes use the same OS features for isolation, namely [cgroups](https://en.wikipedia.org/wiki/Cgroups) and [namespaces](https://en.wikipedia.org/wiki/Linux_namespaces).
-This actually makes it possible to use the DC/OS Universal container runtime for running Docker images. Check the [DC/OS Universal container runtime](/docs/1.9/usage/containerizers/) documentation for details.
+This actually makes it possible to use the DC/OS Universal container runtime for running Docker images. Check the [DC/OS Universal container runtime](/docs/1.9/deploying-services/containerizers/) documentation for details.

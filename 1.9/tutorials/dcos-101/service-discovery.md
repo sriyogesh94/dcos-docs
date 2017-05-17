@@ -5,20 +5,20 @@ menu_order: 4
 ---
 
 # Prerequisites
-* A [running DC/OS cluster](/docs/1.9/usage/tutorials/dcos-101/cli/) with [the DC/OS CLI installed](/docs/1.9/usage/tutorials/dcos-101/cli/).
-* [app1](/docs/1.9/usage/tutorials/dcos-101/app1/) deployed and running in your cluster.
+* A [running DC/OS cluster](/docs/1.9/tutorials/dcos-101/cli/) with [the DC/OS CLI installed](/docs/1.9/tutorials/dcos-101/cli/).
+* [app1](/docs/1.9/tutorials/dcos-101/app1/) deployed and running in your cluster.
 
 # Objective
 Your application in the previous part used `redis.marathon.l4lb.thisdcos.directory:6379` as the address for connecting to redis. As redis might be running on any agent in the cluster (and furthermore on different ports), how does this address link to the actual running redis instance?
 In this section, you will learn about DC/OS service discovery by exploring the different options for service discovery for apps in DC/OS.
 
 # Steps
-  [Service discovery](/docs/1.9/usage/service-discovery/) allows you to connect to your applications without necessarily knowing where they are running. Service discovery is particularly useful in cases where applications may fail and be restarted on a different host.
+  [Service discovery](/docs/1.9/networking/) allows you to connect to your applications without necessarily knowing where they are running. Service discovery is particularly useful in cases where applications may fail and be restarted on a different host.
 
   DC/OS provides two options for service discovery: Mesos-DNS and Named virtual IPs.
   * SSH into your cluster to see how these service discovery methods work: `dcos node ssh --master-proxy --leader`,
   <a name="mesosdns"></a>
-  * [Mesos-DNS](/docs/1.9/usage/service-discovery/mesos-dns/) assigns a Mesos-DNS for every Marathon app. The naming pattern is  *task.scheduler.mesos* and the default scheduler for jobs is `marathon`, so the Mesos-DNS name for your redis service is *redis.marathon.mesos*.
+  * [Mesos-DNS](/docs/1.9/networking/mesos-dns/) assigns a Mesos-DNS for every Marathon app. The naming pattern is  *task.scheduler.mesos* and the default scheduler for jobs is `marathon`, so the Mesos-DNS name for your redis service is *redis.marathon.mesos*.
 
   Let's use [dig](https://linux.die.net/man/1/dig) to retrieve the address record (also called the A record): `dig redis.marathon.mesos`.
 
@@ -45,7 +45,7 @@ In this section, you will learn about DC/OS service discovery by exploring the d
   So you now know that your redis app is running on `10.0.0.43:30585`.
 
   <a name="namedvips"></a>
-  * [Named Vips](/docs/1.9/usage/service-discovery/load-balancing-vips/) allow you to assign name/port pairs to your apps. Named VIPs allow you to assign meaningful names to your apps.
+  * [Named Vips](/docs/1.9/networking/load-balancing-vips/) allow you to assign name/port pairs to your apps. Named VIPs allow you to assign meaningful names to your apps.
   For example, you can assign a named VIP to your redis service by adding the following to the package definition:
 
   ~~~

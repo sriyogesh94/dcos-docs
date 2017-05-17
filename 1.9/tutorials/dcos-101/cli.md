@@ -18,7 +18,7 @@ By the end of this section you will have installed the DC/OS CLI and used it to 
 
 # Steps
   * Install the DC/OS CLI
-    * Follow the steps [here](/docs/1.9/usage/cli/install/) or the `Install CLI` instruction in the lower left corner of the DC/OS GUI.
+    * Follow the steps [here](/docs/1.9/cli/install/) or the `Install CLI` instruction in the lower left corner of the DC/OS GUI.
     * Make sure you are authorized to connect to your cluster by running `dcos auth login`. This is necessary to prevent access from unauthorized people to your cluster.
     * You can also add/invite friends and co-workers to your cluster. See [user management documentation](/docs/1.9/administration/id-and-access-mgt/user-management/) for details
 
@@ -26,7 +26,7 @@ By the end of this section you will have installed the DC/OS CLI and used it to 
       * Check the running services with `dcos service`. Unless you already installed additional services, there should be two services running on your cluster: Marathon (basically the DC/OS init system) and metronome (basically the DC/OS cron scheduler).
       * Check the connected nodes with `dcos node`. You should be able to see your connected agents nodes (i.e., not the master nodes) in your cluster.
       * Explore the logs of the leading mesos master with `dcos node log --leader`. Mesos is basically the kernel of DC/OS and this tutorial explores the Mesos logs at multiple times during this tutorial.
-      * To explore more CLI options, enter the `dcos help` command. There are also help options of the individual commands available e.g., `dcos node --help`. Alternatively, check the [CLI documentation](/docs/1.9/usage/cli/).
+      * To explore more CLI options, enter the `dcos help` command. There are also help options of the individual commands available e.g., `dcos node --help`. Alternatively, check the [CLI documentation](/docs/1.9/cli/).
 
 # Outcome
 Congratulations! You have successfully connected to your cluster using the DC/OS CLI, and started exploring some of the CLI commands.

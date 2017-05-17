@@ -6,7 +6,7 @@ menu_order: 2
 Welcome to part 2 of the DC/OS 101 Tutorial.
 
 # Prerequisites
-By now, you have a running DC/OS cluster and the DC/OS CLI installed and configured. If that isn't the case, please follow these [instructions](/docs/1.9/usage/tutorials/dcos-101/cli/).
+By now, you have a running DC/OS cluster and the DC/OS CLI installed and configured. If that isn't the case, please follow these [instructions](/docs/1.9/tutorials/dcos-101/cli/).
 You use [jq](https://stedolan.github.io/jq/) as a json processor to simplify some of the commands below.
 
 # Objective
@@ -73,4 +73,4 @@ By the end of this session you will have installed your first service - Redis - 
   It enables you to easily install services such as Apache Spark or Apache Cassandra in your cluster without having to deal with manual configuration. Universe packages are by many different contributors. There are two categories of packages right now:
   First, selected packages that have undergone testing and certification. Second, community packages, which are not as well tested.
 
-  You can also add your own repo that includes your custom packages. See [the documentation](https://docs.mesosphere.com/1.9/usage/repo/) for details.
+  You can also add your own repo that includes your custom packages. See [the documentation](https://docs.mesosphere.com/1.9/administering-clusters/repo/) for details.

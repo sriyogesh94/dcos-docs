@@ -5,8 +5,8 @@ menu_order: 6
 ---
 
 # Prerequisites
-* A [running DC/OS cluster](/docs/1.9/usage/tutorials/dcos-101/cli/) with [the DC/OS CLI installed](/docs/1.9/usage/tutorials/dcos-101/cli/).
-* [app2](/docs/1.9/usage/tutorials/dcos-101/app2/) deployed and running in your cluster.
+* A [running DC/OS cluster](/docs/1.9/tutorials/dcos-101/cli/) with [the DC/OS CLI installed](/docs/1.9/tutorials/dcos-101/cli/).
+* [app2](/docs/1.9/tutorials/dcos-101/app2/) deployed and running in your cluster.
 
 # Objective
 In this section you will make app2 available from outside the cluster by running it on a public agent node with Marathon-LB.
