@@ -9,7 +9,7 @@ menu_order: 8
 * [app2](/docs/1.9/usage/tutorials/dcos-101/app2/) deployed and running in your cluster.
 
 # Objective
-In this section we will learn how to monitor and understand our resource utilization, how resource limits are enforced, and how to debug resource management issues.
+In this section you will learn how to monitor and understand your resource utilization, how resource limits are enforced, and how to debug resource management issues.
 
 # Steps
 Resource management and resource isolation between tasks are core challenges for an operating system, which needs to manage resources.
@@ -32,11 +32,11 @@ Resource management and resource isolation between tasks are core challenges for
   ...
 ```
 
-  *Note:* The cpus, men, disk, and gpus parameters above specify the allocated resources and therefore define the maximum amount of resources a task can use. This number is not necessarily the same as the amount of resources a task actually uses. That number is usually lower.
+  *Note:* The `cpus`, `mem`, `disk`, and `gpus` parameters above specify the allocated resources and therefore define the maximum amount of resources a task can use. This number is not necessarily the same as the amount of resources a task actually uses. That number is usually lower.
 
   ## Scaling Applications
 
-  When we need more resources for our app, we can scale in two dimensions: horizontally and vertically.
+  When you need more resources for your app, you can scale in two dimensions: horizontally and vertically.
 
   ### Scale horizontally by increasing the instance count
 
@@ -76,7 +76,7 @@ Resource management and resource isolation between tasks are core challenges for
       * Use `dcos marathon app list` to check that the `restart` deployment is stuck.
       * `dcos marathon deployment list`.
       * The problem here is that there are no resources offers large enough to match the request
-      * Solution: Provision larger nodes or scale the app down to a level where it fits onto the free resources on a single node: `dcos marathon app update /dcos-101/app2 --force cpus=1`. Note that we have to use the force flag again.
+      * Solution: Provision larger nodes or scale the app down to a level where it fits onto the free resources on a single node: `dcos marathon app update /dcos-101/app2 --force cpus=1`. Note that you have to use the force flag again.
 
   ## Debugging resource isolation
 
@@ -85,11 +85,11 @@ Resource management and resource isolation between tasks are core challenges for
   * Deploy [memory eater app](https://github.com/joerg84/dcos-101/blob/master/oomApp/oomApp.go)
       * `dcos marathon app add https://raw.githubusercontent.com/joerg84/dcos-101/master/oomApp/oomApp.json`
   * You will see it restarting over and over again...
-  * Check the Marathon Log. Potentially we can see the oom already here, but unfortunately not always...
+  * Check the Marathon Log. Potentially you can see the oom already here, but unfortunately not always...
   * Problem here: The kernel is killing the app, which is not  necessarly visible to DC/OS.
   * SSH to an agent where the app has been running `dcos node ssh --master-proxy --mesos-id=$(dcos task oom-app --json | jq -r '.[] | .slave_id')`
   * Check kernel log `journalctl -f _TRANSPORT=kernel`
-  * Here we see something like ` Memory cgroup out of memory: Kill process 10106 (oomApp) score 925 or sacrifice child; Killed process 10390 (oomApp) total-vm:3744760kB, anon-rss:60816kB, file-rss:1240kB, shmem-rss:0kB`
+  * Here you see something like ` Memory cgroup out of memory: Kill process 10106 (oomApp) score 925 or sacrifice child; Killed process 10390 (oomApp) total-vm:3744760kB, anon-rss:60816kB, file-rss:1240kB, shmem-rss:0kB`
   * Solution: There are two potential reasons for your application using too much memory: Either your app uses too much memory by accident (e.g., a memleak), or you have allocated too little memory for it. So, check your app for correct behavior and/or increase the allocated memory.
   * Remove app `dcos marathon app remove /dcoc-101/oom-app`.
 
