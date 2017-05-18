@@ -20,7 +20,7 @@ By the end of this section you will have installed the DC/OS CLI and used it to 
   * Install the DC/OS CLI
     * Follow the steps [here](/docs/1.9/cli/install/) or the `Install CLI` instruction in the lower left corner of the DC/OS GUI.
     * Make sure you are authorized to connect to your cluster by running `dcos auth login`. This is necessary to prevent access from unauthorized people to your cluster.
-    * You can also add/invite friends and co-workers to your cluster. See [user management documentation](/docs/1.9/administration/id-and-access-mgt/user-management/) for details
+    * You can also add/invite friends and co-workers to your cluster. See [user management documentation](/docs/1.9/security/user-management/) for details
 
   * Explore the cluster:
       * Check the running services with `dcos service`. Unless you already installed additional services, there should be two services running on your cluster: Marathon (basically the DC/OS init system) and metronome (basically the DC/OS cron scheduler).
@@ -37,7 +37,7 @@ You have already encountered several DC/OS components (including Mesos, Marathon
 But what other components make up DC/OS?
 
 ## DC/OS components
-Here are the DC/OS components that are relevant to this tutorial. A full description of all components can be found in the [documentation](/docs/1.9/overview/components/).
+Here are the DC/OS components that are relevant to this tutorial. A full description of all components can be found in the [documentation](/docs/1.9/overview/architecture/components/).
 * [Marathon](/docs/1.9/overview/architecture/components/#marathon) starts and monitors DC/OS applications and services.
 * Apache [Mesos](/docs/1.9/overview/architecture/components/#apache-mesos) is the kernel of DC/OS and responsible for low-level task maintenance.
 * [Mesos DNS](/docs/1.9/overview/architecture/components/#mesos-dns) provides service discovery within the cluster.
