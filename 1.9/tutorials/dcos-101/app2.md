@@ -40,7 +40,7 @@ You want to deploy this app natively, i.e., not relying on Docker (which is thir
        1. Check the total number of keys using app1: `dcos task log app1`
        2. Check redis directly
           * SSH into node where redis is running: `dcos node ssh --master-proxy --mesos-id=$(dcos task  redis --json |  jq -r '.[] | .slave_id')`
-          * NOTE: This requires you to have the ssh-key required to connect to the machines added to your local SSH agent (e.g., via ssh-add my_public_key). Check the [documentation](/docs/1.9/administration/access-node/sshcluster/) for further details.
+          * NOTE: This requires you to have the ssh-key required to connect to the machines added to your local SSH agent (e.g., via ssh-add my_public_key). Check the [documentation](/docs/1.9/administering-clusters/sshcluster/) for further details.
        * Because redis is running in a Docker container, you need to list all Docker containers using the `docker ps` command to get the *ContainerID*.
          * Connect to a bash session to the running container: `sudo docker exec -i -t CONTAINER_ID  /bin/bash`
          * Start the redis CLI: `redis-cli`
