@@ -69,7 +69,7 @@ As a stopgap during testing, you may be able to manually run the Datadog plugin 
 }
 ```
 
-### Install the DC/OS Datadog metrics plugin
+## Install the DC/OS Datadog metrics plugin
 When you're happy with the test results, you'll need to install the plugin into your cluster. For each host in your cluster, transfer your binary for the plugin and then add a systemd unit to manage the service. This unit differs slightly between agent and master hosts.
 
 ### Create a Valid Auth Token for DC/OS
