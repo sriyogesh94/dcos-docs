@@ -1,5 +1,6 @@
 ---
-title: Networking
+post_title: Ports Management
+menu_order: 05
 ---
 
 <!-- do DC/OS users need to know about the networking API changes? it's only relevant if they've modified their native marathon instances AFAIK -->
