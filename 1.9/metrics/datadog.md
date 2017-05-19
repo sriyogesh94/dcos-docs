@@ -11,6 +11,7 @@ The Datadog metrics plugin for DC/OS supports sending metrics from the DC/OS met
 ## Build the plugin
 
 **Prerequisite:** 
+
 - DC/OS is installed
 - [Go programming environment](https://golang.org/doc/install) <!-- dcos-metrics must be run from within the go directory -->
 -  Git:
@@ -51,7 +52,7 @@ Install the `datadog` package in DC/OS:
 1.  Click **INSTALL PACKAGE** -> **ADVANCED INSTALLATION** and enter [your Datadog API_KEY](https://app.datadoghq.com/account/settings#api).
 1.  Click **REVIEW AND INSTALL** to complete your installation.
 
-After a few minutes, a Datadog agent will be running in the cluster at `datadog-agent.marathon.mesos:8125`. This is the default location used by the Datadog plugin.
+After a few minutes, a Datadog agent will be running in the cluster at the default location used by the Datadog plugin: `datadog-agent.marathon.mesos:8125`.
 
 ## Test the DC/OS Datadog metrics plugin (agents only)
 As a stopgap during testing, you may be able to manually run the Datadog plugin on your agents by running it as a Marathon task. You must first upload your binary to a web server that's visible to your cluster, then create a Marathon application like the following (with customized `cmd`, `instances`, and `uris` to meet your needs):
@@ -89,7 +90,7 @@ You will use this auth token below.
     ```
     
     
-1.  [SSH to your master node] and assign permissions to the plugin. 
+1.  [SSH to your master node](/docs/1.9/administering-clusters/sshcluster/) and assign permissions to the plugin. 
 
     ```bash
     dcos node ssh --master-proxy --leader
