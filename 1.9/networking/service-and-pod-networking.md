@@ -1,6 +1,6 @@
 ---
-post_title: Ports Management
-menu_order: 05
+post_title: Service and Pod Networking
+menu_order: 0.5
 ---
 
 <!-- do DC/OS users need to know about the networking API changes? it's only relevant if they've modified their native marathon instances AFAIK -->
@@ -12,6 +12,8 @@ While Marathon continues to support the [legacy ports API](ports.html) that was 
 
 Applications using the old networking API fields will be automatically migrated to the new networking API in Marathon 1.5.x. See the [Migrating to the 1.5 Networking API]({{ site.baseurl }}/docs/upgrade/network-api-migration.html) for more information on changes you may need to make to your applications.
 -->
+
+This document describes how to specify networking modes and assign ports in the service definition for a DC/OS Service you are creating.
 
 # VIPs
 
