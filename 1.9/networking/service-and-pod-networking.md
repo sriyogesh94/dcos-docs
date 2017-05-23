@@ -3,16 +3,6 @@ post_title: Service and Pod Networking
 menu_order: 0.5
 ---
 
-<!-- do DC/OS users need to know about the networking API changes? it's only relevant if they've modified their native marathon instances AFAIK -->
-
-<!-- cut
-This document describes the networking API released as of Marathon 1.5.
-
-While Marathon continues to support the [legacy ports API](ports.html) that was shipped in versions 1.4.x and prior, all new applications should be declared using the new, non-deprecated networking API fields that are documented here.
-
-Applications using the old networking API fields will be automatically migrated to the new networking API in Marathon 1.5.x. See the [Migrating to the 1.5 Networking API]({{ site.baseurl }}/docs/upgrade/network-api-migration.html) for more information on changes you may need to make to your applications.
--->
-
 This document describes how to specify networking modes and assign ports in the service definition for a DC/OS Service you are creating.
 
 # VIPs
@@ -31,15 +21,17 @@ In `host` networking, an application shares the network namespace of the Mesos a
 
 In container networking, an application should be allocated its own network namespace and IP address;
 Mesos network isolators are responsible for providing backend support for this.
-When using the Docker containerizer, this translates to a Docker "user" network. <!-- I don't understand this part well enough to know if this is relevant for DC/OS --> You can name your container network in the `networks.container` parameter of your service definition. If yo udo not provide a name for your container network, it will have the default container network name, `DEFAULT NAME`. <!-- what is the default name? -->
+When using the Docker containerizer, this translates to a Docker "user" network. You can name your container network in the `networks.container` parameter of your service definition. If you do not provide a name for your container network, it will have the default container network name, `DEFAULT NAME`.
 
 ## `container/bridge` Networking
 
 Similar to `container` networking, an application should be allocated its own network namespace and IP address;
 Mesos CNI provides a special `mesos-bridge` that application containers are attached to.
-When using the Docker containerizer, this translates to the Docker "default bridge" network. <!-- same as above - what does this mean, and is it relevant to a DC/OS user? -->
+When using the Docker containerizer, this translates to the Docker "default bridge" network.
 
-*NOTE*: The UCR and Docker Containerizer support all network modes.
+Bridge mode networking allows you to map host ports to ports inside your containers. It is particularly useful if you are using a container image with fixed port assignments that you can't modify.
+
+**Note:**: The UCR and Docker Containerizer support all network modes.
 
 # Usage
 
@@ -101,6 +93,11 @@ Marathon communicates *container-port*/*host-port* links ("mappings") to Mesos w
 * The special `servicePort` value of `0` tells Marathon to select any *service-port* from the configured *service-port* range.
 
 ## Port Definitions
+You can specify the ports that are available through the `portDefinitions` array.
+
+By default, `requirePorts` is set to false. This means that you need to use a service discovery solution such as HAProxy to proxy requests from service ports to host ports. If you don't use a service discovery solution to proxy requests from service ports to host ports, you can set `requirePorts` to `true`. This will tell Marathon to only schedule the service on agents that have these ports available.
+
+You can specify a `protocol`, a `name`, and `labels` for each definition in the `portDefinitions` array. When starting new tasks, Marathon will pass this metadata to Mesos. Mesos will expose this information in the `discovery` field of the task. Custom network discovery solutions can consume this field.
 
 ### Summary
 
@@ -128,6 +125,20 @@ Marathon communicates *container-port*/*host-port* links ("mappings") to Mesos w
 * Ignored when used in conjunction with other networking modes.
     * **NOTE:** Future versions of Marathon may fail to validate services that declare `container.portMappings` with network modes other than `container` or `container/bridge`.
 * When used in conjunction with multiple container networks, each mapping entry that specifies a `hostPort` must also declare a `networkNames` value with a single item, identifying the network for which the mapping applies (a single `hostPort` may be mapped to only one container network, and `networkNames` defaults to all container networks for a pod or service).
+
+## Referencing Ports
+
+Once you have created your port mappings, you can reference the `host-port`s in a Dockerfile as follows:
+
+```bash
+CMD ./my-app --http-port=$PORT_HTTP --https-port=$PORT_HTTPS --monitoring-port=$PORT_MON
+```
+
+Alternatively, if you are not using Docker, or had specified a `cmd` in your service definition, it works in the same way:
+
+```json
+"cmd": "./my-app --http-port=$PORT_HTTP --https-port=$PORT_HTTPS --monitoring-port=$PORT_MON"
+```
 
 # Downward API
 
@@ -193,7 +204,8 @@ You can specify the ports that are available through the `portDefinitions` array
     ],
 ```
 
-In this example, we specify three dynamically assigned host ports, which would then be available to our command via the environment variables `$PORT_HTTP`, `$PORT_HTTPS` and `$PORT_MON`. <!-- what's meant by "command"? Is it that they're available to the app/service? -->
+In this example, we specify three dynamically assigned host ports, which would then be available to our command via the environment variables `$PORT_HTTP`, `$PORT_HTTPS` and `$PORT_MON`.
+
 Marathon will also associate three dynamically selected service ports with these three host ports.
 
 You can also specify specific service ports:
@@ -220,7 +232,7 @@ If you want your service's service ports to be equal to its host ports, you can 
 
 The service and host ports (including the environment variables `$PORT_HTTP`, `$PORT_HTTPS`, and `$PORT_MON`), are both now `2001`, `2002` and `3000`.
 
-Each *port-definition* in a `portDefinitions` array allows you to specify a `protocol`, a `name`, and `labels` for each definition. When starting new tasks, Marathon will pass this metadata to Mesos. Mesos will expose this information in the `discovery` field of the task. Custom network discovery solutions can consume this field. <!-- this flow seems important and should come earlier -->
+Each *port-definition* in a `portDefinitions` array allows you to specify a `protocol`, a `name`, and `labels` for each definition. When starting new tasks, Marathon will pass this metadata to Mesos. Mesos will expose this information in the `discovery` field of the task. Custom network discovery solutions can consume this field.
 
 Example *port-definition* requesting a dynamic `tcp` port named `http` with the label `VIP_0` set to `10.0.0.1:80`:
 
@@ -236,9 +248,9 @@ Example *port-definition* requesting a dynamic `tcp` port named `http` with the 
 ```
 
 The `port` field is mandatory.
-The `protocol`, `name` and `labels` fields are optional.
+The `protocol`, `name`, and `labels` fields are optional.
 
-### Referencing Ports <!-- this is super important -->
+### Referencing Ports
 
 You can reference the *host-port*s in the Dockerfile for our fictitious app as follows:
 
@@ -249,10 +261,10 @@ CMD ./my-app --http-port=$PORT_HTTP --https-port=$PORT_HTTPS --monitoring-port=$
 Alternatively, if you are not using Docker, or had specified a `cmd` in your service definition, it works in the same way:
 
 ```json
-    "cmd": "./my-app --http-port=$PORT_HTTP --https-port=$PORT_HTTPS --monitoring-port=$PORT_MON"
+"cmd": "./my-app --http-port=$PORT_HTTP --https-port=$PORT_HTTPS --monitoring-port=$PORT_MON"
 ```
 
-## `container` and `container/bridge` Mode <!-- also needs to come earlier -->
+## `container` and `container/bridge` Mode
 
 Bridge mode networking allows you to map host ports to ports inside your containers.
 It is particularly useful if you are using a container image with fixed port assignments that you can't modify.
@@ -287,7 +299,7 @@ Specify `container` mode through the `network` property:
 ```
 
 If there is a `--default_network_name` configured for Marathon, then specifying a network name for the `container` network is optional:
-`container` networks with an unspecified (`null`) `name` will inherit the value of the `--default_network_name` flag. <!-- I don't think this is needed for DC/OS users? -->
+`container` networks with an unspecified (`null`) `name` will inherit the value of the `--default_network_name` flag.
 
 ### Specifying Ports
 
