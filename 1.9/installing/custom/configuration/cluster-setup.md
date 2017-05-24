@@ -2,6 +2,7 @@
 post_title: Cluster Setup
 menu_order: 100
 ---
+<!-- Use # for optional parameters? -->
 
 ```yaml
 agent_list:
