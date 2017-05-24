@@ -1,24 +1,37 @@
 ---
-post_title: Install Configuration Parameters
-nav_title: Config
+post_title: Configuration Reference
 menu_order: 600
 ---
 
-These configuration parameters are specified in [YAML][1] format in your config.yaml file. During DC/OS installation the configuration file is used to generate a customized DC/OS build.
-
-*  [Cluster Setup](#cluster-setup)
-*  [Security and Authentication](#security-and-authentication)
-*  [Networking](#networking)
-*  [Performance and Tuning](#performance-and-tuning)
-*  [Example Configurations](#examples1)
-
-# <a name="cluster-setup"></a>Cluster Setup
+|                                        | Description                                                                                                                                               |
+|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| agent_list                             | This parameter specifies a YAML nested list (`-`) of IPv4 addresses to your [private agent](/1.9/overview/concepts/#private) host names.                  |
+| aws_template_storage_bucket            | This parameter specifies the name of your S3 bucket.                                                                                                      |
+| aws_template_storage_bucket_path       | This parameter specifies the S3 bucket storage path.                                                                                                      |
+| aws_template_upload                    | This parameter specifies whether to automatically upload the customized advanced templates to your S3 bucket.                                             |
+| aws_template_storage_access_key_id     | This parameters specifies the AWS [Access Key ID](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html).    |
+| aws_template_storage_secret_access_key | This parameter specifies the AWS [Secret Access Key](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html). |
+| bootstrap_url                          | This required parameter specifies the URI path for the DC/OS installer to store the customized DC/OS build files.                                         |
+| cluster_docker_credentials             | This parameter specifies a dictionary of Docker credentials to pass.                                                                                      |
+| cluster_docker_credentials_dcos_owned  | This parameter specifies whether to store the credentials file in `/opt/mesosphere` or `/etc/mesosphere/docker_credentials`.                              |
+| cluster_docker_credentials_enabled     | This parameter specifies whether to pass the Mesos `--docker_config` option to Mesos.                                                                     |
+| cluster_docker_registry_url            | This parameter specifies a custom URL that Mesos uses to pull Docker images from.                                                                         |
+| cluster_name                           | This parameter specifies the name of your cluster.                                                                                                        |
+| cosmos_config                          | This parameter specifies a dictionary of packaging configuration to pass to the [DC/OS Package Manager (Cosmos)](https://github.com/dcos/cosmos).         |
+| staged_package_storage_uri             | This parameter specifies where to temporarily store DC/OS packages while they are being added.                                                            |
+| package_storage_uri                    | This parameter specifies where to permanently store DC/OS packages.                                                                                       |
 
 ### agent_list
 This parameter specifies a YAML nested list (`-`) of IPv4 addresses to your [private agent](/docs/1.9/overview/concepts/#private) host names.
 
 ### bootstrap_url
 This required parameter specifies the URI path for the DC/OS installer to store the customized DC/OS build files. If you are using the automated DC/OS installer, you should specify `bootstrap_url: file:///opt/dcos_install_tmp` unless you have moved the installer assets. By default the automated DC/OS installer places the build files in `file:///opt/dcos_install_tmp`.
+
+### <a name="check-time"></a>check_time
+This parameter specifies whether to check if Network Time Protocol (NTP) is enabled during DC/OS startup. It recommended that NTP is enabled for a production environment.
+
+*  `check_time: 'true'` Check if NTP is enabled during startup. You will receive an error if this is not enabled. This is the default value.
+*  `check_time: 'false'` Do not check if NTP is enabled during startup.
 
 ### cluster_docker_credentials
 This parameter specifies a dictionary of Docker credentials to pass. 
@@ -62,6 +75,70 @@ specified.
 * **package_storage_uri**
   This parameter specifies where to permanently store DC/OS packages. The value must be a file URL,
   for example, `file:///var/lib/dcos/cosmos/packages`.
+  
+### <a name="dcos-overlay-enable"></a>dcos_overlay_enable
+
+This parameter specifies whether to enable DC/OS virtual networks.
+
+**Important:** Virtual networks require minimum Docker version 1.11. If you are using Docker 1.10 or earlier, you must specify `dcos_overlay_enable: 'false'`. For more information, see the [system requirements](/docs/1.9/installing/custom/system-requirements/).
+
+*  `dcos_overlay_enable: 'false'` Do not enable the DC/OS virtual network.
+*  `dcos_overlay_enable: 'true'` Enable the DC/OS virtual network. This is the default value. When the virtual network is enabled you can also specify the following parameters:
+
+    *  `dcos_overlay_config_attempts` This parameter specifies how many failed configuration attempts are allowed before the overlay configuration modules stop trying to configure an virtual network.
+
+        __Tip:__ The failures might be related to a malfunctioning Docker daemon.
+
+    *  `dcos_overlay_mtu` This parameter specifies the maximum transmission unit (MTU) of the Virtual Ethernet (vEth) on the containers that are launched on the overlay.
+
+    *  `dcos_overlay_network` This group of parameters define an virtual network for DC/OS.  The default configuration of DC/OS provides an virtual network named `dcos` whose YAML configuration is as follows:
+
+        ```
+        dcos_overlay_network:
+            vtep_subnet: 44.128.0.0/20
+            vtep_mac_oui: 70:B3:D5:00:00:00
+            overlays:
+              - name: dcos
+                subnet: 9.0.0.0/8
+                prefix: 26
+        ```
+
+        *  `vtep_subnet` This parameter specifies a dedicated address space that is used for the VxLAN backend for the virtual network. This address space should not be routeable from outside the agents or master.
+        *  `vtep_mac_oui` This parameter specifies the MAC address of the interface connecting to it in the public node.
+            
+            **Important:** The last 3 bytes must be `00`.
+        *  __overlays__
+            *  `name` This parameter specifies the canonical name (see [limitations](/docs/1.9/networking/virtual-networks/) for constraints on naming virtual networks).
+            *  `subnet` This parameter specifies the subnet that is allocated to the virtual network.
+            *  `prefix` This parameter specifies the size of the subnet that is allocated to each agent and thus defines the number of agents on which the overlay can run. The size of the subnet is carved from the overlay subnet.
+
+ For more information see the [example](#overlay) and [documentation](/docs/1.9/networking/virtual-networks/).
+ 
+### <a name="dns-search"></a>dns_search
+This parameter specifies a space-separated list of domains that are tried when an unqualified domain is entered (e.g. domain searches that do not contain &#8216;.&#8217;). The Linux implementation of `/etc/resolv.conf` restricts the maximum number of domains to 6 and the maximum number of characters the setting can have to 256. For more information, see <a href="http://man7.org/linux/man-pages/man5/resolv.conf.5.html">man /etc/resolv.conf</a>.
+
+A `search` line with the specified contents is added to the `/etc/resolv.conf` file of every cluster host. `search` can do the same things as `domain` and is more extensible because multiple domains can be specified.
+
+In this example, `example.com` has public website `www.example.com` and all of the hosts in the datacenter have fully qualified domain names that end with `dc1.example.com`. One of the hosts in your datacenter has the hostname `foo.dc1.example.com`. If `dns_search` is set to &#8216;dc1.example.com example.com&#8217;, then every DC/OS host which does a name lookup of foo will get the A record for `foo.dc1.example.com`. If a machine looks up `www`, first `www.dc1.example.com` would be checked, but it does not exist, so the search would try the next domain, lookup `www.example.com`, find an A record, and then return it.
+
+```yaml
+dns_search: dc1.example.com dc1.example.com example.com dc1.example.com dc2.example.com example.com
+```
+
+### <a name="docker-remove"></a>docker_remove_delay
+This parameter specifies the amount of time to wait before removing stale Docker images stored on the agent nodes and the Docker image generated by the installer. It is recommended that you accept the default value 1 hour. 
+
+### <a name="enable-docker-gc"></a>enable_docker_gc
+This parameter specifies whether to run the [docker-gc](https://github.com/spotify/docker-gc#excluding-images-from-garbage-collection) script, a simple Docker container and image garbage collection script, once every hour to clean up stray Docker containers. You can configure the runtime behavior by using the `/etc/` config. For more information, see the [documentation](https://github.com/spotify/docker-gc#excluding-images-from-garbage-collection)
+
+*  `enable_docker_gc: 'true'` Run the docker-gc scripts once every hour. This is the default value for [cloud](/docs/1.9/installing/cloud/) template installations.
+*  `enable_docker_gc: 'false'` Do not run the docker-gc scripts once every hour. This is the default value for [custom](/docs/1.9/installing/custom/) installations.
+
+### <a name="gc-delay"></a>gc_delay
+This parameter specifies the maximum amount of time to wait before cleaning up the executor directories. It is recommended that you accept the default value of 2 days.
+
+### <a name="log_directory"></a>log_directory
+This parameter specifies the path to the installer host logs from the SSH processes. By default this is set to `/genconf/logs`. In most cases this should not be changed because `/genconf` is local to the container that is running the installer, and is a mounted volume.
 
 ### exhibitor_storage_backend
 This parameter specifies the type of storage backend to use for Exhibitor. You can use internal DC/OS storage (`static`) or specify an external storage system (`zookeeper`, `aws_s3`, and `azure`) for configuring and orchestrating ZooKeeper with Exhibitor on the master nodes. Exhibitor automatically configures your ZooKeeper installation on the master nodes during your DC/OS installation.
@@ -127,56 +204,6 @@ This parameter specifies a YAML nested list (`-`) of IPv4 addresses to your [pub
 ### <a name="platform"></a>platform
 This parameter specifies the infrastructure platform. The value is optional, free-form with no content validation, and used for telemetry only. Please supply an appropriate value to help inform DC/OS platform prioritization decisions. Example values: `aws`, `azure`, `oneview`, `openstack`, `vsphere`, `vagrant-virtualbox`, `onprem` (default).
 
-## <a name="networking"></a>Networking
-
-### <a name="dcos-overlay-enable"></a>dcos_overlay_enable
-
-This parameter specifies whether to enable DC/OS virtual networks.
-
-**Important:** Virtual networks require minimum Docker version 1.11. If you are using Docker 1.10 or earlier, you must specify `dcos_overlay_enable: 'false'`. For more information, see the [system requirements](/docs/1.9/installing/custom/system-requirements/).
-
-*  `dcos_overlay_enable: 'false'` Do not enable the DC/OS virtual network.
-*  `dcos_overlay_enable: 'true'` Enable the DC/OS virtual network. This is the default value. When the virtual network is enabled you can also specify the following parameters:
-
-    *  `dcos_overlay_config_attempts` This parameter specifies how many failed configuration attempts are allowed before the overlay configuration modules stop trying to configure an virtual network.
-
-        __Tip:__ The failures might be related to a malfunctioning Docker daemon.
-
-    *  `dcos_overlay_mtu` This parameter specifies the maximum transmission unit (MTU) of the Virtual Ethernet (vEth) on the containers that are launched on the overlay.
-
-    *  `dcos_overlay_network` This group of parameters define an virtual network for DC/OS.  The default configuration of DC/OS provides an virtual network named `dcos` whose YAML configuration is as follows:
-
-        ```
-        dcos_overlay_network:
-            vtep_subnet: 44.128.0.0/20
-            vtep_mac_oui: 70:B3:D5:00:00:00
-            overlays:
-              - name: dcos
-                subnet: 9.0.0.0/8
-                prefix: 26
-        ```
-
-        *  `vtep_subnet` This parameter specifies a dedicated address space that is used for the VxLAN backend for the virtual network. This address space should not be routeable from outside the agents or master.
-        *  `vtep_mac_oui` This parameter specifies the MAC address of the interface connecting to it in the public node.
-            
-            **Important:** The last 3 bytes must be `00`.
-        *  __overlays__
-            *  `name` This parameter specifies the canonical name (see [limitations](/docs/1.9/networking/virtual-networks/) for constraints on naming virtual networks).
-            *  `subnet` This parameter specifies the subnet that is allocated to the virtual network.
-            *  `prefix` This parameter specifies the size of the subnet that is allocated to each agent and thus defines the number of agents on which the overlay can run. The size of the subnet is carved from the overlay subnet.
-
- For more information see the [example](#overlay) and [documentation](/docs/1.9/networking/virtual-networks/).
-
-### <a name="dns-search"></a>dns_search
-This parameter specifies a space-separated list of domains that are tried when an unqualified domain is entered (e.g. domain searches that do not contain &#8216;.&#8217;). The Linux implementation of `/etc/resolv.conf` restricts the maximum number of domains to 6 and the maximum number of characters the setting can have to 256. For more information, see <a href="http://man7.org/linux/man-pages/man5/resolv.conf.5.html">man /etc/resolv.conf</a>.
-
-A `search` line with the specified contents is added to the `/etc/resolv.conf` file of every cluster host. `search` can do the same things as `domain` and is more extensible because multiple domains can be specified.
-
-In this example, `example.com` has public website `www.example.com` and all of the hosts in the datacenter have fully qualified domain names that end with `dc1.example.com`. One of the hosts in your datacenter has the hostname `foo.dc1.example.com`. If `dns_search` is set to &#8216;dc1.example.com example.com&#8217;, then every DC/OS host which does a name lookup of foo will get the A record for `foo.dc1.example.com`. If a machine looks up `www`, first `www.dc1.example.com` would be checked, but it does not exist, so the search would try the next domain, lookup `www.example.com`, find an A record, and then return it.
-
-```yaml
-dns_search: dc1.example.com dc1.example.com example.com dc1.example.com dc2.example.com example.com
-```
 ### <a name="#resolvers"></a>resolvers
 
 This required parameter specifies a YAML nested list (`-`) of DNS resolvers for your DC/OS cluster nodes. You can specify a maximum of 3 resolvers. Set this parameter to the most authoritative nameservers that you have.
@@ -208,35 +235,11 @@ For more information, see the [examples](#http-proxy).
 
 **Important:** You should also configure an HTTP proxy for [Docker](https://docs.docker.com/engine/admin/systemd/#/http-proxy). 
 
-## <a name="performance-and-tuning"></a>Performance and Tuning
-
-### <a name="check-time"></a>check_time
-This parameter specifies whether to check if Network Time Protocol (NTP) is enabled during DC/OS startup. It recommended that NTP is enabled for a production environment.
-
-*  `check_time: 'true'` Check if NTP is enabled during startup. You will receive an error if this is not enabled. This is the default value.
-*  `check_time: 'false'` Do not check if NTP is enabled during startup.
-
-### <a name="docker-remove"></a>docker_remove_delay
-This parameter specifies the amount of time to wait before removing stale Docker images stored on the agent nodes and the Docker image generated by the installer. It is recommended that you accept the default value 1 hour.
-
-### <a name="enable-docker-gc"></a>enable_docker_gc
-This parameter specifies whether to run the [docker-gc](https://github.com/spotify/docker-gc#excluding-images-from-garbage-collection) script, a simple Docker container and image garbage collection script, once every hour to clean up stray Docker containers. You can configure the runtime behavior by using the `/etc/` config. For more information, see the [documentation](https://github.com/spotify/docker-gc#excluding-images-from-garbage-collection)
-
-*  `enable_docker_gc: 'true'` Run the docker-gc scripts once every hour. This is the default value for [cloud](/docs/1.9/installing/cloud/) template installations.
-*  `enable_docker_gc: 'false'` Do not run the docker-gc scripts once every hour. This is the default value for [custom](/docs/1.9/installing/custom/) installations.
-
-### <a name="gc-delay"></a>gc_delay
-This parameter specifies the maximum amount of time to wait before cleaning up the executor directories. It is recommended that you accept the default value of 2 days.
-
-### <a name="log_directory"></a>log_directory
-This parameter specifies the path to the installer host logs from the SSH processes. By default this is set to `/genconf/logs`. In most cases this should not be changed because `/genconf` is local to the container that is running the installer, and is a mounted volume.
-
 ### <a name="process_timeout"></a>process_timeout
 This parameter specifies the allowable amount of time, in seconds, for an action to begin after the process forks. This parameter is not the complete process time. The default value is 120 seconds.
 
 **Tip:** If have a slower network environment, consider changing to `process_timeout: 600`.
 
-## <a name="security-and-authentication"></a>Security And Authentication
 
 ### oauth_enabled
 This parameter specifies whether to enable authentication for your cluster. <!-- DC/OS auth -->
@@ -334,10 +337,10 @@ exhibitor_zk_hosts: 10.0.0.1:2181, 10.0.0.2:2181, 10.0.0.3:2181
 exhibitor_zk_path: /zk-example
 log_directory: /genconf/logs
 master_discovery: master_http_loadbalancer
-num_masters: 3
+  num_masters: 3
+exhibitor_address: 67.34.242.55
 public_agent_list:
 - 10.10.0.139
-exhibitor_address: 67.34.242.55
 process_timeout: 120
 resolvers:
 - <dns-resolver-1>
