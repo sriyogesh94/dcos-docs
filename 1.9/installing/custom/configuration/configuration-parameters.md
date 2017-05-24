@@ -3,29 +3,86 @@ post_title: Configuration Reference
 menu_order: 600
 ---
 
-|                                        | Description                                                                                                                                               |
+# Cluster Setup
+
+| Parameter                              | Description                                                                                                                                               |
 |----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| agent_list                             | This parameter specifies a YAML nested list (`-`) of IPv4 addresses to your [private agent](/1.9/overview/concepts/#private) host names.                  |
-| aws_template_storage_bucket            | This parameter specifies the name of your S3 bucket.                                                                                                      |
-| aws_template_storage_bucket_path       | This parameter specifies the S3 bucket storage path.                                                                                                      |
-| aws_template_upload                    | This parameter specifies whether to automatically upload the customized advanced templates to your S3 bucket.                                             |
-| aws_template_storage_access_key_id     | This parameters specifies the AWS [Access Key ID](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html).    |
-| aws_template_storage_secret_access_key | This parameter specifies the AWS [Secret Access Key](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html). |
-| bootstrap_url                          | This required parameter specifies the URI path for the DC/OS installer to store the customized DC/OS build files.                                         |
-| cluster_docker_credentials             | This parameter specifies a dictionary of Docker credentials to pass.                                                                                      |
-| cluster_docker_credentials_dcos_owned  | This parameter specifies whether to store the credentials file in `/opt/mesosphere` or `/etc/mesosphere/docker_credentials`.                              |
-| cluster_docker_credentials_enabled     | This parameter specifies whether to pass the Mesos `--docker_config` option to Mesos.                                                                     |
-| cluster_docker_registry_url            | This parameter specifies a custom URL that Mesos uses to pull Docker images from.                                                                         |
-| cluster_name                           | This parameter specifies the name of your cluster.                                                                                                        |
-| cosmos_config                          | This parameter specifies a dictionary of packaging configuration to pass to the [DC/OS Package Manager (Cosmos)](https://github.com/dcos/cosmos).         |
-| staged_package_storage_uri             | This parameter specifies where to temporarily store DC/OS packages while they are being added.                                                            |
-| package_storage_uri                    | This parameter specifies where to permanently store DC/OS packages.                                                                                       |
+| [agent_list](#agent_list)                             | This parameter specifies a YAML nested list (`-`) of IPv4 addresses to your [private agent](/1.9/overview/concepts/#private) host names.                  |
+| [aws_template_storage_bucket](#aws_template_storage_bucket)            | This parameter specifies the name of your S3 bucket.                                                                                                      |
+| [aws_template_storage_bucket_path](#aws_template_storage_bucket_path)       | This parameter specifies the S3 bucket storage path.                                                                                                      |
+| [aws_template_upload](#aws_template_upload)                    | This parameter specifies whether to automatically upload the customized advanced templates to your S3 bucket.                                             |
+| [aws_template_storage_access_key_id](#aws_template_storage_access_key_id)     | This parameters specifies the AWS [Access Key ID](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html).    |
+| [aws_template_storage_secret_access_key](#aws_template_storage_secret_access_key) | This parameter specifies the AWS [Secret Access Key](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html). |
+| [bootstrap_url](#bootstrap_url)                          | This required parameter specifies the URI path for the DC/OS installer to store the customized DC/OS build files.                                         |
+| [cluster_docker_credentials](#cluster_docker_credentials)             | This parameter specifies a dictionary of Docker credentials to pass.                                                                                      |
+| [cluster_docker_registry_url](#cluster_docker_registry_url)            | This parameter specifies a custom URL that Mesos uses to pull Docker images from.                                                                         |
+| [cluster_name](#cluster_name)                           | This parameter specifies the name of your cluster.                                                                                                        |
+| [cosmos_config](#cosmos_config)                          | This parameter specifies a dictionary of packaging configuration to pass to the [DC/OS Package Manager (Cosmos)](https://github.com/dcos/cosmos).         |
+
+# Networking
+
+| Parameter                    | Description                                                                                                                                                       |
+|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [dcos_overlay_enable](#dcos_overlay_enable)          | This block of parameters specifies whether to enable DC/OS virtual networks.                                                                                      |
+| [dns_search](#dns_search)                   | This parameter specifies a space-separated list of domains that are tried when an unqualified domain is entered.                                                  |
+| [resolvers](#resolvers)                    | This required parameter specifies a block of YAML nested list (`-`) of DNS resolvers for your DC/OS cluster nodes.                                                |
+| [use_proxy](#use_proxy)                    | This parameter specifies whether to enable the DC/OS proxy.                                                                                                       |
+
+# Performance and Tuning
+
+| Parameter           | Description                                                                                                                                                                                                                                                        |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [check_time](#check_time)          | This parameter specifies whether to check if Network Time Protocol (NTP) is enabled during DC/OS startup.                                                                                                                                                          |
+| [docker_remove_delay](#docker_remove_delay) | This parameter specifies the amount of time to wait before removing stale Docker images stored on the agent nodes and the Docker image generated by the installer.                                                                                                 |
+| [enable_docker_gc](#enable_docker_gc)    | This parameter specifies whether to run the [docker-gc](https://github.com/spotify/docker-gc#excluding-images-from-garbage-collection) script, a simple Docker container and image garbage collection script, once every hour to clean up stray Docker containers. |
+| [gc_delay](#gc_delay)            | This parameter specifies the maximum amount of time to wait before cleaning up the executor directories.                                                                                                                                                           |
+| [log_directory](#log_directory)       | This parameter specifies the path to the installer host logs from the SSH processes.                                                                                                                                                                               |
+| [process_timeout](#process_timeout)     | This parameter specifies the allowable amount of time, in seconds, for an action to begin after the process forks.                                                                                                                                                 |
+
+# Security and Authentication
+
+| Parameter                          | Description                                                                                                                                                |
+|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [auth_cookie_secure_flag](#auth_cookie_secure_flag)            | (**Enterprise DC/OS Only**) This parameter specifies whether to allow web browsers to send the DC/OS authentication cookie through a non-HTTPS connection. |
+| [bouncer_expiration_auth_token_days](#bouncer_expiration_auth_token_days) | (**Enterprise DC/OS Only**) This parameter sets the auth token time-to-live (TTL) for Identity and Access Management.                                      |
+| [customer_key](#customer_key)                       | (**Enterprise DC/OS Only**)This parameter specifies the Enterprise DC/OS customer key.                                                                     |
+| [oauth_enabled](#oauth_enabled)                      | (**DC/OS Only**) This parameter specifies whether to enable authentication for your cluster.                                                               |
+| [security](#security)                           | (**Enterprise DC/OS Only**) This parameter specifies the security mode: disabled, permissive, strict.                                                      |
+| [ssh_key_path](#ssh_key_path)                       | This parameter specifies the path to the installer uses to log into the target nodes.                                                                      |
+| [ssh_port](#ssh_port)                           | This parameter specifies the port to SSH to, for example 22.                                                                                               |
+| [ssh_user](#ssh_user)                           | This parameter specifies the SSH username, for example `centos`.                                                                                           |
+| [superuser_password_hash](#superuser_password_hash)            | (**Enterprise DC/OS Only**) This required parameter specifies the hashed superuser password.                                                               |
+| [superuser_username](#superuser_username)                 | (**Enterprise DC/OS Only**) This required parameter specifies the user name of the superuser.                                                              |
+| [telemetry_enabled](#telemetry_enabled)                  | This parameter specifies whether to enable sharing of anonymous data for your cluster.                                                                     |
+| [zk_super_credentials](#zk_super_credentials)               | (**Enterprise DC/OS Only**) This parameter specifies the ZooKeeper superuser credentials.                                                                  |
+| [zk_master_credentials](#zk_master_credentials)              | (**Enterprise DC/OS Only**) This parameter specifies the ZooKeeper master credentials.                                                                     |
+| [zk_agent_credentials](#zk_agent_credentials)               | (**Enterprise DC/OS Only**) This parameter specifies the ZooKeeper agent credentials.                                                                      |
 
 ### agent_list
 This parameter specifies a YAML nested list (`-`) of IPv4 addresses to your [private agent](/docs/1.9/overview/concepts/#private) host names.
 
+### <a name="auth-cookie"></a>auth_cookie_secure_flag
+
+This parameter specifies whether to allow web browsers to send the DC/OS authentication cookie through a non-HTTPS connection. Because the DC/OS authentication cookie allows access to the DC/OS cluster, it should be sent over an encrypted connection.
+
+*   `auth_cookie_secure_flag: false` (default) Browsers will send the DC/OS authentication cookie through either an unencrypted HTTP connection or an encrypted HTTPS connection.
+
+*   `auth_cookie_secure_flag: true` The authentication cookie set by DC/OS will contain the [`Secure` flag](https://www.owasp.org/index.php/SecureFlag), which instructs the browser to not send the cookie over unencrypted HTTP connections. This could cause authentication to fail under the following circumstances.
+
+    - If the security mode is `disabled`.
+    - If the security mode is `permissive`, the URL specifies HTTP, and the URL includes a target different from the root path (e.g., http://cluster-url.com/path/).
+    - There are proxies in between the browser and DC/OS that terminate TLS.
+
 ### bootstrap_url
 This required parameter specifies the URI path for the DC/OS installer to store the customized DC/OS build files. If you are using the automated DC/OS installer, you should specify `bootstrap_url: file:///opt/dcos_install_tmp` unless you have moved the installer assets. By default the automated DC/OS installer places the build files in `file:///opt/dcos_install_tmp`.
+
+### <a name="auth-token-expiry"></a>bouncer_expiration_auth_token_days
+
+This parameter sets the auth token time-to-live (TTL) for Identity and Access Management. You must specify the value in Python float syntax wrapped in a YAML string. By default the token expires after 5 days. For example, to set the token lifetime to half a day:
+
+```json
+bouncer_expiration_auth_token_days: '0.5'
+```
 
 ### <a name="check-time"></a>check_time
 This parameter specifies whether to check if Network Time Protocol (NTP) is enabled during DC/OS startup. It recommended that NTP is enabled for a production environment.
@@ -69,12 +126,23 @@ This parameter specifies the name of your cluster.
 This parameter specifies a dictionary of packaging configuration to pass to the [DC/OS package manager](https://github.com/dcos/cosmos). If set, the following options must also be
 specified.
 
-* **staged_package_storage_uri**
-  This parameter specifies where to temporarily store DC/OS packages while they are being added.
-  The value must be a file URL, for example, `file:///var/lib/dcos/cosmos/staged-packages`.
 * **package_storage_uri**
   This parameter specifies where to permanently store DC/OS packages. The value must be a file URL,
   for example, `file:///var/lib/dcos/cosmos/packages`.
+* **staged_package_storage_uri**
+    This parameter specifies where to temporarily store DC/OS packages while they are being added.
+    The value must be a file URL, for example, `file:///var/lib/dcos/cosmos/staged-packages`.
+
+### customer_key
+This parameter specifies the Enterprise DC/OS customer key. Customer keys are delivered via email to the Authorized Support Contact.
+
+This key is a 128-bit hyphen-delimited hexadecimal identifier used to distinguish an individual cluster. The customer key serves as the Universally Unique Identifier (UUID) for a given installation.
+
+Customer keys look like this:
+
+```
+ab1c23de-45f6-7g8h-9012-i345j6k7lm8n
+```
   
 ### <a name="dcos-overlay-enable"></a>dcos_overlay_enable
 
@@ -249,6 +317,30 @@ This parameter specifies whether to enable authentication for your cluster. <!--
 
 If you’ve already installed your cluster and would like to disable this in-place, you can go through an upgrade with the same parameter set.
 
+### <a name="security"></a>security
+Use this parameter to specify a security mode other than `security: permissive` (the default). The possible values follow.
+
+- `security: disabled`
+- `security: permissive`
+- `security: strict`
+
+Refer to the [Security modes](/1.9/security/#security-modes) section for a detailed discussion of each parameter. 
+
+### ssh_key_path
+This parameter specifies the path to the installer uses to log into the target nodes. By default this is set to `/genconf/ssh_key`. This parameter should not be changed because `/genconf` is local to the container that is running the installer, and is a mounted volume.
+
+### ssh_port
+This parameter specifies the port to SSH to, for example `22`.
+
+### ssh_user
+This parameter specifies the SSH username, for example `centos`.
+
+### superuser_password_hash
+This required parameter specifies the hashed superuser password. The `superuser_password_hash` is generated by using the installer `--hash-password` flag. For more information, see the [Security documentation](/1.9/security/).
+
+### superuser_username
+This required parameter specifies the user name of the superuser. For more information, see [Identity and Access Management](/1.9/security/).
+
 ### telemetry_enabled
 This parameter specifies whether to enable sharing of anonymous data for your cluster. <!-- DC/OS auth -->
 
@@ -256,218 +348,5 @@ This parameter specifies whether to enable sharing of anonymous data for your cl
 - `telemetry_enabled: 'false'` Disable anonymous data sharing.
 
 If you’ve already installed your cluster and would like to disable this in-place, you can go through an [upgrade][3] with the same parameter set.
-
-# <a name="examples1"></a>Example Configurations
-
-#### DC/OS cluster with three masters, five private agents, and Exhibitor/ZooKeeper managed internally.
-
-```yaml
----
-agent_list:
-- <agent-private-ip-1>
-- <agent-private-ip-2>
-- <agent-private-ip-3>
-- <agent-private-ip-4>
-- <agent-private-ip-5>
-bootstrap_url: 'file:///opt/dcos_install_tmp'
-cluster_name: '<cluster-name>'
-log_directory: /genconf/logs
-master_discovery: static
-master_list:
-- <master-private-ip-1>
-- <master-private-ip-2>
-- <master-private-ip-3>
-process_timeout: 120
-resolvers:
-- <dns-resolver-1>
-- <dns-resolver-2>
-ssh_key_path: /genconf/ssh-key
-ssh_port: '<port-number>'
-ssh_user: <username>
-```
-
-#### <a name="aws"></a>DC/OS cluster with three masters, an Exhibitor/ZooKeeper backed by an AWS S3 bucket, AWS DNS, five private agents, and one public agent node
-
-```yaml
----
-agent_list:
-- <agent-private-ip-1>
-- <agent-private-ip-2>
-- <agent-private-ip-3>
-- <agent-private-ip-4>
-- <agent-private-ip-5>
-aws_access_key_id: AKIAIOSFODNN7EXAMPLE
-aws_region: us-west-2
-aws_secret_access_key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-bootstrap_url: file:///tmp/dcos
-cluster_name: s3-example
-exhibitor_storage_backend: aws_s3
-exhibitor_explicit_keys: 'true'
-log_directory: /genconf/logs
-master_discovery: static
-master_list:
-- <master-private-ip-1>
-- <master-private-ip-2>
-- <master-private-ip-3>
-process_timeout: 120
-resolvers:
-- <dns-resolver-1>
-- <dns-resolver-2>
-s3_bucket: mybucket
-s3_prefix: s3-example
-ssh_key_path: /genconf/ssh-key
-ssh_port: '<port-number>'
-ssh_user: <username>
-```
-
-#### <a name="zk"></a>DC/OS cluster with three masters, an Exhibitor/ZooKeeper backed by ZooKeeper, masters that have an HTTP load balancer in front of them, one public agent node, five private agents, and Google DNS
-
-```yaml
----
-agent_list:
-- <agent-private-ip-1>
-- <agent-private-ip-2>
-- <agent-private-ip-3>
-- <agent-private-ip-4>
-- <agent-private-ip-5>
-bootstrap_url: file:///tmp/dcos
-cluster_name: zk-example
-exhibitor_storage_backend: zookeeper
-exhibitor_zk_hosts: 10.0.0.1:2181, 10.0.0.2:2181, 10.0.0.3:2181
-exhibitor_zk_path: /zk-example
-log_directory: /genconf/logs
-master_discovery: master_http_loadbalancer
-  num_masters: 3
-exhibitor_address: 67.34.242.55
-public_agent_list:
-- 10.10.0.139
-process_timeout: 120
-resolvers:
-- <dns-resolver-1>
-- <dns-resolver-2>
-ssh_key_path: /genconf/ssh-key
-ssh_port: '<port-number>'
-ssh_user: <username>
-```
-
-#### <a name="overlay"></a>DC/OS cluster with three masters, an Exhibitor/ZooKeeper managed internally, two DC/OS virtual networks, two private agents, and Google DNS
-
-```yaml
-    agent_list:
-    - <agent-private-ip-1>
-    - <agent-private-ip-2>
-    # Use this bootstrap_url value unless you have moved the DC/OS installer assets.
-    bootstrap_url: file:///opt/dcos_install_tmp
-    cluster_name: <cluster-name>
-    master_discovery: static
-    master_list:
-    - <master-private-ip-1>
-    - <master-private-ip-2>
-    - <master-private-ip-3>
-    resolvers:
-    # You probably do not want to use these values since they point to public DNS servers.
-    # Instead use values that are more specific to your particular infrastructure.
-    - 8.8.4.4
-    - 8.8.8.8
-    ssh_port: 22
-    ssh_user: centos
-    dcos_overlay_enable: true
-    dcos_overlay_mtu: 9001
-    dcos_overlay_config_attempts: 6
-    dcos_overlay_network:
-      vtep_subnet: 44.128.0.0/20
-      vtep_mac_oui: 70:B3:D5:00:00:00
-      overlays:
-        - name: dcos
-          subnet: 9.0.0.0/8
-          prefix: 26
-        - name: dcos-1
-          subnet: 192.168.0.0/16
-          prefix: 24
-```
-
-#### <a name="http-proxy"></a>DC/OS cluster with three masters, an Exhibitor/ZooKeeper managed internally, a custom HTTP proxy, two private agents, and Google DNS
-
-```yaml
-    agent_list:
-    - <agent-private-ip-1>
-    - <agent-private-ip-2>
-    # Use this bootstrap_url value unless you have moved the DC/OS installer assets.
-    bootstrap_url: file:///opt/dcos_install_tmp
-    cluster_name: <cluster-name>
-    master_discovery: static
-    master_list:
-    - <master-private-ip-1>
-    - <master-private-ip-2>
-    - <master-private-ip-3>
-    resolvers:
-    # You probably do not want to use these values since they point to public DNS servers.
-    # Instead use values that are more specific to your particular infrastructure.
-    - 8.8.4.4
-    - 8.8.8.8
-    ssh_port: 22
-    ssh_user: centos
-    use_proxy: 'true'
-    http_proxy: http://<proxy_host>:<http_proxy_port>
-    https_proxy: https://<proxy_host>:<https_proxy_port>
-    no_proxy:
-    - 'foo.bar.com'
-    - '.baz.com'
-```
-
-#### <a name="docker-credentials"></a>DC/OS cluster with three masters, an Exhibitor/ZooKeeper managed internally, custom Docker credentials, two private agents, and Google DNS
-
-```yaml
-    agent_list:
-    - <agent-private-ip-1>
-    - <agent-private-ip-2>
-    # Use this bootstrap_url value unless you have moved the DC/OS installer assets.
-    bootstrap_url: file:///opt/dcos_install_tmp
-    cluster_docker_credentials:
-      auths:
-        'https://registry.example.com/v1/':
-          auth: foo
-          email: user@example.com
-    cluster_docker_credentials_dcos_owned: false
-    cluster_docker_registry_url: https://registry.example.com
-    cluster_name: <cluster-name>
-    master_discovery: static
-    master_list:
-    - <master-private-ip-1>
-    - <master-private-ip-2>
-    - <master-private-ip-3>
-    resolvers:
-    # You probably do not want to use these values since they point to public DNS servers.
-    # Instead use values that are more specific to your particular infrastructure.
-    - 8.8.4.4
-    - 8.8.8.8
-    ssh_port: 22
-    ssh_user: centos
-```
-
-#### <a name="cosmos-config"></a>DC/OS cluster with one master, an Exhibitor/ZooKeeper managed internally, three private agents, Google DNS, and the package manager (Cosmos) configured with persistent storage.
-
-```yaml
-    agent_list:
-    - <agent-private-ip-1>
-    - <agent-private-ip-2>
-    - <agent-private-ip-3>
-    # Use this bootstrap_url value unless you have moved the DC/OS installer assets.
-    bootstrap_url: file:///opt/dcos_install_tmp
-    cluster_name: <cluster-name>
-    master_discovery: static
-    master_list:
-    - <master-private-ip-1>
-    resolvers:
-    # You probably do not want to use these values since they point to public DNS servers.
-    # Instead use values that are more specific to your particular infrastructure.
-    - 8.8.4.4
-    - 8.8.8.8
-    ssh_port: 22
-    ssh_user: centos
-    cosmos_config:
-      staged_package_storage_uri: file:///var/lib/dcos/cosmos/staged-packages
-      package_storage_uri: file:///var/lib/dcos/cosmos/packages
-```
 
  [1]: https://en.wikipedia.org/wiki/YAML
