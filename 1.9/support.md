@@ -10,7 +10,6 @@ DC/OS is a free and open source project and community-supported product.
 ## Project Management
 
 - [Issue Tracking](https://dcosjira.atlassian.net)
-- [Roadmap](/docs/1.9/overview/roadmap/)
 
 ## Community Support
 
