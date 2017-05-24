@@ -210,7 +210,7 @@ To get started with Zeppelin, check out the Zeppelin [docs](http://zeppelin.incu
 
 **Further resources**:
 
-- [DC/OS Spark Official Documentation](http://docs.mesosphere.com/1.7/usage/service-guides/spark)
+- [DC/OS Spark Official Documentation](http://docs.mesosphere.com/service-docs/spark)
 - [Mesos-specific](https://spark.apache.org/docs/latest/running-on-mesos.html#configuration) configuration options for Spark
 - [Mesos run modes](https://spark.apache.org/docs/latest/running-on-mesos.html#mesos-run-modes) for Spark
 - A gentle introduction into [Spark on Mesos](http://www.slideshare.net/Typesafe_Inc/how-to-deploy-apache-spark-to-mesosdcos) by Lightbend

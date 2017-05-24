@@ -210,13 +210,13 @@ sudo yum install -y tar xz unzip curl ipset
 On each of your cluster nodes, use the following command to:
 
 *   Disable SELinux or set it to permissive mode.
-*   Add nogroup to each of your Mesos masters and agents.</li>
-*   Reboot your cluster for the changes to take affect</p>
+*   Add `nogroup` to each of your Mesos masters and agents.
+*   Reboot your cluster for the changes to take effect.
 
     ```bash
     sudo sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config &&
-      sudo groupadd nogroup &&
-      sudo reboot
+    sudo groupadd nogroup &&
+    sudo reboot
     ```
 
     **Tip:** It may take a few minutes for your node to come back online after reboot.
