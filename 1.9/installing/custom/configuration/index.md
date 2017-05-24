@@ -5,8 +5,6 @@ menu_order: 600
 
 The DC/OS configuration parameters are specified in [YAML][1] format in a config.yaml file. This file is stored on your [bootstrap node](/docs/1.9/installing/custom/system-requirements/#bootstrap-node) and is used during DC/OS installation to generate a customized DC/OS build.
 
-
-
 # Format
 
 ## Key-value pairs
@@ -16,7 +14,7 @@ The config.yaml file is formatted as a list of key-value pairs. Each pair is in 
 bootstrap_url: file:///opt/dcos_install_tmp
 ```
 
-## Config sections and lists
+## Config blocks and lists
 
 ```yaml
 <key>:
@@ -32,13 +30,13 @@ or
   <key>: <value>
 ```
 
-A config section is a group of settings. It consists of:
+A config block is a group of settings. It consists of:
 
-- A key followed by a colon (e.g. `agent_list:`). The key of the config section must be on its own line, with no leading space.
+- A key followed by a colon (e.g. `agent_list:`). The key of the config block must be on its own line, with no leading space.
 - A list of values formatted by using single dash (`-`) followed by a space; or an indented set of one or more key-value pairs. The indentation for each key-value pair must be exactly two spaces. Do not use tabs.
 - Any number of empty lines or comment lines.
 
-When a new config section appears in the file, the former config section is closed and the new one begins. A config section must only occur once in the file.
+When a new config block appears in the file, the former config block is closed and the new one begins. A config block must only occur once in the file.
 
 ## Comment lines
 

@@ -4,7 +4,26 @@ menu_order: 200
 ---
 
 ```yaml
-
+dcos_overlay_enable: `<true|false>`
+dcos_overlay_config_attempts: <num-failed-attempts>
+dcos_overlay_mtu: <mtu>
+dcos_overlay_network:
+  vtep_subnet: <address>
+  vtep_mac_oui: <mac-address>
+  overlays:
+    - name: <name>
+      subnet: <address>
+      prefix: <size>
+dns_search: <domain1 domain2 domain3>
+resolvers: 
+- <nameserver1>
+- <nameserver2>
+use_proxy: `<true|false>`
+  http_proxy: http://<proxy_host>:<http_proxy_port>
+  https_proxy: https://<proxy_host>:<https_proxy_port>
+  no_proxy:
+  - '<blocked.address1.com>'
+  - '<blocked.address2.com>'
 ```
 
 
@@ -23,7 +42,7 @@ This parameter specifies whether to enable DC/OS virtual networks.
 
     *  `dcos_overlay_mtu` This parameter specifies the maximum transmission unit (MTU) of the Virtual Ethernet (vEth) on the containers that are launched on the overlay.
 
-    *  `dcos_overlay_network` This group of parameters define an virtual network for DC/OS. The default configuration of DC/OS provides an virtual network named `dcos` whose YAML configuration is as follows:
+    *  `dcos_overlay_network` This block of parameters define an virtual network for DC/OS. The default configuration of DC/OS provides an virtual network named `dcos` whose YAML configuration is as follows:
 
         ```
         dcos_overlay_network:
@@ -39,7 +58,7 @@ This parameter specifies whether to enable DC/OS virtual networks.
         *  `vtep_mac_oui` This parameter specifies the MAC address of the interface connecting to it in the public node.
             
             **Important:** The last 3 bytes must be `00`.
-        *  __overlays__
+        *  `overlays` This block of parameters define the overlay network.
             *  `name` This parameter specifies the canonical name (see [limitations](/docs/1.9/networking/virtual-networks/) for constraints on naming virtual networks).
             *  `subnet` This parameter specifies the subnet that is allocated to the virtual network.
             *  `prefix` This parameter specifies the size of the subnet that is allocated to each agent and thus defines the number of agents on which the overlay can run. The size of the subnet is carved from the overlay subnet.
@@ -58,7 +77,7 @@ dns_search: dc1.example.com dc1.example.com example.com dc1.example.com dc2.exam
 ```
 ### <a name="#resolvers"></a>resolvers
 
-This required parameter specifies a YAML nested list (`-`) of DNS resolvers for your DC/OS cluster nodes. You can specify a maximum of 3 resolvers. Set this parameter to the most authoritative nameservers that you have.
+This required parameter specifies a block of YAML nested list (`-`) of DNS resolvers for your DC/OS cluster nodes. You can specify a maximum of 3 resolvers. Set this parameter to the most authoritative nameservers that you have.
 
 -  If you want to resolve internal hostnames, set it to a nameserver that can resolve them.
 -  If you do not have internal hostnames to resolve, you can set this to a public nameserver like Google or AWS. For example, you can specify the [Google Public DNS IP addresses (IPv4)](https://developers.google.com/speed/public-dns/docs/using):
@@ -81,7 +100,7 @@ This parameter specifies whether to enable the DC/OS proxy.
     **Important:** The specified proxies must be resolvable from the provided list of [resolvers](#resolvers).
     *  `http_proxy: http://<user>:<pass>@<proxy_host>:<http_proxy_port>` This parameter specifies the HTTP proxy.
     *  `https_proxy: https://<user>:<pass>@<proxy_host>:<https_proxy_port>` This parameter specifies the HTTPS proxy.
-    *  `no_proxy: - .<(sub)domain>` This parameter specifies YAML nested list (-) of addresses to exclude from the proxy.
+    *  `no_proxy: - .<(sub)domain>` This parameter specifies a block of YAML nested list (-) of addresses to exclude from the proxy.
 
 For more information, see the [examples](#http-proxy).
 

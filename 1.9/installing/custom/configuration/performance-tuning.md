@@ -3,6 +3,15 @@ post_title: Performance and Tuning
 menu_order: 300
 ---
 
+```yaml
+check_time: '<true|false>'
+docker_remove_delay: <num>hrs
+enable_docker_gc: `<true|false>`
+gc_delay: <num>days
+log_directory: `<path-to-install-logs>`
+process_timeout: <num-seconds>
+```
+
 
 ### <a name="check-time"></a>check_time
 This parameter specifies whether to check if Network Time Protocol (NTP) is enabled during DC/OS startup. It recommended that NTP is enabled for a production environment.

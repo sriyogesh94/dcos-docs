@@ -3,6 +3,11 @@ post_title: Security and Authentication
 menu_order: 400
 ---
 
+```yaml
+oauth_enabled: `<true|false>`
+telemetry_enabled: `<true|false>`
+```
+
 ### oauth_enabled
 This parameter specifies whether to enable authentication for your cluster. <!-- DC/OS auth -->
 
