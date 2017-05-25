@@ -74,14 +74,12 @@ Note that the following commands can be used to run the DC/OS CLI directly on th
 # Connect to master node with ssh
 ssh -p2200 azureuser@$MASTERFQDN -L 8000:localhost:80
 
-# Install virtualenv
-sudo apt-get -y install virtualenv
-
 # Install CLI on the master node and configure with http://localhost
-mkdir -p dcos && cd dcos &&
-curl -O https://downloads.dcos.io/dcos-cli/install-optout.sh && \
-   bash ./install-optout.sh . http://localhost && \
-   source ./bin/env-setup
+curl https://downloads.dcos.io/binaries/cli/linux/x86-64/dcos-1.9/dcos -o dcos && 
+sudo mv dcos /usr/local/bin && 
+sudo chmod +x /usr/local/bin/dcos && 
+dcos config set core.dcos_url http://localhost && 
+dcos
 
 # Now you can use the DC/OS CLI:
 dcos package search
