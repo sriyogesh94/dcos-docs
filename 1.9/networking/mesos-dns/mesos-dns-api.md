@@ -11,13 +11,13 @@ You can use the Mesos DNS API to discover the IP addresses and ports of other ap
 Access to the Mesos DNS API is proxied through the Admin Router on each node using the following route:
 
 ```bash
-/system/mesos_dns/v1/
+curl -H "Authorization: token=<auth-token>" http://<public-master-ip>/mesos_dns/v1/
 ```
 
-Access to the Metrics API of the agent nodes is also proxied through the master nodes:
+Access to the Mesos DNS API of the agent nodes is also proxied through the master nodes:
 
 ```bash
-/system/v1/agent/{agent_id}/mesos_dns/v1/
+curl -H "Authorization: token=<auth-token>" http://<public-master-ip>/system/v1/agent/{agent_id}/mesos_dns/v1/
 ```
 
 # Format
@@ -37,7 +37,7 @@ Content-Type: application/json
 ```
 
 # Resources
-Mesos-DNS implements a simple REST API for service discovery over HTTP. These examples assume you have an [SSH connection to the node](/1.8/administration/access-node/sshcluster/).
+Mesos-DNS implements a simple REST API for service discovery over HTTP. These examples assume you have an [SSH connection to the node](/docs/1.9/administering-clusters/sshcluster/).
 
 ## <a name="get-version"></a>GET /v1/version
 
