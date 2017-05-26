@@ -129,14 +129,14 @@ In the app definition above:
 
 #### Using a Docker Container
 
-Below is a sample app definition that uses a Docker container and specifies an external volume:
+Below is a sample app definition that uses a Docker container and specifies an external volume. 
 
     {
       "id": "/test-docker",
       "instances": 1,
       "cpus": 0.1,
       "mem": 32,
-      "cmd": "date >> test-rexray-volume/test.txt; cat test-rexray-volume/test.txt",
+      "cmd": "date >> /data/test-rexray-volume/test.txt; cat /data/test-rexray-volume/test.txt",
       "container": {
         "type": "DOCKER",
         "docker": {
