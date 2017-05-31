@@ -1,9 +1,9 @@
 ---
-post_title: Examples Repository
+post_title: DC/OS Services Tutorials
 menu_order: 200
 ---
 
-These tutorials demonstrate how to use DC/OS components and stateless and stateful DC/OS services. These tutorials are located in the [https://github.com/dcos/examples/](https://github.com/dcos/examples/) repository.
+These tutorials demonstrate how to install and use DC/OS services. The tutorials are located in the [https://github.com/dcos/examples/](https://github.com/dcos/examples/) repository.
 
 **Important:** These tutorials are not configured for Enterprise DC/OS strict mode. 
                                                                                                   
