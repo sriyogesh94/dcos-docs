@@ -79,14 +79,14 @@ If you scale your app down to 0 instances, the volume is detached from the agent
 You can specify an external volume in your Marathon app definition. [Learn more about Marathon application definitions][6].
 
 #### Using a Mesos Container
-
+The `cmd` in this app definition appends the output of the `date` command to `test.txt`. You can verify that the external volume is being used correctly if you see that the logs of successive runs of the application show more and more lines of `date` output.
 
     {
       "id": "hello",
       "instances": 1,
       "cpus": 0.1,
       "mem": 32,
-      "cmd": "/usr/bin/tail -f /dev/null",
+      "cmd": "date >> test-rexray-volume/test.txt; cat test-rexray-volume/test.txt",
       "container": {
         "type": "MESOS",
         "volumes": [
@@ -129,14 +129,14 @@ In the app definition above:
 
 #### Using a Docker Container
 
-Below is a sample app definition that uses a Docker container and specifies an external volume:
+Below is a sample app definition that uses a Docker container and specifies an external volume. The `cmd` in this app definition appends the output of the `date` command to `test.txt`. You can verify that the external volume is being used correctly if you see that the logs of successive runs of the application show more and more lines of `date` output.
 
     {
       "id": "/test-docker",
       "instances": 1,
       "cpus": 0.1,
       "mem": 32,
-      "cmd": "/usr/bin/tail -f /dev/null",
+      "cmd": "date >> /data/test-rexray-volume/test.txt; cat /data/test-rexray-volume/test.txt",
       "container": {
         "type": "DOCKER",
         "docker": {
