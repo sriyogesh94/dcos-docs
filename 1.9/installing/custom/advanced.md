@@ -297,7 +297,7 @@ To install DC/OS:
 - [Troubleshooting DC/OS installation][9]
 - [Uninstalling DC/OS][8]
 
-[1]: /docs/1.9/installing/custom/configuration-parameters/
+[1]: /docs/1.9/installing/custom/configuration/configuration-parameters/
 [2]: /docs/1.9/cli/install/
 [4]: https://downloads.dcos.io/dcos/stable/dcos_generate_config.sh
 [6]: /docs/1.9/overview/concepts/#public-agent-node
