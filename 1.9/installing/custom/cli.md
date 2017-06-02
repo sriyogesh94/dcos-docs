@@ -392,7 +392,7 @@ After DC/OS is installed and deployed across your cluster, you can add more agen
  [2]: /docs/1.9/cli/install/
  [4]: /docs/1.9/installing/custom/system-requirements/
  [5]: https://downloads.dcos.io/dcos/stable/dcos_generate_config.sh
- [6]: /docs/1.9/installing/custom/configuration-parameters/
+ [6]: /docs/1.9/installing/custom/configuration/configuration-parameters/
  [7]: /docs/1.9/installing/custom/uninstall/
  [9]: /docs/1.9/installing/troubleshooting/
  [10]: /docs/1.9/security/user-management/

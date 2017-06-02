@@ -61,7 +61,7 @@ An AWS EC2 <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.xlar
     aws_template_storage_secret_access_key: <your-secret-access_key>
     ```
     
-    For parameters descriptions and configuration examples, see the [documentation](/docs/1.9/installing/custom/configuration-parameters/).
+    For parameters descriptions and configuration examples, see the [documentation](/docs/1.9/installing/custom/configuration/configuration-parameters/).
     
 1.  Run the DC/OS installer script with the AWS argument specified. This command creates and uploads a custom build of the DC/OS artifacts and templates to the specified S3 bucket.
 
