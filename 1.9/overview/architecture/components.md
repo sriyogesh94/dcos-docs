@@ -421,7 +421,7 @@ In a world where machines are are given numbers instead of names, tasks are sche
   <ul>
     <li><a href="http://mesosphere.github.io/mesos-dns/">Documentation</a></li>
     <li><a href="https://github.com/mesosphere/mesos-dns">Source</a></li>
-    <li><a href="/docs/1.9/networking/mesos-dns/http-interface/">API Reference</a></li>
+    <li><a href="/docs/1.9/networking/mesos-dns/mesos-dns-api/">API Reference</a></li>
   </ul>
 </p>
 </div>
