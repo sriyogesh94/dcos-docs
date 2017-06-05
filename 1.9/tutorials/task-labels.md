@@ -1,6 +1,6 @@
 ---
 post_title: Labeling Tasks and Jobs
-menu_order: 12
+menu_order: 600
 ---
 
 This tutorial illustrates how labels can be defined using the DC/OS web interface and the Marathon HTTP API, and how information pertaining to applications and jobs that are running can be queried based on label value criteria.
