@@ -1,5 +1,5 @@
 ---
-post_title: DC/OS Services Tutorials
+post_title: DC/OS Service Tutorials
 menu_order: 200
 ---
 
