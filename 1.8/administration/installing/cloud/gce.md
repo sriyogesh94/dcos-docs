@@ -13,6 +13,8 @@ You can configure a DC/OS cluster on Google Compute Engine (GCE) by using these 
 ## Prerequisites
 - Google Cloud Console account
 
+**Important:** Upgrades are not supported with this installation method.
+
 ## <a name="bootstrap"></a>Bootstrap node configuration
 A bootstrap node is required to run the scripts and to bootstrap the DC/OS cluster.
 

@@ -8,6 +8,8 @@ This document explains how to install DC/OS 1.9 using the Azure Resource Manager
 
 TIP: To get support on Azure Marketplace-related questions, join the Azure Marketplace [Slack community](http://join.marketplace.azure.com).
 
+**Important:** Upgrades are not supported with this installation method.
+
 # System requirements
 
 ## Hardware
