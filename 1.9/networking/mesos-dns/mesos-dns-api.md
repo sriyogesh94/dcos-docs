@@ -11,7 +11,7 @@ You can use the Mesos DNS API to discover the IP addresses and ports of other ap
 Access to the Mesos DNS API is proxied through the Admin Router on each node using the following route:
 
 ```bash
-curl -H "Authorization: token=<auth-token>" http://<public-master-ip>/mesos_dns/v1/
+curl -H "Authorization: token=<auth-token>" http://<master-ip>/mesos_dns/v1/
 ```
 
 Access to the Mesos DNS API of the agent nodes is also proxied through the master nodes:
@@ -44,7 +44,7 @@ Mesos-DNS implements a simple REST API for service discovery over HTTP. These ex
 Lists in JSON format the Mesos-DNS version and source code URL.
 
 ```bash
-curl -H "Authorization: token=<auth-token>" http://<public-master-ip>/mesos_dns/v1/version
+curl -H "Authorization: token=<auth-token>" http://<master-ip>/mesos_dns/v1/version
 ```
 
 The output should resemble:
@@ -62,7 +62,7 @@ The output should resemble:
 Lists in JSON format the Mesos-DNS configuration parameters.
 
 ```bash
-curl -H "Authorization: token=<auth-token>" http://<public-master-ip>/mesos_dns/v1/config
+curl -H "Authorization: token=<auth-token>" http://<master-ip>/mesos_dns/v1/config
 ```
 
 The output should resemble:
@@ -125,7 +125,7 @@ Lists in JSON format the IP addresses that correspond to a hostname. It is the e
 **Note:** The HTTP interface only resolves hostnames in the Mesos domain.
 
 ```bash
-curl -H "Authorization: token=<auth-token>" http://<public-master-ip>/mesos_dns/v1/hosts/nginx.marathon.mesos
+curl -H "Authorization: token=<auth-token>" http://<master-ip>/mesos_dns/v1/hosts/nginx.marathon.mesos
 ```
 
 The output should resemble:
@@ -145,7 +145,7 @@ Lists in JSON format the hostname, IP address, and ports that correspond to a ho
 **Note:** The HTTP interface only resolves service names in the Mesos domain.
 
 ```bash
-curl -H "Authorization: token=<auth-token>" http://<public-master-ip>/mesos_dns/v1/services/_nginx._tcp.marathon.mesos
+curl -H "Authorization: token=<auth-token>" http://<master-ip>/mesos_dns/v1/services/_nginx._tcp.marathon.mesos
 ```
 
 The output should resemble:

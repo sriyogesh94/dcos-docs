@@ -294,13 +294,13 @@ You can get a comprehensive list of the apps running on your DC/OS cluster nodes
 2.  Run this command from your master node to view the node details:
 
     ```bash
-    curl -H "Authorization: token=<auth-token>" http://<public-master-ip>/mesos_dns/v1/enumerate
+    curl -H "Authorization: token=<auth-token>" http://<master-ip>/mesos_dns/v1/enumerate
     ```
 
     In this example, Kafka and Chronos are installed:
 
     ```bash
-       curl -H "Authorization: token=<auth-token>" http://<public-master-ip>/mesos_dns/v1/enumerate
+       curl -H "Authorization: token=<auth-token>" http://<master-ip>/mesos_dns/v1/enumerate
          {
            "frameworks": [
             {
