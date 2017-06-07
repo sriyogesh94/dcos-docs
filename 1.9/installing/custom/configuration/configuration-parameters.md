@@ -21,6 +21,7 @@ This topic provides all available configuration parameters. Except where explici
 | [cluster_name](#cluster_name)                           | The name of your cluster.                                                                                                        |
 | [cosmos_config](#cosmos_config)                          | The dictionary of packaging configuration to pass to the [DC/OS Package Manager (Cosmos)](https://github.com/dcos/cosmos).         |
 | [exhibitor_storage_backend](#exhibitor_storage_backend)                          | The type of storage backend to use for Exhibitor.          |
+| [gpus_are_scarce](#gpus_are_scarce)        | Indicates whether to treat GPUs as a scarce resource in the cluster. |
 | [master_discovery](#master_discovery)                          | (Required) The Mesos master discovery method.         |
 | [public_agent_list](#public_agent_list)                          | A YAML nested list (-) of IPv4 addresses to your [public agent](/docs/1.9/overview/concepts/#public-agent-node) host names.        |
 | [platform](#platform)                          | The infrastructure platform.      |
@@ -260,6 +261,12 @@ The type of storage backend to use for Exhibitor. You can use internal DC/OS sto
 
 ### <a name="gc-delay"></a>gc_delay
 The maximum amount of time to wait before cleaning up the executor directories. It is recommended that you accept the default value of 2 days.
+
+### <a name="gpus_are_scarce"></a>gpus_are_scarce
+Indicates whether to treat GPUs as a scarce resource in the cluster. 
+
+    *  `gpus_are_scarce: 'true'` Treat GPUs as a scarce resource. This reserves the GPUs exclusively for services that opt-in to consume GPUs via the [Mesos `GPU_RESOURCES` framework capability](http://mesos.apache.org/documentation/latest/gpu-support/).
+    *  `gpus_are_scarce: 'false'` Treat GPUs like any other resource. GPUs will be offered indiscriminately to all frameworks, regardless of whether they use the [Mesos `GPU_RESOURCES` framework capability](http://mesos.apache.org/documentation/latest/gpu-support/) or not. This is the default value.
 
 ### <a name="log_directory"></a>log_directory
 The path to the installer host logs from the SSH processes. By default this is set to `/genconf/logs`. In most cases this should not be changed because `/genconf` is local to the container that is running the installer, and is a mounted volume.
