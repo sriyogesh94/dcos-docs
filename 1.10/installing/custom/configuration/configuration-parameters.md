@@ -1,4 +1,4 @@
-\---
+---
  post_title: Configuration Reference
  menu_order: 600
  ---
