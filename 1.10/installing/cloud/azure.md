@@ -8,6 +8,8 @@ This topic explains how to install DC/OS using the Azure Resource Manager templa
 
 TIP: To get support on Azure Marketplace-related questions, join the Azure Marketplace [Slack community](http://join.marketplace.azure.com).
 
+**Important:** Upgrades are not supported with this installation method.
+
 # System requirements
 
 ## Hardware
