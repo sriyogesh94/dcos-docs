@@ -65,22 +65,6 @@ You can specify GPUs in your application definitions with the `gpus` parameter.
 
 -  You can only specify whole numbers of GPUs in your application definition. If a fractional amount is selected, launching the task will result in a `TASK_ERROR`.
 -  NVIDIA GPU support is only available for tasks launched using the [DC/OS Universal container runtime](/docs/1.9/deploying-services/containerizers/). 
--  You can set the `gpus_are_scarce: 'true'` parameter to reserve GPUs exclusively for services that opt-in to consume GPUs via the [Mesos `GPU_RESOURCES` framework capability]. Here is an example of setting this capability in a C++-based service.
-
-   ```
-   FrameworkInfo framework;
-   framework.add_capabilities()->set_type(
-       FrameworkInfo::Capability::GPU_RESOURCES);
-    
-   GpuScheduler scheduler;
-    
-   driver = new MesosSchedulerDriver(
-     &scheduler,
-     framework,
-     127.0.0.1:5050);
-    
-    driver->run();
-   ```
 
 # Examples
 
