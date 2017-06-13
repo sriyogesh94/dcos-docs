@@ -260,7 +260,7 @@ Launch the local web server to view your changes.
 
 ## License and Authors
 
-Copyright 2016 Mesosphere, Inc.
+Copyright 2017 Mesosphere, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this repository except in compliance with the License.
