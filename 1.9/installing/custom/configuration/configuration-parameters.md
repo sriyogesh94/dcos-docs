@@ -263,10 +263,10 @@ The type of storage backend to use for Exhibitor. You can use internal DC/OS sto
 The maximum amount of time to wait before cleaning up the executor directories. It is recommended that you accept the default value of 2 days.
 
 ### <a name="gpus_are_scarce"></a>gpus_are_scarce
-Indicates whether to treat GPUs as a scarce resource in the cluster. 
+Indicates whether to treat [GPUs](/docs/1.9/deploying-services/gpu/) as a scarce resource in the cluster. 
 
-    *  `gpus_are_scarce: 'true'` Treat GPUs as a scarce resource. This reserves the GPUs exclusively for services that opt-in to consume GPUs via the [Mesos `GPU_RESOURCES` framework capability](http://mesos.apache.org/documentation/latest/gpu-support/).
-    *  `gpus_are_scarce: 'false'` Treat GPUs like any other resource. GPUs will be offered indiscriminately to all frameworks, regardless of whether they use the [Mesos `GPU_RESOURCES` framework capability](http://mesos.apache.org/documentation/latest/gpu-support/) or not. This is the default value.
+*  `gpus_are_scarce: 'true'` Treat GPUs as a scarce resource. This reserves the GPUs exclusively for services that opt-in to consume GPUs via the [Mesos `GPU_RESOURCES` framework capability](http://mesos.apache.org/documentation/latest/gpu-support/). This is the default value.
+*  `gpus_are_scarce: 'false'` Treat GPUs like any other resource. GPUs will be offered indiscriminately to all frameworks, regardless of whether they use the [Mesos `GPU_RESOURCES` framework capability](http://mesos.apache.org/documentation/latest/gpu-support/) or not. 
 
 ### <a name="log_directory"></a>log_directory
 The path to the installer host logs from the SSH processes. By default this is set to `/genconf/logs`. In most cases this should not be changed because `/genconf` is local to the container that is running the installer, and is a mounted volume.
