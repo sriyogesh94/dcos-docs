@@ -11,30 +11,17 @@ With GPU-based scheduling, you can share cluster resources for traditional and m
 After installing DC/OS with GPUs enabled, you can specify GPUs in your application definitions with the `gpus` parameter.
 
 # Installing DC/OS with GPUs Enabled
-GPUs must be enabled during DC/OS installation. Follow the instructions to enable GPUs based on your DC/OS deployment method.
+GPUs must be enabled during DC/OS installation. Follow the instructions below to enable GPUs based on your specific DC/OS deployment method.
 
 ## Custom DC/OS Installation with GPUs
 
-1.  Install the [NVIDIA Management Library (NVML)](https://developer.nvidia.com/nvidia-management-library-nvml) on each node of your cluster that has GPUs. For detailed installation instructions, see the [Mesos GPU support documentation](http://mesos.apache.org/documentation/latest/gpu-support/#external-dependencies).
+1.  Install the [NVIDIA Management Library (NVML)](https://developer.nvidia.com/nvidia-management-library-nvml) on each node of your cluster that has GPUs. The minimum required NVIDIA driver version is 340.29. For detailed installation instructions, see the [Mesos GPU support documentation](http://mesos.apache.org/documentation/latest/gpu-support/#external-dependencies).
 1.  Install DC/OS using the [custom advanced installation instructions](/docs/1.9/installing/custom/advanced/). Here are the GPU-specific configuration parameters:
 
-    -  [enable_gpu_isolation](/docs/1.9/installing/custom/configuration/configuration-parameters/#enable_gpu_isolation): Indicates whether to enable GPU support in DC/OS. This should be set to `true` if you are using GPUs.  
-    -  [gpus_are_scarce](/docs/1.9/installing/custom/configuration/configuration-parameters/#gpus_are_scarce): Indicates whether to treat GPUs as a scarce resource in the cluster. You can set the `gpus_are_scarce: 'true'` parameter to reserve GPUs exclusively for services that opt-in to consume GPUs via the [Mesos `GPU_RESOURCES` framework capability]. Here is an example of setting this capability in a C++-based service.
-        
-       ```
-       FrameworkInfo framework;
-       framework.add_capabilities()->set_type(
-           FrameworkInfo::Capability::GPU_RESOURCES);
-        
-       GpuScheduler scheduler;
-        
-       driver = new MesosSchedulerDriver(
-         &scheduler,
-         framework,
-         127.0.0.1:5050);
-        
-        driver->run();
-       ```
+    -  **enable_gpu_isolation**: Indicates whether to enable GPU support in DC/OS. By default, this is set to `enable_gpu_isolation: 'true'`. 
+    -  **gpus_are_scarce**: Indicates whether to treat GPUs as a scarce resource in the cluster. By default, this is set to `gpus_are_scarce: 'true'`, which means DC/OS reserves GPU nodes exclusively for services that are configured to consume GPU resources. 
+    
+    For more information, see the [configuration parameter documentation](/docs/1.9/installing/custom/configuration/configuration-parameters/#enable_gpu_isolation) and Mesos [Nvidia GPU Support documentation](http://mesos.apache.org/documentation/latest/gpu-support/#external-dependencies). 
 
 ## AWS EC2 DC/OS Installation with GPUs
 
