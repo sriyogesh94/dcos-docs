@@ -15,8 +15,26 @@ GPUs must be enabled during DC/OS installation. Follow the instructions to enabl
 
 ## Custom DC/OS Installation with GPUs
 
-1.  Install the [NVIDIA Management Library (NVML)](https://developer.nvidia.com/nvidia-management-library-nvml) on each node of your cluster that has GPUs, unless it is already installed. Find detailed installation instructions [here](https://github.com/apache/mesos/blob/master/docs/gpu-support.md#external-dependencies).
-1.  Install DC/OS using the [custom advanced installation instructions](/docs/1.10/installing/custom/advanced/).
+1.  Install the [NVIDIA Management Library (NVML)](https://developer.nvidia.com/nvidia-management-library-nvml) on each node of your cluster that has GPUs. For detailed installation instructions, see the [Mesos GPU support documentation](http://mesos.apache.org/documentation/latest/gpu-support/#external-dependencies).
+1.  Install DC/OS using the [custom advanced installation instructions](/docs/1.10/installing/custom/advanced/). Here are the GPU-specific configuration parameters:
+
+    -  [enable_gpu_isolation](/docs/1.9/installing/custom/configuration/configuration-parameters/#enable_gpu_isolation): Indicates whether to enable GPU support in DC/OS. This should be set to `true` if you are using GPUs.  
+    -  [gpus_are_scarce](/docs/1.9/installing/custom/configuration/configuration-parameters/#gpus_are_scarce): Indicates whether to treat GPUs as a scarce resource in the cluster. You can set the `gpus_are_scarce: 'true'` parameter to reserve GPUs exclusively for services that opt-in to consume GPUs via the [Mesos `GPU_RESOURCES` framework capability]. Here is an example of setting this capability in a C++-based service.
+        
+       ```
+       FrameworkInfo framework;
+       framework.add_capabilities()->set_type(
+           FrameworkInfo::Capability::GPU_RESOURCES);
+        
+       GpuScheduler scheduler;
+        
+       driver = new MesosSchedulerDriver(
+         &scheduler,
+         framework,
+         127.0.0.1:5050);
+        
+        driver->run();
+       ```
 
 ## AWS EC2 DC/OS Installation with GPUs
 
@@ -169,7 +187,7 @@ In this example, an app is deployed with GPUs that specifies a Docker container 
 
 - [What is GPU Computing?](http://www.nvidia.com/object/what-is-gpu-computing.html)
 - [Mesos NVIDIA GPU Support](https://github.com/apache/mesos/blob/master/docs/gpu-support.md).
-- [Tutorial: Deep learning with TensorFlow, Nvidia and Apache Mesos (DC/OS)](https://dcos.io/blog/2017/tutorial-deep-learning-with-tensorflow-nvidia-and-apache-mesos-dc-os-part-1/index.html)
+- [Tutorial: Deep learning with TensorFlow, Nvidia and Apache Mesos (DC/OS)](https://dcos.io/blog/2017/tutorial-deep-learning-with-tensorflow-nvidia-and-apache-mesos-dc-os-part-1/index.html).
 - Presentation: [Supporting GPUs in Docker Containers on Apache Mesos](https://docs.google.com/presentation/d/1FnuEW2ic5d-cpSyVOUMfUSM7WxJlZtTAAWt2dZXJ52A/edit#slide=id.p).
 - Presentation: [GPU Support in Apache Mesos](https://www.youtube.com/watch?v=giJ4GXFoeuA).
 - Presentation: [Adding GPU Support to Mesos](https://docs.google.com/presentation/d/1Y1IUlWV6g1HzD1wYIYXy6AmbfnczWfjvvmqqpeDFBic/edit#slide=id.p).
