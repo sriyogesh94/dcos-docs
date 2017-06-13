@@ -268,8 +268,8 @@ The type of storage backend to use for Exhibitor. You can use internal DC/OS sto
 ### enable_gpu_isolation
 Indicates whether to enable GPU support in DC/OS.
 
-*  `enable_gpu_isolation: 'true'` Any GPUs that are installed in DC/OS will be automatically discovered and available as consumable resources for DC/OS tasks. 
-*  `enable_gpu_isolation: 'false'` GPUs are not available for use in the cluster. This is the default value.
+*  `enable_gpu_isolation: 'true'` Any GPUs that are installed in DC/OS will be automatically discovered and available as consumable resources for DC/OS tasks. This is the default value.
+*  `enable_gpu_isolation: 'false'` GPUs are not available for use in the cluster. 
 
 For more information, see the [GPU documentation](/docs/1.9/deploying-services/gpu/).
 

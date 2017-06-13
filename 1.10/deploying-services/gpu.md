@@ -1,20 +1,24 @@
 ---
-post_title: Enabling GPU Support
+post_title: Using GPUs
 feature_maturity: preview
 menu_order: 110
 ---
 
-DC/OS supports allocating GPUs (Graphics Processing Units) to your long-running DC/OS services. Adding GPUs to your service can dramatically accelerate big data workloads. 
+DC/OS supports allocating GPUs (Graphics Processing Units) to your long-running DC/OS services. Adding GPUs to your services can dramatically accelerate big data workloads. 
 
-# Enabling GPUs
+With GPU-based scheduling, you can share cluster resources for traditional and machine learning workloads, as well as dynamically allocate GPU resources inside those clusters and free them when needed. You can reserve GPU resources for the workloads that need them, or pool these GPU-enabled resources with the rest of the infrastructure for higher overall utilization.
+
+After installing DC/OS with GPUs enabled, you can specify GPUs in your application definitions with the `gpus` parameter.
+
+# Installing DC/OS with GPUs Enabled
 GPUs must be enabled during DC/OS installation. Follow the instructions to enable GPUs based on your DC/OS deployment method.
 
-## Enabling GPUs for a Custom DC/OS Installation
+## Custom DC/OS Installation with GPUs
 
-1.  Install DC/OS using the [custom installation instructions](/docs/1.10/installing/custom/advanced/) with the `enable-gpu-isolation: 'true'` configuration parameter specified.
 1.  Install the [NVIDIA Management Library (NVML)](https://developer.nvidia.com/nvidia-management-library-nvml) on each node of your cluster that has GPUs, unless it is already installed. Find detailed installation instructions [here](https://github.com/apache/mesos/blob/master/docs/gpu-support.md#external-dependencies).
+1.  Install DC/OS using the [custom advanced installation instructions](/docs/1.10/installing/custom/advanced/).
 
-## Enabling GPUs for an AWS EC2 DC/OS Installation
+## AWS EC2 DC/OS Installation with GPUs
 
 ###  Prerequisites
 - The AWS DC/OS advanced template [system requirements](/docs/1.10/installing/cloud/aws/advanced/).
@@ -31,26 +35,49 @@ GPUs must be enabled during DC/OS installation. Follow the instructions to enabl
 1. Follow the instructions [here](/docs/1.10/installing/cloud/aws/advanced/) to create a cluster with advanced AWS templates, using the following GPU-specific configuration.
 
 1. On the **Create Stack** > **Specify Details** page, specify your stack information and click **Next**. Here are the GPU-specific settings.
-  - **CustomAMI** - Specify the custom AMI for your region:
+   
+   - **CustomAMI** - Specify the custom AMI for your region:
 
       - us-west-2: `ami-9b5d97fb`
       - us-east-1: `ami-e10e50f6`
       - ap-southeast-2: `ami-37b28f54`
-  - **MasterInstanceType** - Accept the default master instance type (e.g. `m3.xlarge`).
-  - **PrivateAgentInstanceType** - Specify a machine type of `g2.2xlarge`. This is the GPU-supported machine type.
-  - **PublicAgentInstanceType** - Specify a machine type of `g2.2xlarge`. This is the GPU-supported machine type.
+  
+   - **MasterInstanceType** - Accept the default master instance type (e.g. `m3.xlarge`).
+   - **PrivateAgentInstanceType** - Specify an [AWS GPU machine type](https://aws.amazon.com/ec2/instance-types/#p2) (e.g., `g2.2xlarge`).
+   - **PublicAgentInstanceType** - Specify an [AWS GPU machine type](https://aws.amazon.com/ec2/instance-types/#p2) (e.g., `g2.2xlarge`).
 
-1. On the **Options** page, accept the defaults and click Next.
+1. On the **Options** page, accept the defaults and click **Next**.
 
-    **Tip**: You can choose whether to rollback on failure. By default this option is set to **Yes**.
+   **Tip**: You can choose whether to rollback on failure. By default this option is set to **Yes**.
 
 1. On the **Review** page, check the acknowledgement box, then click **Create**.
 
-    **Tip**: If the **Create New Stack** page is shown, either AWS is still processing your request or you’re looking at a different region. Navigate to the correct region and refresh the page to see your stack.
+   **Tip**: If the **Create New Stack** page is shown, either AWS is still processing your request or you’re looking at a different region. Navigate to the correct region and refresh the page to see your stack.
 
-# Usage Examples
+# Using GPUs in Your Apps
 
-You can specify GPUs in your app definition with the `gpus` parameter.
+You can specify GPUs in your application definitions with the `gpus` parameter.
+
+-  You can only specify whole numbers of GPUs in your application definition. If a fractional amount is selected, launching the task will result in a `TASK_ERROR`.
+-  NVIDIA GPU support is only available for tasks launched using the [DC/OS Universal container runtime](/docs/1.10/deploying-services/containerizers/). 
+-  You can set the `gpus_are_scarce: 'true'` parameter to reserve GPUs exclusively for services that opt-in to consume GPUs via the [Mesos `GPU_RESOURCES` framework capability]. Here is an example of setting this capability in a C++-based service.
+
+   ```
+   FrameworkInfo framework;
+   framework.add_capabilities()->set_type(
+       FrameworkInfo::Capability::GPU_RESOURCES);
+    
+   GpuScheduler scheduler;
+    
+   driver = new MesosSchedulerDriver(
+     &scheduler,
+     framework,
+     127.0.0.1:5050);
+    
+    driver->run();
+   ```
+
+# Examples
 
 ## Simple GPU Application Definition
 In this example, a simple sleep app is defined which uses GPUs.
@@ -93,7 +120,7 @@ In this example, a simple sleep app is defined which uses GPUs.
     You will also see an entry for **GPU** in the DC/OS GUI on the **Configuration** tab for your service.
 
 ## Docker-Based Application Definition
-In this example, an app is deployed with GPUs that specifies a Docker container and [DC/OS Universal Container Runtime (UCR)](/docs/1.10/deploying-services/containerizers/).  You must use UCR to run a containerized application that uses GPUs. To use the Universal Container Runtime, set the container type to `MESOS`.
+In this example, an app is deployed with GPUs that specifies a Docker container and the [DC/OS Universal Container Runtime (UCR)](/docs/1.10/deploying-services/containerizers/) (container type to `MESOS`). 
 
 1.  Create an app definition named `docker-gpu-test.json`.
 
@@ -137,27 +164,6 @@ In this example, an app is deployed with GPUs that specifies a Docker container 
     ```
     
     You will also see an entry for **GPU** on the **Configuration** tab of the page for your service.
-
-# Limitations
-
-- Unlike other resources, like  CPUs, memory, and disk, you can only specify whole numbers of GPUs in your application definition. If a fractional amount is selected, launching the task will result in a `TASK_ERROR`.
-- NVIDIA GPU support is only available for tasks launched through the [DC/OS Universal container runtime](/docs/1.10/deploying-services/containerizers/). No support exists for launching GPU-capable tasks through the Docker containerizer. However, the DC/OS Universal container runtime supports running Docker images natively.
--  While GPU resources are advertised to the Mesos master alongside other resources like CPUs, memory, and disk, the master will only forward offers that contain GPUs to DC/OS services that have explicitly enabled the GPU_RESOURCES capability. Below is an example of setting this capability in a C++-based service.
-    
-   ```
-   FrameworkInfo framework;
-   framework.add_capabilities()->set_type(
-       FrameworkInfo::Capability::GPU_RESOURCES);
-    
-   GpuScheduler scheduler;
-    
-   driver = new MesosSchedulerDriver(
-     &scheduler,
-     framework,
-     127.0.0.1:5050);
-    
-    driver->run();
-   ```
 
 ## Learn More about GPUs
 
