@@ -221,17 +221,28 @@ Here is an example JSON application that contains all fields.
         },
         "volumes": [
             {
-                "containerPath": "/etc/a",
-                "hostPath": "/var/data/a",
-                "mode": "RO"
+                "containerPath": "data",
+                "hostPath": "mydata",
+                "mode": "RO",
+                "persistent": {
+                    "size": 10
+                }
             },
             {
-                "containerPath": "/etc/b",
-                "hostPath": "/var/data/b",
+                "containerPath": "test-rexray-volume",
+                "external": {
+                  "size": 100,
+                  "name": "my-test-vol",
+                  "provider": "dvdi",
+                  "options": { "dvdi/driver": "rexray" }
+                  },
                 "mode": "RW"
-            }
+              }
         ]
     },
+    "residency": {
+        "taskLostBehavior": "WAIT_FOREVER"
+        },
     "env": {
         "LD_LIBRARY_PATH": "/usr/local/lib/myLib"
     },
