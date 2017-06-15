@@ -58,11 +58,21 @@ The container information.
       
     - **parameters** Specify command-line options for the `docker run` command executed by the Mesos containerizer. Parameters passed in this manner are not guaranteed to be supported in the future, as Mesos may not always interact with Docker via the CLI.
     
-- **volumes** The local persistent volume.  
+- **volumes** The persistent volume.  
  
     - **containerPath** The path where your application will read and write data. This must be a single-level path relative to the container; it cannot contain a forward slash (`/`). (`"data"`, but not `"/data"`, `"/var/data"` or `"var/data"`). If your application requires an absolute path, or a relative path with slashes, [use this configuration](#abs-paths).
+    - **external** The external volume. For more information, see the [documentation](/docs/1.10/storage/external-storage/).
+        
+        - **name** Name that your volume driver uses to look up your volume.
+        - **provider** The storage provider.
+        - **options** Specifies which Docker volume driver to use for storage. The only Docker volume driver provided with [DC/OS is REX-Ray](/docs/1.10/storage/external-storage/). 
+        - **size** The size (in GiB) of the external volume. 
+        
     - **hostPath** The host path.
     - **mode** The access mode of the volume, either read-write (`RW`) or read-only (`RO`). 
+    - **persistent** The local persistent volume. For more information, see the [documentation](/docs/1.10/storage/persistent-volume/).
+        
+        - **size** The size (in MiBs) of the persistent volume. 
     
 ### cpus
 The number of required CPUs per instance. This number does not have to be integer, but can be a fraction.    
@@ -144,6 +154,14 @@ Whether the host ports of your tasks are automatically assigned.
 
 - `"requirePorts": false` Ports are automatically assigned. 
 - `"requirePorts": true` Manually specify ports in advance. Marathon will only schedule the associated tasks on hosts that have the specified ports available. 
+
+### residency
+Set up a stateful application. For more information, see the [local persistent volumes documentation](/docs/1.10/storage/persistent-volume/).
+
+- **taskLostBehavior** Indicates whether Marathon will launch the task on another node after receiving a `TASK_LOST` status update.
+
+    - **WAIT_FOREVER** Do not relaunch the task after receiving a `TASK_LOST` status update. This setting is required to create a persistent volume. This is the default value.
+    - **RELAUNCH_AFTER_TIMEOUT** Relaunch the task after receiving a `TASK_LOST` status update.
 
 ### taskKillGracePeriodSeconds
 The amount of time (in seconds) between the executor sending SIGTERM to a task and then sending SIGKILL. 
