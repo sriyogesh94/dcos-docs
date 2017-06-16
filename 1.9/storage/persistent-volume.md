@@ -14,13 +14,9 @@ When you specify a local volume or volumes, tasks and their associated data are 
 
 # Create an application with local persistent volumes
 
-## Prerequisites
-
-See the [DC/OS system requirements](/docs/1.9/installing/custom/system-requirements/).
-
 ## Configuration options
 
-Configure a persistent volume with the following options:
+Create an app definition that includes the following persistent volume options:
 
 ```json
 {
@@ -28,15 +24,17 @@ Configure a persistent volume with the following options:
   "mode": "RW",
   "persistent": {
     "size": 10
-  }
+  },
+  "residency": {
+    "taskLostBehavior": "WAIT_FOREVER"
+  }  
 }
 ```
 
 - `containerPath`: The path where your application will read and write data. This must be a single-level path relative to the container; it cannot contain a forward slash (`/`). (`"data"`, but not `"/data"`, `"/var/data"` or `"var/data"`). If your application requires an absolute path, or a relative path with slashes, [use this configuration](#abs-paths).
 - `mode`: The access mode of the volume. Currently, `"RW"` is the only possible value and will let your application read from and write to the volume.
-- `persistent.size`: The size of the persistent volume in MiBs.
-
-You also need to set the `residency` node to tell Marathon to setup a stateful application. Currently, the only valid option for this is:
+- `persistent`: The size of the persistent volume in MiBs.
+- `residency`: Instructs Marathon to setup a stateful application. Currently, the only valid option for this is:
 
 ```json
 "residency": {
@@ -73,10 +71,10 @@ The second volume is a persistent volume with a `containerPath` that matches the
 
 For a complete example, see the [Running stateful MySQL on Marathon](#stateful-sql) section.
 
-## Creating a stateful application via the DC/OS Web Interface
+## Creating a stateful application via the DC/OS GUI
 
-1. Create a new service via the web interface in **Services > Services > RUN A SERVICE**.
-1. Click the Volumes tab.
+1. Create a new service via the GUI in **Services > Services > RUN A SERVICE**.
+1. Click the Volumes tab. <!-- TODO Explain the numerous volume options -->
 1. Choose the size of the volume or volumes you will use. Be sure that you choose a volume size that will fit the needs of your application; you will not be able to modify this size after you launch your application.
 1. Specify the container path from which your application will read and write data. The container path must be non-nested and cannot contain slashes e.g. `data`, but not  `../../../etc/opt` or `/user/data/`. If your application requires such a container path, [use this configuration](#nested-paths).
 1. Click Create.
@@ -142,7 +140,7 @@ However, if another framework does not respect the presence of labels and the se
 
 ### The Mesos Sandbox
 
-The temporary Mesos sandbox is still the target for the `stdout` and `stderr` logs. To view these logs, go to the Marathon pane of the DC/OS web interface.
+The temporary Mesos sandbox is still the target for the `stdout` and `stderr` logs. To view these logs, go to the Marathon pane of the DC/OS GUI.
 
 # Examples
 
