@@ -5,7 +5,6 @@ These documents are used as source to generate [dev.dcos.io/docs](https://dev.dc
 
 
 **Issue tracking is moving to the [DCOS JIRA](https://jira.mesosphere.com/browse/DCOS_OSS) `documentation` component.
-Issues on Github will be disabled soon.**
 
 # Contributing
 
