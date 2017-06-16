@@ -24,7 +24,7 @@ Create an app definition that includes the following persistent volume options:
   "mode": "RW",
   "persistent": {
     "size": 10
-  }
+  },
   "residency": {
     "taskLostBehavior": "WAIT_FOREVER"
   }  
