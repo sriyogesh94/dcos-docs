@@ -73,9 +73,9 @@ The second volume is a persistent volume with a `containerPath` that matches the
 
 For a complete example, see the [Running stateful MySQL on Marathon](#stateful-sql) section.
 
-## Creating a stateful application via the DC/OS Web Interface
+## Creating a stateful application via the DC/OS GUI
 
-1. Create a new service via the web interface in **Services > Services > RUN A SERVICE**.
+1. Create a new service via the GUI in **Services > Services > RUN A SERVICE**.
 1. Click the Volumes tab.
 1. Choose the size of the volume or volumes you will use. Be sure that you choose a volume size that will fit the needs of your application; you will not be able to modify this size after you launch your application.
 1. Specify the container path from which your application will read and write data. The container path must be non-nested and cannot contain slashes e.g. `data`, but not  `../../../etc/opt` or `/user/data/`. If your application requires such a container path, [use this configuration](#nested-paths).
@@ -142,7 +142,7 @@ However, if another framework does not respect the presence of labels and the se
 
 ### The Mesos Sandbox
 
-The temporary Mesos sandbox is still the target for the `stdout` and `stderr` logs. To view these logs, go to the Marathon pane of the DC/OS web interface.
+The temporary Mesos sandbox is still the target for the `stdout` and `stderr` logs. To view these logs, go to the Marathon pane of the DC/OS GUI.
 
 # Examples
 

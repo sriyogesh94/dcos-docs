@@ -106,7 +106,7 @@ Below is a sample app definition that uses a Docker container and specifies an e
 **Important:** Refer to the [REX-Ray documentation][11] to learn which versions of Docker are compatible with the REX-Ray volume
 driver.
 
-## Create an Application with External Volumes from the DC/OS Web Interface
+## Create an Application with External Volumes from the DC/OS GUI
 
 1. Click the **Services** tab, then **RUN A SERVICE**.
 
