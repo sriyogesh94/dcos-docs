@@ -16,7 +16,7 @@ When you specify a local volume or volumes, tasks and their associated data are 
 
 ## Configuration options
 
-Create an app definition that includes the following a persistent volume options:
+Create an app definition that includes the following persistent volume options:
 
 ```json
 {
