@@ -4,6 +4,8 @@ nav_title: First Steps
 menu_order: 1
 ---
 
+*Disclaimer: This tutorial is not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
+
 Welcome to part 1 of the DC/OS 101 Tutorial.
 
 # Prerequisites

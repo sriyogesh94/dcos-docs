@@ -4,6 +4,8 @@ nav_title: Microscaling
 menu_order: 2
 ---
 
+*Disclaimer: This tutorial is not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
+
 This tutorial walks through setting up a microscaling demonstration from [Microscaling Systems][2] on a DC/OS cluster. 
 
 [Microscaling][1] adjusts the balance of tasks running within your compute cluster. 
