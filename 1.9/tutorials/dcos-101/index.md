@@ -3,9 +3,9 @@ post_title: DC/OS 101
 menu_order: 0
 ---
 
-*Disclaimer: This tutorial is not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
-
 This DC/OS 101 tutorial will guide you through the steps necessary to get started using DC/OS.
+
+*Disclaimer: This tutorial is not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
 
 The tutorial is designed to provide users and applications developers an overview of the DC/OS basics. This tutorial discusses basic recipes for developing and orchestrating applications for a distributed landscape. To provide hands-on experience, you will develop and deploy multiple applications (including stateful, dockerized, and non-dockerized) on an actual cluster during each step of the tutorial. To provide even more rationale and background information the tutorial also includes optional deep dives into relevant topics.
 

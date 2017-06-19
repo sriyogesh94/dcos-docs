@@ -4,11 +4,11 @@ nav_title: Understanding Resources
 menu_order: 8
 ---
 
-*Disclaimer: This tutorial is not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
-
 # Prerequisites
 * A [running DC/OS cluster](/docs/1.10/tutorials/dcos-101/cli/) with [the DC/OS CLI installed](/docs/1.10/tutorials/dcos-101/cli/).
 * [app2](/docs/1.10/tutorials/dcos-101/app2/) deployed and running in your cluster.
+
+*Disclaimer: This tutorial is not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
 
 # Objective
 In this section you will learn how to monitor and understand your resource utilization, how resource limits are enforced, and how to debug resource management issues.

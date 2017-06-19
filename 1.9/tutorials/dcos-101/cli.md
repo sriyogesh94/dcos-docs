@@ -4,9 +4,9 @@ nav_title: First Steps
 menu_order: 1
 ---
 
-*Disclaimer: This tutorial is not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
-
 Welcome to part 1 of the DC/OS 101 Tutorial.
+
+*Disclaimer: This tutorial is not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
 
 # Prerequisites
 To get started with this tutorial, you should have access to a running DC/OS cluster with at least a single master node and 3 agent nodes (of which one is a public agent node). If you don't have these requirements set up, please follow the [setup instructions](/docs/1.9/installing/) for various cloud providers, on-premise, or vagrant setups.

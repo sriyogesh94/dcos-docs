@@ -3,9 +3,9 @@ post_title: Building an IoT Pipeline
 menu_order: 100
 ---
 
-*Disclaimer: This tutorial is not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
-
 In this tutorial, a containerized Ruby on Rails app named Tweeter in installed and deployed using DC/OS. Tweeter is an app similar to Twitter that you can use to post 140-character messages to the internet. Then, you use Zeppelin to perform real-time analytics on the data created by Tweeter.
+
+*Disclaimer: This tutorial is not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
 
 Tweeter:
 

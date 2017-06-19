@@ -3,9 +3,9 @@ post_title: Installing First Package
 menu_order: 2
 ---
 
-*Disclaimer: This tutorial is not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
-
 Welcome to part 2 of the DC/OS 101 Tutorial.
+
+*Disclaimer: This tutorial is not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
 
 # Prerequisites
 By now, you have a running DC/OS cluster and the DC/OS CLI installed and configured. If that isn't the case, please follow these [instructions](/docs/1.9/tutorials/dcos-101/cli/).
