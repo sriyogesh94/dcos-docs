@@ -3,11 +3,11 @@ post_title: Load-Balancing
 menu_order: 7
 ---
 
-*Disclaimer: This tutorial is not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
-
 # Prerequisites
 * A [running DC/OS cluster](/docs/1.10/tutorials/dcos-101/cli/) with [the DC/OS CLI installed](/docs/1.10/cli/install/).
 * [app2 and Marathon-LB](/docs/1.10/tutorials/dcos-101/app2/) deployed and running in your cluster.
+
+*Disclaimer: This tutorial is not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
 
 # Objective
 In this final session, you will scale your application to multiple instances and learn how internal and external services choose which instance to use once the application has been scaled.

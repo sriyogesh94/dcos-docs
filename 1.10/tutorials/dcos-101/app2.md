@@ -4,11 +4,11 @@ nav_title: Native Applications
 menu_order: 5
 ---
 
-*Disclaimer: This tutorial is not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
-
 # Prerequisites
 * A [running DC/OS cluster](/docs/1.10/tutorials/dcos-101/cli/) with [the DC/OS CLI installed](/docs/1.10/tutorials/dcos-101/cli/).
 * [app1](/docs/1.10/tutorials/dcos-101/app1/) deployed and running in your cluster.
+
+*Disclaimer: This tutorial is not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
 
 # Objective
 You already deployed an app which is running internally in your cluster (i.e., it is not targeted to users directly). Next, you will deploy an app which provides a web GUI to users.

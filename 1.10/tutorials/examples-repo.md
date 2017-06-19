@@ -3,9 +3,9 @@ post_title: DC/OS Service Tutorials
 menu_order: 200
 ---
 
-*Disclaimer: These tutorials are not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
-
 These tutorials demonstrate how to install and use DC/OS services. The tutorials are located in the [https://github.com/dcos/examples/](https://github.com/dcos/examples/) repository.
+
+*Disclaimer: These tutorials are not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
 
 **Important:** These tutorials are not configured for Enterprise DC/OS strict mode. 
                                                                                                   
