@@ -3,6 +3,8 @@ post_title: Installing First Package
 menu_order: 2
 ---
 
+*Disclaimer: This tutorial is not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
+
 Welcome to part 2 of the DC/OS 101 Tutorial.
 
 # Prerequisites
