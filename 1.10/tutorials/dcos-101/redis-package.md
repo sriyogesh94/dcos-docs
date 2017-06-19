@@ -5,7 +5,7 @@ menu_order: 2
 
 Welcome to part 2 of the DC/OS 101 Tutorial.
 
-*Disclaimer: This tutorial is not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
+<table class="table" bgcolor="#E6E6E6"> <tr> <td style="border-left: thin solid; border-top: thin solid; border-bottom: thin solid;border-right: thin solid;"><b>Disclaimer:</b> Mesosphere does not support this tutorial, associated scripts, or commands. Do not use in a production environment. This is a referential example meant to illustrate how this solution could be done with DC/OS. Before using a similar solution in a production environment, you would need to adapt, validate, and test.</td> </tr> </table>
 
 # Prerequisites
 By now, you have a running DC/OS cluster and the DC/OS CLI installed and configured. If that isn't the case, please follow these [instructions](/docs/1.10/tutorials/dcos-101/cli/).
