@@ -6,7 +6,7 @@ menu_order: 300
 
 You can use autoscaling to automatically increase or decrease computing resources based on usage so that you're using only the resources you need. Here are some examples to show you how to implement autoscaling for your services.
 
-*Disclaimer: These tutorials are not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
+**Disclaimer:** Mesosphere does not support this tutorial, associated scripts, or commands. Do not use in a production environment. This is a referential example meant to illustrate how this solution could be done with DC/OS. Before using a similar solution in a production environment, you would need to adapt, validate, and test. 	
 
 - [Autoscaling via. CPU/Memory](cpu-memory/)
 - [Autoscaling via. requests/second](requests-second/)

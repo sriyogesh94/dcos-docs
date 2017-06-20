@@ -8,7 +8,7 @@ menu_order: 5
 * A [running DC/OS cluster](/docs/1.9/tutorials/dcos-101/cli/) with [the DC/OS CLI installed](/docs/1.9/tutorials/dcos-101/cli/).
 * [app1](/docs/1.9/tutorials/dcos-101/app1/) deployed and running in your cluster.
 
-*Disclaimer: This tutorial is not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
+<table class="table" bgcolor="#E6E6E6"> <tr> <td style="border-left: thin solid; border-top: thin solid; border-bottom: thin solid;border-right: thin solid;"><b>Disclaimer:</b> Mesosphere does not support this tutorial, associated scripts, or commands, which are provided solely on a "as is" basis and without warranty. Do not use in a production environment. This is a referential example meant to illustrate how this solution could be done with DC/OS. Before using a similar solution in a production environment, you would need to adapt, validate, and test.</td> </tr> </table>
 
 # Objective
 You already deployed an app which is running internally in your cluster (i.e., it is not targeted to users directly). Next, you will deploy an app which provides a web GUI to users.

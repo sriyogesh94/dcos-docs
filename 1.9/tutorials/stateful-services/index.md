@@ -4,7 +4,7 @@ nav_title: Running Stateful Services
 menu_order: 500
 ---
 
-*Disclaimer: This tutorial is not suitable for production. Please do not replicate the steps as-is for configuring a production cluster.*
+<table class="table" bgcolor="#E6E6E6"> <tr> <td style="border-left: thin solid; border-top: thin solid; border-bottom: thin solid;border-right: thin solid;"><b>Disclaimer:</b> Mesosphere does not support this tutorial, associated scripts, or commands, which are provided solely on a "as is" basis and without warranty. Do not use in a production environment. This is a referential example meant to illustrate how this solution could be done with DC/OS. Before using a similar solution in a production environment, you would need to adapt, validate, and test.</td> </tr> </table>
 
 A stateful service acts on persistent data. Simple, stateless services run in an empty sandbox each time they are launched. In contrast, stateful services make use of persistent volumes that reside on agents in a cluster until explicitly destroyed.
 
