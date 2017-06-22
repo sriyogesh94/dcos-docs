@@ -49,46 +49,46 @@ This page provides instructions on how to contribute to the DC/OS documentation.
 
 1. Create your content.
 
-  - In most cases you should be able to create your content within the existing directory structure.
-  - If you're not sure how to add formatting, take a look at [dcos.io/docs](dcos.io/docs/) for examples.
-  - Be sure you follow the style and formatting guidelines in the [next section](#styling).
-  - Don't forget to update your post's metadata if necessary, including the required metadata `post_title` and optional `nav_title` and `menu_order`. Where applicable, add the optional `feature_maturity` label. Description of various feature maturity phases can be found [here](dcos.io/docs/overview/feature-maturity/).
+   - In most cases you should be able to create your content within the existing directory structure.
+   - If you're not sure how to add formatting, take a look at [dcos.io/docs](dcos.io/docs/) for examples.
+   - Be sure you follow the style and formatting guidelines in the [next section](#styling).
+   - Don't forget to update your post's metadata if necessary, including the required metadata `post_title` and optional `nav_title` and `menu_order`. Where applicable, add the optional `feature_maturity` label. Description of various feature maturity phases can be found [here](dcos.io/docs/overview/feature-maturity/).
 
-  The metadata should be at the very top of the post's file, and look something like this:
+   The metadata should be at the very top of the post's file, and look something like this:
 
-    ```
-    ---
-    post_title: This is how you update the documentation
-    nav_title: Update Docs
-    menu_order: 5
-    feature_maturity: preview
-    ---
-    The rest of your document's text will go here, underneath the second set of dashes.
-    ```    
+   ```
+   ---
+   post_title: This is how you update the documentation
+   nav_title: Update Docs
+   menu_order: 5
+   feature_maturity: preview
+   ---
+   The rest of your document's text will go here, underneath the second set of dashes.
+   ```    
 
-  - Don't forget to save your changes
+   - Don't forget to save your changes
 
 1. When you're happy with your improvements, build a local copy of the website by following these [instructions](#test-local) to make sure that everything looks good, and that nothing is broken.
 
 1. Push your changes into the feature branch of your remote repository on github.com.
 
-  1. First, add your changes (this gets them ready to be included in your commit).
+   1. First, add your changes (this gets them ready to be included in your commit).
 
-    ```bash
-    git add .
-    ```
+      ```bash
+      git add .
+      ```
 
-  1. Next commit the changes you made to your local branch, and add a useful message so that everyone knows what you've changed.
+   1. Next commit the changes you made to your local branch, and add a useful message so that everyone knows what you've changed.
 
-    ```bash
-    git commit -m "Addresses issue DCOS-nnn. More useful stuff here"
-    ```
+      ```bash
+      git commit -m "Addresses issue DCOS-nnn. More useful stuff here"
+      ```
 
-  1. Finally push your changes up to your remote branch on GitHub, so that you can open a pull request.
+   1. Finally push your changes up to your remote branch on GitHub, so that you can open a pull request.
 
-    ```bash
-    git push origin dcos-nnn
-    ```
+      ```bash
+      git push origin dcos-nnn
+      ```
 
 1. Submit a [pull request](https://help.github.com/articles/using-pull-requests/) against the [dcos-docs](https://github.com/dcos/dcos-docs) repo.
 
