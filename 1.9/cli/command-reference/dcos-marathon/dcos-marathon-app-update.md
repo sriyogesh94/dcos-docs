@@ -9,7 +9,7 @@ Add an application.
 # Usage
 
 ```bash
-dcos marathon app add <app-resource> [OPTION]
+dcos marathon app update <app-resource> [OPTION]
 ```
 
 # Options
