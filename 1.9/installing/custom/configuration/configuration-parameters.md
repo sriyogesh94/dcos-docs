@@ -21,8 +21,8 @@ This topic provides all available configuration parameters. Except where explici
 | [cluster_name](#cluster_name)                           | The name of your cluster.                                                                                                        |
 | [cosmos_config](#cosmos_config)                          | The dictionary of packaging configuration to pass to the [DC/OS Package Manager (Cosmos)](https://github.com/dcos/cosmos).         |
 | [exhibitor_storage_backend](#exhibitor_storage_backend)                          | The type of storage backend to use for Exhibitor.          |
-| [master_discovery](#master_discovery)                          | (Required) The Mesos master discovery method.         |
 | [ip_detect_public_filename](#ip_detect_public_filename)       | The IP detect file to use in your cluster.  |
+| [master_discovery](#master_discovery)                          | (Required) The Mesos master discovery method.         |
 | [public_agent_list](#public_agent_list)                          | A YAML nested list (-) of IPv4 addresses to your [public agent](/docs/1.9/overview/concepts/#public-agent-node) host names.        |
 | [platform](#platform)                          | The infrastructure platform.      |
 | [rexray_config](#rexray_config)                          | The [REX-Ray](https://rexray.readthedocs.org/en/v0.3.2/user-guide/config/) configuration method for enabling external persistent volumes in Marathon.    |
