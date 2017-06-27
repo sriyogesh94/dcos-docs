@@ -55,4 +55,4 @@ The Mesos containerizer provides a `credential`, with a `principal` and an optio
 - The UCR does not support the following: runtime privileges, Docker options, force pull, named ports, numbered ports, bridge networking, port mapping, private registries with container authentication.
 
 # Further Reading
-- [View the Mesos docs for the UCR](http://mesos.apache.org/documentation/latest/containerizer/#Mesos).
+- [View the Mesos docs for the UCR](http://mesos.apache.org/documentation/latest/container-image/).
