@@ -37,26 +37,6 @@ staged_package_storage_uri: <temp-path-to-files>
 package_storage_uri: <permanent-path-to-files>
 # Enterprise DC/OS Only
 customer_key: <customer-key>
-custom_checks:
-  cluster_checks:
-    custom-check-1:
-      description: Foobar cluster service is healthy
-      cmd:
-        - echo
-        - hello
-      timeout: 1s
-  node_checks:
-    checks:
-      custom-check-2:
-        description: Foobar node service is healthy
-        cmd:
-          - echo
-          - hello
-        timeout: 1s
-        roles:
-          - agent
-    poststart:
-      - custom-check-2
 dcos_overlay_enable: `<true|false>`
 dcos_overlay_config_attempts: <num-failed-attempts>
 dcos_overlay_mtu: <mtu>
