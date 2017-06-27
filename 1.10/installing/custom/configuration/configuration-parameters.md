@@ -157,6 +157,17 @@ ab1c23de-45f6-7g8h-9012-i345j6k7lm8n
 ```
 
 For more information, see the [security documentation](https://docs.mesosphere.com/1.10/security/).
+
+### custom_checks
+Specifies custom installation checks that are added to the default check configuration. The configuration is used by the [DC/OS Diagnostics component](/docs/1.9/overview/architecture/components/#dcos-diagnostics) to perform pre and post-flight installation checks. These custom checks are run alongside the default pre and post-flight checks during installation.
+
+- `cluster_checks`
+- `node_checks`
+
+    - `checks` - 
+    - `prestart` - 
+    - `poststart` - 
+
   
 ### dcos_audit_logging (Enterprise DC/OS Only)
 
