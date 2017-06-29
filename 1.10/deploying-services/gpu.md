@@ -32,10 +32,12 @@ GPUs must be enabled during DC/OS installation. Follow the instructions below to
 ### Create Dependencies
 
 1. Run the `zen.sh` script to create the Zen template dependencies. These dependencies will be used as input to create your stack in CloudFormation.
-  ```
-  bash ./zen.sh <stack-name>
-  ```
-  **Important:** You must run the `zen.sh` script before performing the next steps.
+  
+   ```
+   bash ./zen.sh <stack-name>
+   ```
+   
+   **Important:** You must run the `zen.sh` script before performing the next steps.
 
 1. Follow the instructions [here](/docs/1.10/installing/cloud/aws/advanced/) to create a cluster with advanced AWS templates, using the following GPU-specific configuration.
 
