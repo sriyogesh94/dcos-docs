@@ -24,20 +24,24 @@ The Universal Container Runtime offers the following advantages:
 
 To provision containers with the UCR from the DC/OS CLI, specify the container type `MESOS` and a the appropriate object in your [Marathon application definition](/docs/1.10/deploying-services/creating-services/). Here, we specify a Docker container with the `docker` object.
 
-The Mesos containerizer provides a `credential`, with a `principal` and an optional `secret` field to authenticate when downloading the Docker image.
+The UCR provides an optional `pullConfig` parameter to enable you to [authenticate to a private Docker registry](/docs/1.10/deploying-services/private-docker-registry/).
 
 ```json
 {  
    "id":"mesos-docker",
    "container":{  
-      "docker":{  
-         "image":"mesosphere/inky",
-         "credential":{  
-            "principal":"<my-principal>",
-            "secret":"<my-secret>"
-         }
+      "docker": {
+          "image": "mesosphere/inky",
+          "pullConfig": {
+            "secret": "pullConfigSecret"
+          }
       },
       "type":"MESOS"
+   },
+   "secrets": {
+        "pullConfigSecret": {
+          "source": "/mesos-docker/pullConfig"
+        }
    },
    "args":[  
       "<my-arg>"

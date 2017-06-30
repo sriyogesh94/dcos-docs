@@ -3,9 +3,12 @@ post_title: Using a Private Docker Registry
 menu_order: 004.5
 ---
 
-To supply credentials to pull from a private Docker registry, create an archive of your Docker credentials, then add it as a URI in your application definition.
+To supply credentials to pull from a private Docker registry, create an archive of your Docker credentials, then add it as a URI in your application definition. In Enterprise DC/OS, you can also [upload your private Docker registry credentials to the DC/OS Secret store](#secret-store-instructions) and reference it in your service or pod definition.
 
-# Step 1: Compress Docker credentials
+<a name="uri-instructions"></a>
+# Referencing private Docker registry credentials as a URI
+
+## Step 1: Compress Docker credentials
 
 1. Log in to the private registry manually. Login creates a `.docker` folder and a `.docker/config.json` file in your home directory.
 
@@ -39,7 +42,7 @@ To supply credentials to pull from a private Docker registry, create an archive 
 
 **Important:** The URI must be accessible by all nodes that will start your application. You can distribute the file to the local filesystem of all nodes, for example via RSYNC/SCP, or store it on a shared network drive like [Amazon S3](http://aws.amazon.com/s3/). Consider the security implications of your chosen approach carefully.
 
-# Step 2: Add URI path to app definition
+## Step 2: Add URI path to app definition
 
 1. Add the path to the archive file login credentials to your app definition.
 
@@ -71,3 +74,167 @@ To supply credentials to pull from a private Docker registry, create an archive 
     ```
 
 1. The Docker image will now pull using the security credentials you specified.
+
+<a name="secret-store-instructions"></a>
+# Referencing private Docker registry credentials in the secrets store (Enterprise DC/OS only)
+
+Follow these steps to
+
+**Note:** This functionality is only available with the [Universal Containerizer Runtime](/docs/1.10/deploying-services/containerizers/ucr/). If you need to use the Docker Containerizer, follow the [URI instructions](#uri-instructions) above.
+
+## Step 1: Create a Credentials File
+
+1.  Log in to your private registry manually. This will create a `~/.docker` directory and a `~/.docker/config.json` file.
+
+    ```bash
+    $ docker login some.docker.host.com
+    Username: foo
+    Password:
+    Email: foo@bar.com
+    ```
+
+1.  Check that you have the `~/.docker/config.json` file.
+
+    ```bash
+    $ ls ~/.docker
+    config.json
+    ```
+
+    Your `config.json` file should look like this, where value of `auth` is a base64-encoded `username:password` string.
+
+    ```json
+    {
+      "auths": {
+          "https://index.docker.io/v1/": {
+              "auth": "XXXXX"
+          }
+      }
+    }
+    ```
+
+    **Note:** If you are using Mac OSX, you will need to manually encode your `username:password` string and modify your `config.json` to match the snippet above.
+
+1.  Add the `config.json` file to a secret store. If you are using Enterprise DC/OS, [follow these instructions to add the file to the DC/OS secret store](https://docs.mesosphere.com/1.9/security/secrets/create-secrets/).
+  **Note:** As of DC/OS version 10.0, you can only add a file to the secret store via the API or the DC/OS CLI.
+
+## Step 2: Add the Secret to your App or Pod Definition
+
+#### For a service
+
+Add the following two parameters to your service definition.
+
+1.  A location for the secret in the `secrets` parameter:
+
+    ```json
+    "secrets": {
+      "pullConfigSecret": {
+        "source": "/mesos-docker/pullConfig"
+      }
+    }
+    ```
+
+1.  A reference to the secret in the `docker.pullConfig` parameter:
+
+    ```json
+    "docker": {
+      "image": "mesosphere/inky",
+      "pullConfig": {
+        "secret": "pullConfigSecret"
+      }
+    }
+    ```
+
+    **Note:** This functionality is _only_ supported with the Universal Container Runtime: `container.type` must be `MESOS`.
+
+1.  A complete example:
+
+    ```json
+    {
+      "id": "/mesos-docker",
+      "container": {
+        "docker": {
+          "image": "mesosphere/inky",
+          "pullConfig": {
+            "secret": "pullConfigSecret"
+          }
+        },
+        "type": "MESOS"
+      },
+      "secrets": {
+        "pullConfigSecret": {
+          "source": "/mesos-docker/pullConfig"
+        }
+      },
+      "args": ["hello"],
+      "cpus": 0.2,
+      "mem": 16.0,
+      "instances": 1
+    }
+    ```
+
+1. Add the service to DC/OS
+
+  ```
+  dcos marathon app add <svc-name>.json
+  ```
+
+1.  The Docker image will now pull using the provided security credentials given.
+
+#### For a Pod
+
+Add the following two parameters to your pod definition.
+
+1.  A location for the secret in the `secrets` parameter:
+
+    ```json
+    "secrets": {
+      "pullConfigSecret": {
+        "source": "/pod/pullConfig"
+      }
+    }
+    ```
+
+1.  A reference to the secret in the `containers.image.pullConfig` parameter:
+
+    ```json
+    "containers": [
+      {
+        "image": {
+          "id": "nginx",
+          "pullConfig": {
+            "secret": "pullConfigSecret"
+          },
+          "kind": "DOCKER"
+        }
+      }
+    ]
+    ```
+
+    **Note:** This functionality is only supported if `containers.kind` is set to `DOCKER`.
+
+  1.  A complete example:
+
+      ```json
+      {
+        "id": "/pod",
+        "scaling": { "kind": "fixed", "instances": 1 },
+        "containers": [
+          {
+            "name": "sleep1",
+            "exec": { "command": { "shell": "sleep 1000" } },
+            "resources": { "cpus": 0.1, "mem": 32 },
+            "image": {
+              "id": "nginx",
+              "pullConfig": {
+                "secret": "pullConfigSecret"
+              },
+              "kind": "DOCKER"
+            },
+            "endpoints": [ { "name": "web", "containerPort": 80, "protocol": [ "http" ] } ],
+            "healthCheck": { "http": { "endpoint": "web", "path": "/ping" } }
+          }
+        ],
+        "networks": [ { "mode": "container", "name": "my-virtual-network-name" } ],
+        "secrets": { "pullConfigSecret": { "source": "/pod/pullConfig" } }
+      }
+      ```
