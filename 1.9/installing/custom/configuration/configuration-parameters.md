@@ -9,7 +9,7 @@ This topic provides all available configuration parameters. Except where explici
 
 | Parameter                              | Description                                                                                                                                               |
 |----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [agent_list](#agent_list)                             | A YAML nested list (`-`) of IPv4 addresses to your [private agent](/1.9/overview/concepts/#private-agent-node) host names.                  |
+| [agent_list](#agent_list)                             | A YAML nested list (`-`) of IPv4 addresses to your [private agent](/docs/1.9/overview/concepts/#private-agent-node) host names.                  |
 | [aws_template_storage_bucket](#aws_template_storage_bucket)            | The name of your S3 bucket.                                                                                                      |
 | [aws_template_storage_bucket_path](#aws_template_storage_bucket_path)       | The S3 bucket storage path.                                                                                                      |
 | [aws_template_upload](#aws_template_upload)                    | Indicates whether to automatically upload the customized advanced templates to your S3 bucket.                                             |
