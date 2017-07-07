@@ -3,7 +3,7 @@ post_title: Using a Private Docker Registry
 menu_order: 004.5
 ---
 
-To supply credentials to pull from a private Docker registry, create an archive of your Docker credentials, then add it as a URI in your application definition. In Enterprise DC/OS, you can also [upload your private Docker registry credentials to the DC/OS Secret store](#secret-store-instructions) and reference it in your service or pod definition.
+To supply credentials to pull from a private Docker registry, create an archive of your Docker credentials, then add it as a URI in your service definition. In Enterprise DC/OS, you can also [upload your private Docker registry credentials to the DC/OS Secret store](#secret-store-instructions) and reference it in your service or pod definition.
 
 <a name="uri-instructions"></a>
 # Referencing private Docker registry credentials as a URI
@@ -42,9 +42,9 @@ To supply credentials to pull from a private Docker registry, create an archive 
 
 **Important:** The URI must be accessible by all nodes that will start your application. You can distribute the file to the local filesystem of all nodes, for example via RSYNC/SCP, or store it on a shared network drive like [Amazon S3](http://aws.amazon.com/s3/). Consider the security implications of your chosen approach carefully.
 
-## Step 2: Add URI path to app definition
+## Step 2: Add URI path to service definition
 
-1. Add the path to the archive file login credentials to your app definition.
+1. Add the path to the archive file login credentials to your service definition.
 
     ```bash
     "uris": [
@@ -78,16 +78,16 @@ To supply credentials to pull from a private Docker registry, create an archive 
 <a name="secret-store-instructions"></a>
 # Referencing private Docker registry credentials in the secrets store (Enterprise DC/OS only)
 
-Follow these steps to
+Follow these steps to add your Docker registry credentials to the Enterprise DC/OS secrets store, and then reference that secret in your service definition.
 
 **Note:** This functionality is only available with the [Universal Containerizer Runtime](/docs/1.10/deploying-services/containerizers/ucr/). If you need to use the Docker Containerizer, follow the [URI instructions](#uri-instructions) above.
 
-## Step 1: Create a Credentials File
+## Step 1: Create a credentials file
 
 1.  Log in to your private registry manually. This will create a `~/.docker` directory and a `~/.docker/config.json` file.
 
     ```bash
-    $ docker login some.docker.host.com
+    docker login some.docker.host.com
     Username: foo
     Password:
     Email: foo@bar.com
@@ -96,7 +96,7 @@ Follow these steps to
 1.  Check that you have the `~/.docker/config.json` file.
 
     ```bash
-    $ ls ~/.docker
+    ls ~/.docker
     config.json
     ```
 
@@ -106,7 +106,8 @@ Follow these steps to
     {
       "auths": {
           "https://index.docker.io/v1/": {
-              "auth": "XXXXX"
+              "auth": "XXXXX",
+              "email": "<your-email>"
           }
       }
     }
@@ -114,12 +115,23 @@ Follow these steps to
 
     **Note:** If you are using Mac OSX, you will need to manually encode your `username:password` string and modify your `config.json` to match the snippet above.
 
-1.  Add the `config.json` file to a secret store. If you are using Enterprise DC/OS, [follow these instructions to add the file to the DC/OS secret store](https://docs.mesosphere.com/1.9/security/secrets/create-secrets/).
+1. Add the `config.json` file to the DC/OS secret store. [Learn more about creating secrets](https://docs.mesosphere.com/1.9/security/secrets/create-secrets/).
+
   **Note:** As of DC/OS version 10.0, you can only add a file to the secret store via the API or the DC/OS CLI.
 
-## Step 2: Add the Secret to your App or Pod Definition
+  ```bash
+  dcos security secrets create --value=config.json <path/to/secret>
+  ```
 
-#### For a service
+  If you plan to follow the example below, enter the following command to add the secret:
+
+  ```bash
+  dcos security secrets create --value=config.json mesos-docker/pullConfig
+  ```
+
+## Step 2: Add the secret to your service or pod Definition
+
+### For a service
 
 Add the following two parameters to your service definition.
 
@@ -137,7 +149,7 @@ Add the following two parameters to your service definition.
 
     ```json
     "docker": {
-      "image": "mesosphere/inky",
+      "image": "<your/private/image>",
       "pullConfig": {
         "secret": "pullConfigSecret"
       }
@@ -153,7 +165,7 @@ Add the following two parameters to your service definition.
       "id": "/mesos-docker",
       "container": {
         "docker": {
-          "image": "mesosphere/inky",
+          "image": "<your/private/image>",
           "pullConfig": {
             "secret": "pullConfigSecret"
           }
@@ -172,7 +184,7 @@ Add the following two parameters to your service definition.
     }
     ```
 
-1. Add the service to DC/OS
+1. Add the service to DC/OS. If you are using the example above, `<svc-name>` is `mesos-docker`.
 
   ```
   dcos marathon app add <svc-name>.json
