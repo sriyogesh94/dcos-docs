@@ -117,16 +117,16 @@ Follow these steps to add your Docker registry credentials to the Enterprise DC/
 
 1. Add the `config.json` file to the DC/OS secret store. [Learn more about creating secrets](https://docs.mesosphere.com/1.9/security/secrets/create-secrets/).
 
-  **Note:** As of DC/OS version 10.0, you can only add a file to the secret store via the API or the DC/OS CLI.
+  **Note:** As of DC/OS version 10.0, you can only add a file to the secret store via the DC/OS CLI.
 
   ```bash
-  dcos security secrets create --value=config.json <path/to/secret>
+  dcos security secrets create --value-file=config.json <path/to/secret>
   ```
 
   If you plan to follow the example below, enter the following command to add the secret:
 
   ```bash
-  dcos security secrets create --value=config.json mesos-docker/pullConfig
+  dcos security secrets create --value-file=config.json mesos-docker/pullConfig
   ```
 
 ## Step 2: Add the secret to your service or pod Definition
@@ -192,7 +192,7 @@ Add the following two parameters to your service definition.
 
 1.  The Docker image will now pull using the provided security credentials given.
 
-#### For a Pod
+### For a Pod
 
 Add the following two parameters to your pod definition.
 
@@ -212,7 +212,7 @@ Add the following two parameters to your pod definition.
     "containers": [
       {
         "image": {
-          "id": "nginx",
+          "id": "<your/private/image>",
           "pullConfig": {
             "secret": "pullConfigSecret"
           },
@@ -224,29 +224,49 @@ Add the following two parameters to your pod definition.
 
     **Note:** This functionality is only supported if `containers.kind` is set to `DOCKER`.
 
-  1.  A complete example:
+  1. A complete example:
 
-      ```json
+    ```json
+    {
+   "id":"/simple-pod",
+   "containers":[
       {
-        "id": "/pod",
-        "scaling": { "kind": "fixed", "instances": 1 },
-        "containers": [
-          {
-            "name": "sleep1",
-            "exec": { "command": { "shell": "sleep 1000" } },
-            "resources": { "cpus": 0.1, "mem": 32 },
-            "image": {
-              "id": "nginx",
-              "pullConfig": {
-                "secret": "pullConfigSecret"
-              },
-              "kind": "DOCKER"
-            },
-            "endpoints": [ { "name": "web", "containerPort": 80, "protocol": [ "http" ] } ],
-            "healthCheck": { "http": { "endpoint": "web", "path": "/ping" } }
-          }
-        ],
-        "networks": [ { "mode": "container", "name": "my-virtual-network-name" } ],
-        "secrets": { "pullConfigSecret": { "source": "/pod/pullConfig" } }
+         "name":"simpletask1",
+         "exec":{
+            "command":{
+               "shell":"env && sleep 1000"
+            }
+         },
+         "resources":{
+            "cpus":0.1,
+            "mem":32
+         },
+         "image":{
+            "kind":"DOCKER",
+            "id":"<your/private/image>",
+            "pullConfig":{
+               "secret":"pullConfigSecret"
+            }
+         }
       }
+   ],
+   "networks":[
+      {
+         "mode":"host"
+      }
+   ],
+   "secrets":{
+      "pullConfigSecret":{
+         "source":"/pod/pullConfig"
+      }
+   }
+}
+    ```
+
+    1. Add the pod to DC/OS. If you are using the example above, `<pod-name>` is `simple-pod`.
+
       ```
+      dcos marathon pod add <pod-name>.json
+      ```
+
+    1.  The Docker image will now pull using the provided security credentials given.
