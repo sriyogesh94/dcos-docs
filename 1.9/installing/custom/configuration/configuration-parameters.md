@@ -21,6 +21,7 @@ This topic provides all available configuration parameters. Except where explici
 | [cluster_name](#cluster_name)                           | The name of your cluster.                                                                                                        |
 | [cosmos_config](#cosmos_config)                          | The dictionary of packaging configuration to pass to the [DC/OS Package Manager (Cosmos)](https://github.com/dcos/cosmos).         |
 | [exhibitor_storage_backend](#exhibitor_storage_backend)                          | The type of storage backend to use for Exhibitor.          |
+| [enable_gpu_isolation](#enable_gpu_isolation)      | Indicates whether to enable GPU support in DC/OS.      |
 | [ip_detect_public_filename](#ip_detect_public_filename)       | The IP detect file to use in your cluster.  |
 | [master_discovery](#master_discovery)                          | (Required) The Mesos master discovery method.         |
 | [public_agent_list](#public_agent_list)                          | A YAML nested list (-) of IPv4 addresses to your [public agent](/docs/1.9/overview/concepts/#public-agent-node) host names.        |
@@ -264,6 +265,14 @@ The type of storage backend to use for Exhibitor. You can use internal DC/OS sto
        The secret key to access the Azure Storage Account.
     *  **exhibitor_azure_prefix**
        The blob prefix to be used within your Storage Account to be used by Exhibitor.
+
+### enable_gpu_isolation
+Indicates whether to enable GPU support in DC/OS.
+
+*  `enable_gpu_isolation: 'true'` Any GPUs that are installed in DC/OS will be automatically discovered and available as consumable resources for DC/OS tasks. This is the default value.
+*  `enable_gpu_isolation: 'false'` GPUs are not available for use in the cluster. 
+
+For more information, see the [GPU documentation](/docs/1.9/deploying-services/gpu/).
 
 ### gc_delay
 The maximum amount of time to wait before cleaning up the executor directories. It is recommended that you accept the default value of 2 days.
