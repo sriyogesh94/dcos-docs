@@ -53,7 +53,7 @@ The tables below provide a feature comparison of your containerizer choices on D
 
 ## Networking
 
-|																					|	Docker				UCR				|Comments   |
+|																					|	Docker			|	UCR				|Comments   |
 | --------------------------------------- | ----------- | --------- | --------- |
 | **Host Networking**       							| Yes					| Yes				|						|
 | **Bridge Networking**       						| Yes					| No				|						|
@@ -61,15 +61,10 @@ The tables below provide a feature comparison of your containerizer choices on D
 | **CNM**                    							| Yes					| N/A				| Docker 1.11+ |
 | **L4lB**        												| Yes					| Yes				|	Requires defined service endpoints. TCP health checks do not work with L4LB |
 
-## Networking
-
-|																					|	Docker				UCR				|Comments   |
-| --------------------------------------- | ----------- | --------- | --------- |
-
 ## Private Registry
 
 |																	|	Docker			|	UCR				|
-| ------------------------------- | -----------  --------- |
+| ------------------------------- | ----------- | --------- |
 | **Token-based Container Auth**	| Yes					| No				|
 | **Token-based Cluster Auth**		| Yes					| Yes				|
 | **Basic Container Auth**        | Yes         | No        |
