@@ -117,17 +117,17 @@ Follow these steps to add your Docker registry credentials to the Enterprise DC/
 
 1. Add the `config.json` file to the DC/OS secret store. [Learn more about creating secrets](https://docs.mesosphere.com/1.9/security/secrets/create-secrets/).
 
-  **Note:** As of DC/OS version 10.0, you can only add a file to the secret store via the DC/OS CLI.
+   **Note:** As of DC/OS version 10.0, you can only add a file to the secret store via the DC/OS CLI.
 
-  ```bash
-  dcos security secrets create --value-file=config.json <path/to/secret>
-  ```
+   ```bash
+   dcos security secrets create --value-file=config.json <path/to/secret>
+   ```
 
-  If you plan to follow the example below, enter the following command to add the secret:
+   If you plan to follow the example below, enter the following command to add the secret:
 
-  ```bash
-  dcos security secrets create --value-file=config.json mesos-docker/pullConfig
-  ```
+   ```bash
+   dcos security secrets create --value-file=config.json mesos-docker/pullConfig
+   ```
 
 ## Step 2: Add the secret to your service or pod Definition
 
@@ -158,10 +158,10 @@ Add the following two parameters to your service definition.
 
     **Note:** This functionality is _only_ supported with the Universal Container Runtime: `container.type` must be `MESOS`.
 
-1.  A complete example:
+1. A complete example:
 
-    ```json
-    {
+   ```json
+   {
       "id": "/mesos-docker",
       "container": {
         "docker": {
@@ -181,22 +181,22 @@ Add the following two parameters to your service definition.
       "cpus": 0.2,
       "mem": 16.0,
       "instances": 1
-    }
-    ```
+   }
+   ```
 
 1. Add the service to DC/OS. If you are using the example above, `<svc-name>` is `mesos-docker`.
 
-  ```
-  dcos marathon app add <svc-name>.json
-  ```
+   ```
+   dcos marathon app add <svc-name>.json
+   ```
 
-1.  The Docker image will now pull using the provided security credentials given.
+1. The Docker image will now pull using the provided security credentials given.
 
 ### For a Pod
 
 Add the following two parameters to your pod definition.
 
-1.  A location for the secret in the `secrets` parameter:
+1. A location for the secret in the `secrets` parameter:
 
     ```json
     "secrets": {
@@ -206,7 +206,7 @@ Add the following two parameters to your pod definition.
     }
     ```
 
-1.  A reference to the secret in the `containers.image.pullConfig` parameter:
+1. A reference to the secret in the `containers.image.pullConfig` parameter:
 
     ```json
     "containers": [
@@ -224,49 +224,49 @@ Add the following two parameters to your pod definition.
 
     **Note:** This functionality is only supported if `containers.kind` is set to `DOCKER`.
 
-  1. A complete example:
+1. A complete example:
 
-    ```json
-    {
-   "id":"/simple-pod",
-   "containers":[
-      {
-         "name":"simpletask1",
-         "exec":{
-            "command":{
-               "shell":"env && sleep 1000"
-            }
-         },
-         "resources":{
-            "cpus":0.1,
-            "mem":32
-         },
-         "image":{
-            "kind":"DOCKER",
-            "id":"<your/private/image>",
-            "pullConfig":{
-               "secret":"pullConfigSecret"
-            }
+   ```json
+   {
+        "id":"/simple-pod",
+        "containers":[
+           {
+             "name":"simpletask1",
+             "exec":{
+                 "command":{
+                   "shell":"env && sleep 1000"
+                 }
+               },
+             "resources":{
+               "cpus":0.1,
+               "mem":32
+           },
+           "image":{
+               "kind":"DOCKER",
+               "id":"<your/private/image>",
+               "pullConfig":{
+                 "secret":"pullConfigSecret"
+              }
+           }
+        }
+     ],
+     "networks":[
+         {
+           "mode":"host"
          }
-      }
-   ],
-   "networks":[
-      {
-         "mode":"host"
-      }
-   ],
-   "secrets":{
-      "pullConfigSecret":{
-         "source":"/pod/pullConfig"
-      }
+     ],
+     "secrets":{
+         "pullConfigSecret":{
+           "source":"/pod/pullConfig"
+        }
+     }
    }
-}
-    ```
+   ```
 
-    1. Add the pod to DC/OS. If you are using the example above, `<pod-name>` is `simple-pod`.
+1. Add the pod to DC/OS. If you are using the example above, `<pod-name>` is `simple-pod`.
 
       ```
       dcos marathon pod add <pod-name>.json
       ```
 
-    1.  The Docker image will now pull using the provided security credentials given.
+1. The Docker image will now pull using the provided security credentials given.
