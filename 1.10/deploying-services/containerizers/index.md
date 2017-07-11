@@ -61,6 +61,11 @@ The tables below provide a feature comparison of your containerizer choices on D
 | **CNM**                    							| Yes					| N/A				| Docker 1.11+ |
 | **L4lB**        												| Yes					| Yes				|	Requires defined service endpoints. TCP health checks do not work with L4LB |
 
+## Networking
+
+|																					|	Docker				UCR				|Comments   |
+| --------------------------------------- | ----------- | --------- | --------- |
+
 ## Private Registry
 
 |																	|	Docker			|	UCR				|
