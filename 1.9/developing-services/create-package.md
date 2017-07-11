@@ -4,7 +4,7 @@ nav_title: Creating a Universe Package
 menu_order: 10
 ---
 
-This page covers general advice and information about creating a DC/OS package that can be published to the Mesosphere Universe. Consult the [Publish a Package][2] page of the Universe documentation for full details.
+This page covers general advice and information about creating a DC/OS package that can be published to the Mesosphere Universe. Consult the [Publish a Package](https://github.com/mesosphere/universe#creating-a-package) page of the Universe documentation for full details.
 
 Each DC/OS Universe package consists of 4 JSON files:
 

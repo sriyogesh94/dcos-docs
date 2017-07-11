@@ -4,6 +4,8 @@ nav_title: Running Stateful Services
 menu_order: 500
 ---
 
+<table class="table" bgcolor="#FAFAFA"> <tr> <td style="border-left: thin solid; border-top: thin solid; border-bottom: thin solid;border-right: thin solid;"><b>Important:</b> Mesosphere does not support this tutorial, associated scripts, or commands, which are provided without warranty of any kind. The purpose of this tutorial is to demonstrate capabilities, and may not be suited for use in a production environment. Before using a similar solution in your environment, you must adapt, validate, and test.</td> </tr> </table>
+
 A stateful service acts on persistent data. Simple, stateless services run in an empty sandbox each time they are launched. In contrast, stateful services make use of persistent volumes that reside on agents in a cluster until explicitly destroyed.
 
 These persistent volumes are mounted into a task's Mesos sandbox and are therefore continuously accessible to a service. DC/OS creates persistent volumes for each task and all resources required to run the task are dynamically reserved. That way, DC/OS ensures that a service can be relaunched and can reuse its data when needed. This is useful for databases, caches, and other data-aware services.
@@ -132,7 +134,7 @@ The metadata of the previous `postgres` task is used to launch a new task that t
 
 ## Cleanup
 
-In order to restore the state of your cluster as it was before installing the stateful service, delete the service:
+To restore the state of your cluster as it was before installing the stateful service, delete the service:
 
 ```
 dcos marathon app remove postgres

@@ -9,12 +9,15 @@ The [Universal Container Runtime](http://mesos.apache.org/documentation/latest/c
 
 The Universal Container Runtime offers the following advantages:
 
-* **Removes your dependency on the Docker daemon**: With previous versions of Docker, if the Docker daemon was not responsive, a restart to the daemon caused all containers to stop on the host. In addition, Docker must be installed on each of your agent nodes in order to use the Docker containerizer. This means that in order to use the Docker containerizer you need to upgrade Docker on the agent nodes each time a new version of Docker comes out.
+* **Removes your dependency on the Docker daemon**: With previous versions of Docker, if the Docker daemon was not responsive, a restart to the daemon caused all containers to stop on the host. In addition, Docker must be installed on each of your agent nodes to use the Docker containerizer. This means that to use the Docker containerizer you need to upgrade Docker on the agent nodes each time a new version of Docker comes out.
 * The UCR is more stable and allows deployment at scale.
 * The UCR offers features not available in the Docker containerizer, such as GPU and CNI support.
 * The UCR allows you to take advantage of continuing innovation within both the Mesos and DC/OS, including features such as IP per container, strict container isolation, and more.
 
 # Provision Containers with the Universal Container Runtime from the DC/OS Web Interface
+
+## Prerequisite
+If your service [pulls Docker images from a private registry](/docs/1.9/deploying-services/private-docker-registry/), you must specify the [`cluster_docker_credentials_path` in your `config.yaml`](/docs/1.9/installing/custom/configuration/configuration-parameters/#cluster_docker_credentials) file before installing DC/OS.
 
 1. Specify the UCR from the web interface. Go to **Services**  > **Run a Service** > **Single Container** > **More Settings**. In the **Container Runtime** section, choose the **Universal Container Runtime** radio button.
 
@@ -22,9 +25,12 @@ The Universal Container Runtime offers the following advantages:
 
 # Provision Containers with the Universal Container Runtime from the DC/OS CLI
 
-To provision containers with the UCR from the DC/OS CLI, specify the container type `MESOS` and a the appropriate object in your [Marathon application definition](/docs/1.9/deploying-services/creating-services/). Here, we specify a Docker container with the `docker` object.
+## Prerequisite
+If your service [pulls Docker images from a private registry](/docs/1.9/deploying-services/private-docker-registry/), you must specify the [`cluster_docker_credentials_path` in your `config.yaml`](/docs/1.9/installing/custom/configuration/configuration-parameters/#cluster_docker_credentials) file before installing DC/OS.
 
-The Mesos containerizer provides a `credential`, with a `principal` and an optional `secret` field to authenticate when downloading the Docker image.
+1. Specify the container type `MESOS` and a the appropriate object in your [Marathon application definition](/docs/1.9/deploying-services/creating-services/). Here, we specify a Docker container with the `docker` object.
+
+The Mesos containerizer provides a `credential` with a `principal` and an optional `secret` field to authenticate when downloading the Docker image.
 
 ```json
 {  
@@ -55,4 +61,4 @@ The Mesos containerizer provides a `credential`, with a `principal` and an optio
 - The UCR does not support the following: runtime privileges, Docker options, force pull, named ports, numbered ports, bridge networking, port mapping, private registries with container authentication.
 
 # Further Reading
-- [View the Mesos docs for the UCR](http://mesos.apache.org/documentation/latest/containerizer/#Mesos).
+- [View the Mesos docs for the UCR](http://mesos.apache.org/documentation/latest/container-image/).
