@@ -23,6 +23,7 @@ This topic provides all available configuration parameters. Except where explici
 | [custom_checks](#custom_checks)                          |  |
 | [exhibitor_storage_backend](#exhibitor_storage_backend)                          | The type of storage backend to use for Exhibitor.          |
 | [enable_gpu_isolation](#enable_gpu_isolation)      | Indicates whether to enable GPU support in DC/OS.      |
+| [gpus_are_scarce](#gpus_are_scarce)        | Indicates whether to treat GPUs as a scarce resource in the cluster. |
 | [ip_detect_public_filename](#ip_detect_public_filename)       | The IP detect file to use in your cluster.  |
 | [master_discovery](#master_discovery)                          | (Required) The Mesos master discovery method.         |
 | [public_agent_list](#public_agent_list)                          | A YAML nested list (-) of IPv4 addresses to your [public agent](/docs/1.10/overview/concepts/#public-agent-node) host names.        |
@@ -296,6 +297,12 @@ For more information, see the [GPU documentation](/docs/1.10/deploying-services/
 
 ### gc_delay
 The maximum amount of time to wait before cleaning up the executor directories. It is recommended that you accept the default value of 2 days.
+
+### <a name="gpus_are_scarce"></a>gpus_are_scarce
+Indicates whether to treat [GPUs](/docs/1.10/deploying-services/gpu/) as a scarce resource in the cluster. 
+
+*  `gpus_are_scarce: 'true'` Treat GPUs as a scarce resource. This reserves the GPUs exclusively for services that opt-in to consume GPUs via the [Mesos `GPU_RESOURCES` framework capability](http://mesos.apache.org/documentation/latest/gpu-support/). This is the default value.
+*  `gpus_are_scarce: 'false'` Treat GPUs like any other resource. GPUs will be offered indiscriminately to all frameworks, regardless of whether they use the [Mesos `GPU_RESOURCES` framework capability](http://mesos.apache.org/documentation/latest/gpu-support/) or not. 
 
 ### ip_detect_public_filename
 The path to a file (`/genconf/ip-detect-public`) on your bootstrap node that contains a shell script to map internal IPs to a public IP. For example:
