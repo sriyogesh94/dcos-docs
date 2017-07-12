@@ -17,16 +17,16 @@ The tables below provide a feature comparison of your containerizer choices on D
 
 | Feature																	| Docker			| UCR 			| Comments |
 | --------------------------------------- | ----------- | --------- | -------- |
-| **Command**                             | Yes         | Yes      |          |
+| **Command**                             | Yes         | Yes       |          |
 | **Container Images** 										| Yes					| Yes				|					 |
 | **Pods**																| No					| Yes				|					 |
 | **GPUs**																| No					| Yes				|					 |
 | **URIs**																| Yes					| Yes				|					 |
 | **Docker Options**											| Yes					| No				|					 |
 | **Force Pull**													| Yes					| Yes				|	CLI only |
-| **Secrets**															| Yes					| Yes				| Enterprise only |
+| **Secrets**															| Yes					| Yes				| Enterprise DC/OS only |
 | **Debugging with exec**         				| No					| Yes				|	CLI only |
-| **All Security Modes**									| Yes					| Yes				| Enterprise only |
+| **All Security Modes**									| Yes					| Yes				| Enterprise DC/OS only |
 
 ## Container Backend
 
