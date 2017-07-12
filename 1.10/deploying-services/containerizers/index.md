@@ -15,7 +15,7 @@ The tables below provide a feature comparison of your containerizer choices on D
 
 ## DC/OS Features
 
-| 																				| Docker			| UCR 			| Comments |
+| Feature																	| Docker			| UCR 			| Comments |
 | --------------------------------------- | ----------- | --------- | -------- |
 | **Command**                             | Yes         | Yes      |          |
 | **Container Images** 										| Yes					| Yes				|					 |
@@ -30,7 +30,7 @@ The tables below provide a feature comparison of your containerizer choices on D
 
 ## Container Backend
 
-|																					|	Docker			|	UCR			  |
+|	Feature																	|	Docker			|	UCR			  |
 | --------------------------------------- | ----------- | --------- |
 | **Overlayfs**                           | Yes         | Yes       |
 | **Aufs**                                | Yes         | Yes       |
@@ -38,7 +38,7 @@ The tables below provide a feature comparison of your containerizer choices on D
 
 ## Storage
 
-|																					|	Docker			|	UCR				| Comments  |
+|	Feature																	|	Docker			|	UCR				| Comments  |
 | --------------------------------------- | ----------- | --------- | --------- |
 | **Local Persistent Volumes**						| Yes					| Yes				|						|
 | **Host Volumes**												| Yes					| Yes				| CLI only  |
@@ -46,14 +46,14 @@ The tables below provide a feature comparison of your containerizer choices on D
 
 ## Service Endpoints
 
-|																					|	Docker			|	UCR				|
+|	Feature																	|	Docker			|	UCR				|
 | --------------------------------------- | ----------- | --------- |
 | **Named Ports**													| Yes					| Yes				|
 | **Numbered Ports**											| Yes					| Yes				|
 
 ## Networking
 
-|																					|	Docker			|	UCR				|Comments   |
+|	Feature																	|	Docker			|	UCR				|Comments   |
 | --------------------------------------- | ----------- | --------- | --------- |
 | **Host Networking**       							| Yes					| Yes				|						|
 | **Bridge Networking**       						| Yes					| No				|						|
@@ -63,7 +63,7 @@ The tables below provide a feature comparison of your containerizer choices on D
 
 ## Private Registry
 
-|																	|	Docker			|	UCR				|
+|	Feature													|	Docker			|	UCR				|
 | ------------------------------- | ----------- | --------- |
 | **Token-based Container Auth**	| Yes					| No				|
 | **Token-based Cluster Auth**		| Yes					| Yes				|
@@ -72,7 +72,7 @@ The tables below provide a feature comparison of your containerizer choices on D
 
 ## Health Checks
 
-|																					|	Docker			|	UCR				|Comments   |
+|	Feature																	|	Docker			|	UCR				|Comments   |
 | --------------------------------------- | ----------- | --------- | --------- |
 | **TCP**													        | Yes					| Yes				|	CLI only	|
 | **HTTP/HTTPS**                          | Yes         | Yes       | CLI only  |
