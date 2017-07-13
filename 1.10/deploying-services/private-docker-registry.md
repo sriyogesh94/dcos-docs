@@ -3,7 +3,7 @@ post_title: Using a Private Docker Registry
 menu_order: 004.5
 ---
 
-To supply credentials to pull from a private Docker registry, create an archive of your Docker credentials, then add it as a URI in your service definition. In Enterprise DC/OS, you can also [upload your private Docker registry credentials to the DC/OS Secret store](#secret-store-instructions) and reference it in your service or pod definition.
+To supply credentials to pull from a private Docker registry, create an archive of your Docker credentials, then add it as a URI in your service or pod definition. In Enterprise DC/OS, you can also [upload your private Docker registry credentials to the DC/OS Secret store](#secret-store-instructions) and reference it in your service or pod definition.
 
 <a name="uri-instructions"></a>
 # Referencing private Docker registry credentials as a URI
@@ -78,7 +78,7 @@ To supply credentials to pull from a private Docker registry, create an archive 
 <a name="secret-store-instructions"></a>
 # Referencing private Docker registry credentials in the secrets store (Enterprise DC/OS only)
 
-Follow these steps to add your Docker registry credentials to the Enterprise DC/OS secrets store, and then reference that secret in your service definition.
+Follow these steps to add your Docker registry credentials to the [Enterprise DC/OS secrets store](https://docs.mesosphere.com/1.10/security/secrets/), and then reference that secret in your service definition.
 
 **Note:** This functionality is only available with the [Universal Containerizer Runtime](/docs/1.10/deploying-services/containerizers/ucr/). If you need to use the Docker Containerizer, follow the [URI instructions](#uri-instructions) above.
 
@@ -133,32 +133,9 @@ Follow these steps to add your Docker registry credentials to the Enterprise DC/
 
 ### For a service
 
-Add the following two parameters to your service definition.
+1. Add a location for the secret in the `secrets` parameter and a reference to the secret in the `docker.pullConfig` parameter.
 
-1.  A location for the secret in the `secrets` parameter:
-
-    ```json
-    "secrets": {
-      "pullConfigSecret": {
-        "source": "/mesos-docker/pullConfig"
-      }
-    }
-    ```
-
-1.  A reference to the secret in the `docker.pullConfig` parameter:
-
-    ```json
-    "docker": {
-      "image": "<your/private/image>",
-      "pullConfig": {
-        "secret": "pullConfigSecret"
-      }
-    }
-    ```
-
-    **Note:** This functionality is _only_ supported with the Universal Container Runtime: `container.type` must be `MESOS`.
-
-1. A complete example:
+   **Note:** This functionality is _only_ supported with the Universal Container Runtime: `container.type` must be `MESOS`.
 
    ```json
    {
@@ -190,41 +167,13 @@ Add the following two parameters to your service definition.
    dcos marathon app add <svc-name>.json
    ```
 
-1. The Docker image will now pull using the provided security credentials given.
+   The Docker image will now pull using the provided security credentials given.
 
 ### For a Pod
 
-Add the following two parameters to your pod definition.
+1. Add a location for the secret in the `secrets` parameter and a reference to the secret in the `containers.image.pullConfig` parameter.
 
-1. A location for the secret in the `secrets` parameter:
-
-    ```json
-    "secrets": {
-      "pullConfigSecret": {
-        "source": "/pod/pullConfig"
-      }
-    }
-    ```
-
-1. A reference to the secret in the `containers.image.pullConfig` parameter:
-
-    ```json
-    "containers": [
-      {
-        "image": {
-          "id": "<your/private/image>",
-          "pullConfig": {
-            "secret": "pullConfigSecret"
-          },
-          "kind": "DOCKER"
-        }
-      }
-    ]
-    ```
-
-    **Note:** This functionality is only supported if `image.kind` is set to `DOCKER`.
-
-1. A complete example:
+   **Note:** This functionality is only supported if `image.kind` is set to `DOCKER`.
 
    ```json
    {
@@ -269,4 +218,4 @@ Add the following two parameters to your pod definition.
       dcos marathon pod add <pod-name>.json
       ```
 
-1. The Docker image will now pull using the provided security credentials given.
+   The Docker image will now pull using the provided security credentials given.
