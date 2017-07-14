@@ -5,7 +5,7 @@ menu_order: 40
 
 A containerizer is a Mesos agent component responsible for launching containers, within which you can run a service. Running services in containers offers a number of benefits, including the ability to isolate tasks from one another and control task resources programmatically.
 
-DC/OS supports the Mesos containerizer types:
+DC/OS supports the following Mesos containerizer types:
 
 - The [DC/OS Universal Container Runtime](/docs/1.10/deploying-services/containerizers/ucr/).
 
