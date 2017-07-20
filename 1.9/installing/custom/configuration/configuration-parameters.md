@@ -225,6 +225,9 @@ The type of storage backend to use for Exhibitor. You can use internal DC/OS sto
 
 *   `exhibitor_storage_backend: static`
     The Exhibitor storage backend is managed internally within your cluster.
+    
+    **Important:** If [master_discovery](#master_discovery) is set to `master_http_loadbalancer`, then exhibitor_storage_backend cannot be set to `static`.
+    
 *   `exhibitor_storage_backend: zookeeper`
     The ZooKeeper instance for shared storage. If you use a ZooKeeper instance to bootstrap Exhibitor, this ZooKeeper instance must be separate from your DC/OS cluster. You must have at least 3 ZooKeeper instances running at all times for high availability. If you specify `zookeeper`, you must also specify these parameters.
     *   **exhibitor_zk_hosts**
@@ -308,7 +311,10 @@ The path to the installer host logs from the SSH processes. By default this is s
     *  **num_masters**
        (Required) The number of Mesos masters in your DC/OS cluster. It cannot be changed later. The number of masters behind the load balancer must never be greater than this number, though it can be fewer during failures.
 
-*Note*: On platforms like AWS where internal IPs are allocated dynamically, you should not use a static master list. If a master instance were to terminate for any reason, it could lead to cluster instability.
+**Important:**
+
+* If master_discovery is set to `master_http_loadbalancer`, then [exhibitor_storage_backend](#exhibitor_storage_backend) cannot be set to `static`.
+* On platforms like AWS where internal IPs are allocated dynamically, you should not use a static master list. If a master instance were to terminate for any reason, it could lead to cluster instability.
 
 ### master_dns_bindall
 Indicates whether the master DNS port is open. An open master DNS port listens publicly on the masters. If you are upgrading, set this parameter to `true`.
