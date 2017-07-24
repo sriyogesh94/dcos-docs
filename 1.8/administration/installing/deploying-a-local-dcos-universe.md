@@ -111,19 +111,18 @@ To install your own set of packages you must build a customized local Universe D
     sudo make base
     ```
 
-3.  Inside the `Makefile` replace `--selected` flag with the comma-separated list of selected packages preceeded by `--include` flag. To minimize the container size and download time, you can select only what you need. If you do not modify the `Makefile`, all *selected* Universe packages will be included. To view which packages are selected, click on the **Universe** tab in the DC/OS web interface. 
+3.  Build `mesosphere/universe` Docker image and compress it to the `local-universe.tar.gz` file.
+Specify a comma-separated list of package names and version using the `DCOS_PACKAGE_INCLUDE`
+variable. To minimize the container size and download time, you can select only what you need. If
+you do not use the `DCOS_PACKAGE_INCLUDE` variable, all *selected* Universe packages will be
+included. To view which packages are selected, click on the **Universe** tab in the DC/OS web
+interface.
 
     ```bash
-    sed -i -e 's/--selected/--include="marathon-lb,zeppelin"/' Makefile
+    sudo make DCOS_VERSION=1.8 DCOS_PACKAGE_INCLUDE="cassandra:1.0.25-3.0.10,marathon:1.4.2" local-universe
     ```
 
-4.  Build `mesosphere/universe` image and compress it to the `local-universe.tar.gz` file:
-
-    ```bash
-    sudo make DCOS_VERSION=1.8 local-universe
-    ```
-
-5.  Perform steps from 2 to 7 of [Installing the default Universe packages][5] section, except step 6. Run the following command instead:
+4.  Perform steps from 2 to 7 of [Installing the default Universe packages][5] section, except step 6. Run the following command instead:
 
     ```bash
     dcos package repo add local-universe http://master.mesos:8082/repo
